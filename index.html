@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>Planechase</title>
+<style>
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+    width: 150px;
+}
+</style>
+</head>
+<body style="text-align: center;">
+<div id="chaos" style="float: right;"></div>
+<div id="count" style="float: right;"></div>
+<div id="toolbar" style="float: top">
+<input type="button" value="Force Planeswalk" onclick="roll(1);" class="myButton">
+</div>
+<div id="plane" style="margin: 10 auto;"></div>
+
+<script type="text/javascript">
+var planes = [
+    '198062.jpg', '198068.jpg', '198075.jpg', '198081.jpg',
+    '198088.jpg', '198098.jpg', '198105.jpg', '226515.jpg',
+    '226524.jpg', '226532.jpg', '226538.jpg', '226544.jpg',
+    '226553.jpg', '198063.jpg', '198069.jpg', '198076.jpg',
+    '198083.jpg', '198090.jpg', '198099.jpg', '198107.jpg',
+    '226517.jpg', '226525.jpg', '226533.jpg', '226539.jpg',
+    '226554.jpg', '198064.jpg', '198070.jpg', '198077.jpg',
+    '198084.jpg', '198092.jpg', '198100.jpg', '198109.jpg',
+    '226510.jpg', '226518.jpg', '226526.jpg', '226534.jpg',
+    '226540.jpg', '226555.jpg', '198065.jpg', '198071.jpg',
+    '198078.jpg', '198085.jpg', '198095.jpg', '198101.jpg',
+    '198110.jpg', '226512.jpg', '226527.jpg', '226535.jpg',
+    '226541.jpg', '198066.jpg', '198073.jpg', '198079.jpg',
+    '198086.jpg', '198096.jpg', '198102.jpg', '198111.jpg',
+    '226513.jpg', '226521.jpg', '226528.jpg', '226536.jpg',
+    '226542.jpg', '226551.jpg', '198067.jpg', '198074.jpg',
+    '198080.jpg', '198087.jpg', '198097.jpg', '198103.jpg',
+    '226507.jpg', '226523.jpg', '226529.jpg', '226537.jpg',
+    '226543.jpg', '226552.jpg'
+];
+
+var phenomena = [
+    '226509.jpg', '226549.jpg', '226514.jpg', '226520.jpg',
+    '226545.jpg', '226508.jpg', '226546.jpg', '226556.jpg'
+];
+
+var plane = pick(planes);
+var chaotic_aether = 0;
+update_count();
+
+function update_count() {
+    document.getElementById("count").innerHTML =
+        planes.length + phenomena.length;
+}
+
+function clean(plane) {
+    if (planes.indexOf(plane) >= 0) {
+        planes.splice(planes.indexOf(plane), 1);
+    }
+    if (phenomena.indexOf(plane) >= 0) {
+        phenomena.splice(phenomena.indexOf(plane), 1);
+    }
+}
+
+function pick(my_array) {
+    index = Math.floor(Math.random() * my_array.length);
+    return my_array.splice(index, 1)[0];
+}
+
+function load(plane) {
+    document.getElementById("plane").innerHTML =
+        '<a href="#" onclick="roll();"><img src="images/' +
+        plane + '" height="80%"></a>';
+
+    planes.splice(planes.indexOf(plane), 1);
+    update_count();
+}
+
+function roll(walk) {
+    var result = 0;
+    var diceroll = Math.round(Math.random()*5);
+    var walkto = [];
+
+    if (!walk && !confirm("Roll planar die?")) {
+        return false;
+    }
+    // clear current chaos
+    document.getElementById("chaos").innerHTML = '';
+
+    // 0-3: blank roll
+    // 4: chaos
+    // 5: planeswalk
+    result = walk ? 5 :
+        (diceroll == 5) ? diceroll :
+        (chaotic_aether) ? 4 : diceroll;
+
+    if (result > 3) {
+        // planeswalk
+        if (result == 5) {
+            // clear chaotic_aether on planeswalk
+            if (chaotic_aether) {
+                chaotic_aether = 0;
+            }
+            var all = planes.concat(phenomena);
+            walkto.push(pick(all));
+
+            // encountered a phenomenon
+            while (phenomena.indexOf(walkto[walkto.length-1]) >= 0) {
+                // Interplanar Tunnel (choose from 5 planes)
+                if (walkto[walkto.length-1] == '226549.jpg') {
+                    var tmp_planes = planes.slice(0);
+
+                    // add 5 planes to choose from
+                    for (var x=0; x<5; x++) {
+                        walkto.push(pick(tmp_planes));
+                    }
+                }
+                // Spatial Merging (merge 2 planes)
+                else if (walkto[walkto.length-1] == '226546.jpg') {
+                    walkto.push(pick(planes));
+                    walkto.push(pick(planes));
+                }
+                else {
+                    // Chaotic Aether
+                    if (walkto[walkto.length-1] == '226509.jpg') {
+                        chaotic_aether = 1;
+                    }
+
+                    // Subsequent plane
+                    walkto.push(pick(all));
+                }
+            }
+            var output = '';
+            for (pl in walkto) {
+                height = (walkto.length > 1) ? 45 : 80
+                var img = '<img src="images/' + walkto[pl] +
+                    '" height="' + height + '%">';
+                if (walkto.indexOf('226549.jpg') >= 0) {
+                    output += '<a href="#" onclick="load(\'' +
+                        walkto[pl] + '\')">' + img + '</a>';
+                    clean('226549.jpg');
+                }
+                else {
+                    output += '<a href="#" onclick="roll();">' + img + '</a>';
+                    clean(walkto[pl]);
+                }
+            }
+            document.getElementById("plane").innerHTML = output;
+            update_count();
+        }
+        if (result == 4) {
+            // display chaos symbol
+            document.getElementById("chaos").innerHTML =
+                '<img src="images/chaos.png"></a>';
+        }
+    }
+}
+
+
+document.getElementById("plane").innerHTML = '<a href="#" onclick="roll();"><img src="images/' + plane + '" height="80%"></a>';
+</script>
+</body>
+</html>
