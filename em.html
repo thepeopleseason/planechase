@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>Planechase</title>
+<style>
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+    width: 150px;
+}
+
+.plane {
+   border: 1px solid black;
+   text-align: center;
+}
+
+.current {
+  border: 3px solid red;
+}
+
+</style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body style="text-align: center;">
+<div id="chaos" style="float: right;"></div>
+<div id="toolbar" style="float: top">
+<input type="button" value="Force Planeswalk" onclick="roll(1);" class="myButton">
+</div>
+<div id="plane" style="margin: 10 auto;">
+<table width="100%" height="100%">
+<tr><td colspan="3"></td><td class="plane" id="cell_0_3">0_3</td><td colspan="3"></td></tr>
+<tr><td colspan="2"></td><td class="plane" id="cell_-1_2">-1_2</td><td class="plane" id="cell_0_2">0_2</td><td class="plane" id="cell_1_2">1_2</td><td colspan="2"></td></tr>
+<tr><td colspan="1"></td><td class="plane" id="cell_-2_1">-2_1</td><td class="plane" id="cell_-1_1">-1_1</td><td class="plane" id="cell_0_1">0_1</td><td class="plane" id="cell_1_1">1_1</td><td class="plane" id="cell_2_1">2_1</td><td colspan="1"></td></tr>
+<tr><td class="plane" id="cell_-3_0">-3_0</td><td class="plane" id="cell_-2_0">-2_0</td><td class="plane" id="cell_-1_0">-1_0</td><td class="plane current" id="cell_0_0">0_0</td><td class="plane" id="cell_1_0">1_0</td><td class="plane" id="cell_2_0">2_0</td><td class="plane" id="cell_3_0">3_0</td></tr>
+<tr><td colspan="1"></td><td class="plane" id="cell_-2_-1">-2_-1</td><td class="plane" id="cell_-1_-1">-1_-1</td><td class="plane" id="cell_0_-1">0_-1</td><td class="plane" id="cell_1_-1">1_-1</td><td class="plane" id="cell_2_-1">2_-1</td><td colspan="1"></td></tr>
+<tr><td colspan="2"></td><td class="plane" id="cell_-1_-2">-1_-2</td><td class="plane" id="cell_0_-2">0_-2</td><td class="plane" id="cell_1_-2">1_-2</td><td colspan="2"></td></tr>
+<tr><td colspan="3"></td><td class="plane" id="cell_0_-3">0_-3</td><td colspan="3"></td></tr>
+</table>
+</div>
+
+<script type="text/javascript">
+var planes = [
+  '198062.jpg', '198068.jpg', '198075.jpg', '198081.jpg',
+  '198088.jpg', '198098.jpg', '198105.jpg', '226515.jpg',
+  '226524.jpg', '226532.jpg', '226538.jpg', '226544.jpg',
+  '226553.jpg', '198063.jpg', '198069.jpg', '198076.jpg',
+  '198083.jpg', '198090.jpg', '198099.jpg', '198107.jpg',
+  '226517.jpg', '226525.jpg', '226533.jpg', '226539.jpg',
+  '226554.jpg', '198064.jpg', '198070.jpg', '198077.jpg',
+  '198084.jpg', '198092.jpg', '198100.jpg', '198109.jpg',
+  '226510.jpg', '226518.jpg', '226526.jpg', '226534.jpg',
+  '226540.jpg', '226555.jpg', '198065.jpg', '198071.jpg',
+  '198078.jpg', '198085.jpg', '198095.jpg', '198101.jpg',
+  '198110.jpg', '226512.jpg', '226527.jpg', '226535.jpg',
+  '226541.jpg', '198066.jpg', '198073.jpg', '198079.jpg',
+  '198086.jpg', '198096.jpg', '198102.jpg', '198111.jpg',
+  '226513.jpg', '226521.jpg', '226528.jpg', '226536.jpg',
+  '226542.jpg', '226551.jpg', '198067.jpg', '198074.jpg',
+  '198080.jpg', '198087.jpg', '198097.jpg', '198103.jpg',
+  '226507.jpg', '226523.jpg', '226529.jpg', '226537.jpg',
+  '226543.jpg', '226552.jpg'
+];
+
+var phenomena = [
+  '226509.jpg', '226549.jpg', '226514.jpg', '226520.jpg',
+  '226545.jpg', '226508.jpg', '226546.jpg', '226556.jpg'
+];
+
+var cells = [
+  '0_3', '-1_2', '0_2', '1_2', '-2_1', '-1_1', '0_1', '1_1', '2_1',
+  '-3_0', '-2_0', '-1_0', '0_0', '1_0', '2_0', '3_0', '-2_-1', '-1_-1',
+  '0_-1', '1_-1', '2_-1', '-1_-2', '0_-2', '1_-2', '0_-3'
+];
+var neighbors = ['-1_0','0_1','0_-1','1_0'];
+
+var init = 1;
+var map = {}
+
+function returnInt(element) {
+  return parseInt(element, 10);
+}
+
+function get_point(index) {
+  var point = index.split('_').map(returnInt);
+  return point;
+}
+
+function get_distance(index) {
+  var point = index.split('_');
+  return Math.abs(point[0]) + Math.abs(point[1]);
+}
+
+function get_neighbors() {
+  for (var x=0; x<neighbors.length; x++) {
+    if (typeof map[neighbors[x]] == 'undefined') {
+      map[neighbors[x]] = pick(planes);
+    }
+  }
+}
+
+function move(index) {
+  var point1 = get_point(index);
+  var updatemap = {}
+  if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
+    updatemap['0_0'] = pick(planes);
+  }
+  $.each(map, function(key, value) {
+    if (typeof value != 'undefined') {
+      var point2 = get_point(key);
+      point2[0] -= point1[0];
+      point2[1] -= point1[1];
+      console.log(point1, point2, value);
+      newindex = point2.join('_');
+      if (get_distance(newindex) < 4) {
+        updatemap[newindex] = value;
+      }
+      else {
+        planes.push(value);
+      }
+    }
+  });
+  map = updatemap;
+  // reset origin to new plane
+  get_neighbors();
+  console.log(map);
+  draw_map();
+}
+
+function draw_map() {
+  for (var x=0; x<cells.length; x++) {
+    $("#cell_"+cells[x]).html('');
+    if (typeof map[cells[x]] != 'undefined') {
+      link = get_link(map[cells[x]], cells[x]);
+      console.log(link);
+      $("#cell_"+cells[x]).html(link);
+    }
+  }
+  var hellrides = ['1_1', '-1_1', '-1_-1', '1_-1'];
+  if (!init) {
+    for (var x in hellrides) {
+      if (typeof map[hellrides[x]] == 'undefined') {
+        $("#cell_"+hellrides[x]).html('<input type="button" value="Hellride" onclick="move(\''+hellrides[x]+'\');" class="myButton">');
+      }
+    }
+  }
+}
+
+function get_link(plane, index) {
+  var img = '<img src="images/' + plane + '" width="' +
+    (get_distance(index) >= 2 ? 450 / (1 + 0.2 * get_distance(index)) : 450) + '">';
+  var link = ''
+  if (neighbors.indexOf(index) >= 0) {
+    link = '<a href="#" onclick="move(\'' + index + '\');">';
+  }
+  else if (index == '0_0') {
+    link = '<a href="#" onclick="draw_map();">';
+  }
+  if (link) {
+    return link.concat(img, '</a>');
+  }
+  else {
+    return img;
+  }
+}
+
+function pick(my_array) {
+  index = Math.floor(Math.random() * my_array.length);
+  return my_array.splice(index, 1)[0];
+}
+
+map['0_0'] = pick(planes);
+draw_map();
+get_neighbors();
+init = 0;
+
+</script>
+</body>
+</html>

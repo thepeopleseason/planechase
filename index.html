@@ -22,9 +22,10 @@
     width: 150px;
 }
 </style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body style="text-align: center;">
-<div id="chaos" style="float: right;"></div>
+<div id="chaos" style="position: absolute;"><img src="images/chaos.png"></div>
 <div id="count" style="float: right;"></div>
 <div id="toolbar" style="float: top">
 <input type="button" value="Force Planeswalk" onclick="roll(1);" class="myButton">
@@ -62,10 +63,12 @@ var phenomena = [
 var plane = pick(planes);
 var chaotic_aether = 0;
 update_count();
+$("#plane").html('<a href="#" onclick="roll();"><img src="images/' + plane +
+                 '" height="80%"></a>');
+$("#chaos").hide();
 
 function update_count() {
-  document.getElementById("count").innerHTML =
-    planes.length + phenomena.length;
+  $("#count").html(planes.length + phenomena.length);
 }
 
 function clean(plane) {
@@ -83,9 +86,8 @@ function pick(my_array) {
 }
 
 function load(plane) {
-  document.getElementById("plane").innerHTML =
-    '<a href="#" onclick="roll();"><img src="images/' +
-    plane + '" height="80%"></a>';
+  $("#plane").html('<a href="#" onclick="roll();"><img src="images/' +
+                   plane + '" height="80%"></a>');
 
   planes.splice(planes.indexOf(plane), 1);
   update_count();
@@ -100,7 +102,7 @@ function roll(walk) {
     return false;
   }
   // clear current chaos
-  document.getElementById("chaos").innerHTML = '';
+  $("#chaos").hide();
 
   // 0-3: blank roll
   // 4: chaos
@@ -108,6 +110,8 @@ function roll(walk) {
   result = walk ? 5 :
     (diceroll == 5) ? diceroll :
     (chaotic_aether) ? 4 : diceroll;
+
+  result = 4;
 
   if (result > 3) {
     // planeswalk
@@ -160,20 +164,16 @@ function roll(walk) {
           clean(walkto[pl]);
         }
       }
-      document.getElementById("plane").innerHTML = output;
+      $("#plane").html(output);
       update_count();
     }
     if (result == 4) {
       // display chaos symbol
-      document.getElementById("chaos").innerHTML =
-        '<img src="images/chaos.png"></a>';
+      $("#chaos").show();
     }
   }
 }
 
-document.getElementById("plane").innerHTML =
-  '<a href="#" onclick="roll();"><img src="images/' + plane +
-  '" height="80%"></a>';
 </script>
 </body>
 </html>
