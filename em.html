@@ -32,22 +32,6 @@
 
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-</head>
-<body style="text-align: center;">
-<div id="chaos" style="float: right;"></div>
-</div>
-<div id="plane" style="margin: 10 auto;">
-<table width="100%" height="100%">
-<tr><td colspan="3"></td><td class="plane" id="cell_0_3">0_3</td><td colspan="3"></td></tr>
-<tr><td colspan="2"></td><td class="plane" id="cell_-1_2">-1_2</td><td class="plane" id="cell_0_2">0_2</td><td class="plane" id="cell_1_2">1_2</td><td colspan="2"></td></tr>
-<tr><td colspan="1"></td><td class="plane" id="cell_-2_1">-2_1</td><td class="plane" id="cell_-1_1">-1_1</td><td class="plane" id="cell_0_1">0_1</td><td class="plane" id="cell_1_1">1_1</td><td class="plane" id="cell_2_1">2_1</td><td colspan="1"></td></tr>
-<tr><td class="plane" id="cell_-3_0">-3_0</td><td class="plane" id="cell_-2_0">-2_0</td><td class="plane" id="cell_-1_0">-1_0</td><td class="plane current" id="cell_0_0">0_0</td><td class="plane" id="cell_1_0">1_0</td><td class="plane" id="cell_2_0">2_0</td><td class="plane" id="cell_3_0">3_0</td></tr>
-<tr><td colspan="1"></td><td class="plane" id="cell_-2_-1">-2_-1</td><td class="plane" id="cell_-1_-1">-1_-1</td><td class="plane" id="cell_0_-1">0_-1</td><td class="plane" id="cell_1_-1">1_-1</td><td class="plane" id="cell_2_-1">2_-1</td><td colspan="1"></td></tr>
-<tr><td colspan="2"></td><td class="plane" id="cell_-1_-2">-1_-2</td><td class="plane" id="cell_0_-2">0_-2</td><td class="plane" id="cell_1_-2">1_-2</td><td colspan="2"></td></tr>
-<tr><td colspan="3"></td><td class="plane" id="cell_0_-3">0_-3</td><td colspan="3"></td></tr>
-</table>
-</div>
-
 <script type="text/javascript">
 var planes = [
   '198062.jpg', '198068.jpg', '198075.jpg', '198081.jpg',
@@ -85,6 +69,7 @@ var neighbors = ['-1_0','0_1','0_-1','1_0'];
 
 var init = 1;
 var map = {}
+var chaotic_aether = 0;
 
 function returnInt(element) {
   return parseInt(element, 10);
@@ -147,6 +132,7 @@ function draw_map() {
   }
   var hellrides = ['1_1', '-1_1', '-1_-1', '1_-1'];
   if (!init) {
+    $('#toolbar').show();
     for (var x in hellrides) {
       if (typeof map[hellrides[x]] == 'undefined') {
         $("#cell_"+hellrides[x]).html('<input type="button" value="Hellride" onclick="move(\''+hellrides[x]+'\');" class="myButton">');
@@ -178,11 +164,57 @@ function pick(my_array) {
   return my_array.splice(index, 1)[0];
 }
 
-map['0_0'] = pick(planes);
-draw_map();
-get_neighbors();
-init = 0;
+function roll() {
+  var result = 0;
+  var diceroll = Math.round(Math.random()*5);
+
+  // clear current chaos
+  $("#chaos").hide();
+
+  // 0-3: blank roll
+  // 4: chaos
+  // 5: planeswalk
+  result = (diceroll == 5) ? diceroll :
+    (chaotic_aether) ? 4 : diceroll;
+
+  if (result > 3) {
+    if (result == 4) {
+      // display chaos symbol
+      $("#chaos").show();
+    }
+  }
+}
+
+$(document).ready(function () {
+  // $(document).bind('keyup', 'n', function() { move('0_1'); });
+  // $(document).bind('keyup', 's', function() { move('0_-1'); });
+  // $(document).bind('keyup', 'e', function() { move('1_0'); });
+  // $(document).bind('keyup', 'w', function() { move('-1_0'); });
+
+  map['0_0'] = pick(planes);
+  draw_map();
+  get_neighbors();
+  init = 0;
+});
 
 </script>
+</head>
+<body style="text-align: center;">
+<div id="chaos" style="position: absolute; display: none;"><img src="images/chaos.png"></div>
+</div>
+<div id="toolbar" style="float: top; display: none;">
+<input type="button" value="Roll Planar Die" onclick="roll();" class="myButton">
+</div>
+<div id="plane" style="margin: 10 auto;">
+<table width="100%" height="100%">
+<tr><td colspan="3"></td><td class="plane" id="cell_0_3">0_3</td><td colspan="3"></td></tr>
+<tr><td colspan="2"></td><td class="plane" id="cell_-1_2">-1_2</td><td class="plane" id="cell_0_2">0_2</td><td class="plane" id="cell_1_2">1_2</td><td colspan="2"></td></tr>
+<tr><td colspan="1"></td><td class="plane" id="cell_-2_1">-2_1</td><td class="plane" id="cell_-1_1">-1_1</td><td class="plane" id="cell_0_1">0_1</td><td class="plane" id="cell_1_1">1_1</td><td class="plane" id="cell_2_1">2_1</td><td colspan="1"></td></tr>
+<tr><td class="plane" id="cell_-3_0">-3_0</td><td class="plane" id="cell_-2_0">-2_0</td><td class="plane" id="cell_-1_0">-1_0</td><td class="plane current" id="cell_0_0">0_0</td><td class="plane" id="cell_1_0">1_0</td><td class="plane" id="cell_2_0">2_0</td><td class="plane" id="cell_3_0">3_0</td></tr>
+<tr><td colspan="1"></td><td class="plane" id="cell_-2_-1">-2_-1</td><td class="plane" id="cell_-1_-1">-1_-1</td><td class="plane" id="cell_0_-1">0_-1</td><td class="plane" id="cell_1_-1">1_-1</td><td class="plane" id="cell_2_-1">2_-1</td><td colspan="1"></td></tr>
+<tr><td colspan="2"></td><td class="plane" id="cell_-1_-2">-1_-2</td><td class="plane" id="cell_0_-2">0_-2</td><td class="plane" id="cell_1_-2">1_-2</td><td colspan="2"></td></tr>
+<tr><td colspan="3"></td><td class="plane" id="cell_0_-3">0_-3</td><td colspan="3"></td></tr>
+</table>
+</div>
 </body>
 </html>
