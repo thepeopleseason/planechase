@@ -23,7 +23,6 @@
 }
 
 .plane {
-   border: 1px solid black;
    text-align: center;
 }
 
@@ -36,8 +35,6 @@
 </head>
 <body style="text-align: center;">
 <div id="chaos" style="float: right;"></div>
-<div id="toolbar" style="float: top">
-<input type="button" value="Force Planeswalk" onclick="roll(1);" class="myButton">
 </div>
 <div id="plane" style="margin: 10 auto;">
 <table width="100%" height="100%">
@@ -160,7 +157,7 @@ function draw_map() {
 
 function get_link(plane, index) {
   var img = '<img src="images/' + plane + '" width="' +
-    (get_distance(index) >= 2 ? 450 / (1 + 0.2 * get_distance(index)) : 450) + '">';
+    (get_distance(index) >= 2 ? 450 / (1 + 0.5 * get_distance(index)) : 450) + '">';
   var link = ''
   if (neighbors.indexOf(index) >= 0) {
     link = '<a href="#" onclick="move(\'' + index + '\');">';
