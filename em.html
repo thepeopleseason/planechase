@@ -96,28 +96,38 @@ function get_neighbors() {
 function move(index) {
   var point1 = get_point(index);
   var updatemap = {}
+
+  // hide chaos symbol on planeswalk
+  $('#chaos').hide();
+
+  // when Hellriding, generate a new plane
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
+    // TODO: add phenomena
     updatemap['0_0'] = pick(planes);
   }
+
+  // Reposition all existing planes in the map
   $.each(map, function(key, value) {
     if (typeof value != 'undefined') {
       var point2 = get_point(key);
       point2[0] -= point1[0];
       point2[1] -= point1[1];
-      console.log(point1, point2, value);
       newindex = point2.join('_');
+
+      // remove all planes greater than 3 hops away
       if (get_distance(newindex) < 4) {
         updatemap[newindex] = value;
       }
       else {
+        // return removed planes back to the planar deck
         planes.push(value);
       }
     }
   });
+
+  // update the map, draw new neighbors
   map = updatemap;
-  // reset origin to new plane
   get_neighbors();
-  console.log(map);
   draw_map();
 }
 
@@ -126,7 +136,6 @@ function draw_map() {
     $("#cell_"+cells[x]).html('');
     if (typeof map[cells[x]] != 'undefined') {
       link = get_link(map[cells[x]], cells[x]);
-      console.log(link);
       $("#cell_"+cells[x]).html(link);
     }
   }
