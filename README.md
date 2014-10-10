@@ -3,6 +3,6 @@ Planechase and Eternities Map utility
 TODO:
 
 * Add phenomena to Eternities Map on Hellrides.
-* Add dice roller to em.html
-* Add ability to add counters to a given plane
+* Fix display of dice roller to em.html
+* Add display of counters to planes
 * Keyboard shortcuts
