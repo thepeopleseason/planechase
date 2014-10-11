@@ -30,6 +30,12 @@
   border: 3px solid red;
 }
 
+.counter {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+}
+
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
@@ -150,6 +156,12 @@ function draw_map() {
     $("#cell_"+eternity.cells[x]).html('');
     if (typeof eternity.map[eternity.cells[x]] != 'undefined') {
       link = get_link(eternity.map[eternity.cells[x]], eternity.cells[x]);
+      if ((Object.keys(eternity.counter_planes).indexOf(eternity.map[eternity.cells[x]]) >= 0) &&
+        eternity.cells[x] == '0_0' &&
+          Object.keys(eternity.map).indexOf(eternity.cells[x]) >= 0) {
+        link += '<p class="counter"> Counters:' +
+          eternity.counter_planes[eternity.map[eternity.cells[x]]] + '</p>';
+      }
       $("#cell_"+eternity.cells[x]).html(link);
     }
   }
@@ -169,10 +181,11 @@ function draw_map() {
 function get_link(plane, index) {
   var dist = get_distance(index);
   var img = '<img src="images/' + plane + '" width="' +
-    (dist >= 2 ? 450 / (1 + 0.5 * dist) : 450) + '">';
+    (dist >= 2 ? 450 / (1 + 0.5 * dist) : 450) +
+    '" title="'+ index +'">';
   var link = ''
   if (dist == 1) {
-    link = '<a href="#" title="move(\'' + index + '\');" onclick="move(\'' + index + '\');">';
+    link = '<a href="#" onclick="move(\'' + index + '\');">';
   }
   else if (index == '0_0') {
     if (!init && Object.keys(eternity.counter_planes).indexOf(plane) >= 0) {
@@ -197,6 +210,7 @@ function pick(my_array) {
 
 function add_counter() {
   eternity.counter_planes[eternity.map['0_0']]++;
+  draw_map();
 }
 
 function roll() {
@@ -227,7 +241,7 @@ $(document).ready(function () {
   // $(document).bind('keyup', 'w', function() { move('-1_0'); });
 
   eternity.map['0_0'] = pick(eternity.planes);
-  eternity.map['0_0'] = '226523.jpg';
+  // eternity.map['0_0'] = '226523.jpg';
   draw_map();
   get_neighbors();
   init = 0;
@@ -241,15 +255,46 @@ $(document).ready(function () {
 <div id="toolbar" style="float: top; display: none;">
 <input type="button" value="Roll Planar Die" onclick="roll();" class="myButton">
 </div>
+
 <div id="plane" style="margin: 10 auto;">
 <table width="100%" height="100%">
-<tr><td colspan="3"></td><td class="plane" id="cell_0_3">0_3</td><td colspan="3"></td></tr>
-<tr><td colspan="2"></td><td class="plane" id="cell_-1_2">-1_2</td><td class="plane" id="cell_0_2">0_2</td><td class="plane" id="cell_1_2">1_2</td><td colspan="2"></td></tr>
-<tr><td colspan="1"></td><td class="plane" id="cell_-2_1">-2_1</td><td class="plane" id="cell_-1_1">-1_1</td><td class="plane" id="cell_0_1">0_1</td><td class="plane" id="cell_1_1">1_1</td><td class="plane" id="cell_2_1">2_1</td><td colspan="1"></td></tr>
-<tr><td class="plane" id="cell_-3_0">-3_0</td><td class="plane" id="cell_-2_0">-2_0</td><td class="plane" id="cell_-1_0">-1_0</td><td class="plane current" id="cell_0_0">0_0</td><td class="plane" id="cell_1_0">1_0</td><td class="plane" id="cell_2_0">2_0</td><td class="plane" id="cell_3_0">3_0</td></tr>
-<tr><td colspan="1"></td><td class="plane" id="cell_-2_-1">-2_-1</td><td class="plane" id="cell_-1_-1">-1_-1</td><td class="plane" id="cell_0_-1">0_-1</td><td class="plane" id="cell_1_-1">1_-1</td><td class="plane" id="cell_2_-1">2_-1</td><td colspan="1"></td></tr>
-<tr><td colspan="2"></td><td class="plane" id="cell_-1_-2">-1_-2</td><td class="plane" id="cell_0_-2">0_-2</td><td class="plane" id="cell_1_-2">1_-2</td><td colspan="2"></td></tr>
-<tr><td colspan="3"></td><td class="plane" id="cell_0_-3">0_-3</td><td colspan="3"></td></tr>
+<tr><td colspan="3"></td>
+  <td class="plane" id="cell_0_3">0_3</td>
+  <td colspan="3"></td></tr>
+<tr><td colspan="2"></td>
+  <td class="plane" id="cell_-1_2">-1_2</td>
+  <td class="plane" id="cell_0_2">0_2</td>
+  <td class="plane" id="cell_1_2">1_2</td>
+  <td colspan="2"></td></tr>
+<tr><td colspan="1"></td>
+  <td class="plane" id="cell_-2_1">-2_1</td>
+  <td class="plane" id="cell_-1_1">-1_1</td>
+  <td class="plane" id="cell_0_1">0_1</td>
+  <td class="plane" id="cell_1_1">1_1</td>
+  <td class="plane" id="cell_2_1">2_1</td>
+  <td colspan="1"></td></tr>
+<tr><td class="plane" id="cell_-3_0">-3_0</td>
+  <td class="plane" id="cell_-2_0">-2_0</td>
+  <td class="plane" id="cell_-1_0">-1_0</td>
+  <td class="plane current" id="cell_0_0">0_0</td>
+  <td class="plane" id="cell_1_0">1_0</td>
+  <td class="plane" id="cell_2_0">2_0</td>
+  <td class="plane" id="cell_3_0">3_0</td></tr>
+<tr><td colspan="1"></td>
+  <td class="plane" id="cell_-2_-1">-2_-1</td>
+  <td class="plane" id="cell_-1_-1">-1_-1</td>
+  <td class="plane" id="cell_0_-1">0_-1</td>
+  <td class="plane" id="cell_1_-1">1_-1</td>
+  <td class="plane" id="cell_2_-1">2_-1</td>
+  <td colspan="1"></td></tr>
+<tr><td colspan="2"></td>
+  <td class="plane" id="cell_-1_-2">-1_-2</td>
+  <td class="plane" id="cell_0_-2">0_-2</td>
+  <td class="plane" id="cell_1_-2">1_-2</td>
+  <td colspan="2"></td></tr>
+<tr><td colspan="3"></td>
+  <td class="plane" id="cell_0_-3">0_-3</td>
+  <td colspan="3"></td></tr>
 </table>
 </div>
 </body>
