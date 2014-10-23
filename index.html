@@ -41,17 +41,16 @@ $(document).ready(function () {
 <body style="text-align: center;">
 <div id="toolbar">
 <div style="float: left;">
-    <input type="button" value="Roll Planar Die" onclick="roll();"
-           class="myButton">
+    <input type="button" value="Roll Planar Die" id="dice_button"
+           onclick="roll();" class="myButton">
     <div style="float: right; padding: 0 5px 0 5px;">Mana Cost:
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
-<div style="float: left; padding: 0 10px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
 <div style="float: left; padding: 0 5px 0 5px;">Remaining Planes:
 <input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
 </div>
-<div style="float: right; padding: 0 0 0 5px;"><a onclick="help();">What's This?</a></div>
+<div style="float: right; padding: 0 0 0 10px;"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help" title="What's This?"></div>
 <div id="plane" style="padding: 25px; margin: 30 auto;"></div>
