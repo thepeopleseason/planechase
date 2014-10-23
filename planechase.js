@@ -138,14 +138,14 @@ function roll() {
   result = (diceroll == 5) ? diceroll :
     (eternity.chaotic_aether) ? 4 : diceroll;
 
-  dice_result = '---';
+  dice_result = 'Roll Planar Die';
   if (result > 3) {
     if (result == 4) {
       // display chaos symbol
-      dice_result = "chaos";
+      dice_result = "Chaos";
     }
     else {
-      dice_result = "planeswalk";
+      dice_result = "Planeswalk";
     }
   }
   $("#dice_button")[0].value = dice_result;
