@@ -1,57 +1,10 @@
 <html>
 <head>
 <title>Planechase</title>
-<style>
-.myButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background-color:#007dc1;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:arial;
-	font-size:13px;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
-    width: 150px;
-}
-
-.infoButton {
-    border-radius: 15px;
-    background-color: #0cc;
-    width: auto;
-}
-
-.diceButton {
-    border-radius: 1px;
-    background-color: #636;
-}
-
-#toolbar {
-    position: fixed;
-    width: 100%;
-    height: 32px;
-    line-height: 32px;
-    top: 0;
-    left: 0;
-    padding: 2px; /* some styling, please note overall height of the object will be 35px due to 5px padding on top/bottom. */
-    background: #fff; /* some styling */
-    border-bottom: 1px solid #333; /* some styling */
-}
-</style>
+<link rel="stylesheet"  href="planechase.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
-function update_count() {
-  $("#count_button")[0].value =
-    eternity.planes.length + eternity.phenomena.length;
-}
 
 function clean(plane) {
   if (eternity.planes.indexOf(plane) >= 0) {
@@ -63,7 +16,7 @@ function clean(plane) {
 }
 
 function load(plane) {
-  $("#plane").html('<a href="#" onclick="roll();"><img src="images/' +
+  $("#plane").html('<a href="#" onclick="walk();"><img src="images/' +
                    plane + '" height="80%"></a>');
 
   eternity.planes.splice(eternity.planes.indexOf(plane), 1);
@@ -73,7 +26,7 @@ function load(plane) {
 $(document).ready(function () {
   plane = pick(eternity.planes);
   update_count();
-  $("#plane").html('<a href="#" onclick="roll();"><img src="images/' + plane +
+  $("#plane").html('<a href="#" onclick="walk();"><img src="images/' + plane +
                    '" height="80%"></a>');
 });
 

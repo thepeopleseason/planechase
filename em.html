@@ -1,42 +1,7 @@
 <html>
 <head>
 <title>Eternities Map</title>
-<style>
-.myButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background-color:#007dc1;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:arial;
-	font-size:13px;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
-    width: 150px;
-}
-
-.plane {
-   text-align: center;
-}
-
-.current {
-  border: 3px solid red;
-}
-
-.counter {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: right;
-}
-
-</style>
+<link rel="stylesheet" href="planechase.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
@@ -150,15 +115,17 @@ function move(index) {
       else {
         // return removed planes back to the planar deck
         eternity.planes.push(value);
-        if (Object.keys(eternity.counter_planes).indexOf(value) >= 0) {
-          eternity.counter_planes[value] = 0;
-        }
+        eternity.names[value].counter = 0;
       }
     }
   });
 
   // update the map, draw new neighbors
   eternity.map = updatemap;
+
+  // clear current status
+  $('#dice_button')[0].value = '---';
+
   get_neighbors();
   draw_map();
 }
@@ -168,12 +135,6 @@ function draw_map() {
     $("#cell_"+eternity.cells[x]).html('');
     if (typeof eternity.map[eternity.cells[x]] != 'undefined') {
       link = get_link(eternity.map[eternity.cells[x]], eternity.cells[x]);
-      if ((Object.keys(eternity.counter_planes).indexOf(eternity.map[eternity.cells[x]]) >= 0) &&
-        eternity.cells[x] == '0_0' &&
-          Object.keys(eternity.map).indexOf(eternity.cells[x]) >= 0) {
-        link += '<p class="counter"> Counters:' +
-          eternity.counter_planes[eternity.map[eternity.cells[x]]] + '</p>';
-      }
       $("#cell_"+eternity.cells[x]).html(link);
     }
   }
@@ -201,7 +162,7 @@ function get_link(plane, index) {
     link = '<a href="#" onclick="move(\'' + index + '\');">';
   }
   else if (index == '0_0') {
-    if (!init && Object.keys(eternity.counter_planes).indexOf(plane) >= 0) {
+    if (!init && eternity.names[plane].counter >= 0) {
       link = '<a href="#" onclick="add_counter(\''+plane+'\');">';
     }
     else {
@@ -217,29 +178,7 @@ function get_link(plane, index) {
 }
 
 function add_counter(plane) {
-  eternity.counter_planes[plane]++;
-  draw_map();
-}
-
-function roll() {
-  var result = 0;
-  var diceroll = Math.round(Math.random()*5);
-
-  // clear current chaos
-  $("#chaos").hide();
-
-  // 0-3: blank roll
-  // 4: chaos
-  // 5: planeswalk
-  result = (diceroll == 5) ? diceroll :
-    (chaotic_aether) ? 4 : diceroll;
-
-  if (result > 3) {
-    if (result == 4) {
-      // display chaos symbol
-      $("#chaos").show();
-    }
-  }
+  update_count(++eternity.names[plane].counter);
 }
 
 $(document).ready(function () {
@@ -258,10 +197,18 @@ $(document).ready(function () {
 </script>
 </head>
 <body style="text-align: center;">
-<div id="chaos" style="position: absolute; display: none;"><img src="images/chaos.png"></div>
+<div id="toolbar">
+<div style="float: left;">
+    <input type="button" value="Roll Planar Die" onclick="roll();"
+           class="myButton">
+    <div style="float: right; padding: 0 5px 0 5px;">Mana Cost:
+    <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
+    </div>
 </div>
-<div id="toolbar" style="float: top; display: none;">
-<input type="button" value="Roll Planar Die" onclick="roll();" class="myButton">
+<div style="float: left; padding: 0 45px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
+<div style="float: right; padding: 0 5px 0 5px;">Planar Counters:
+<input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;">
+</div>
 </div>
 <div id="phenomenon" style="display: none;"></div>
 <div id="plane_div" style="margin: 10 auto;">
