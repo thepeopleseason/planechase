@@ -169,7 +169,7 @@ function draw_map() {
 function get_link(plane, index) {
   var dist = get_distance(index);
   var img = '<img src="images/' + plane + '" height="' +
-    (dist >= 2 ? (window.innerHeight * 0.3) / (1 + 0.7 * dist) : (window.innerHeight * 0.3)) +
+    (window.innerHeight * 0.45) / (1 + (0.35 * dist)) +
     '" title="'+ eternity.names[plane].name + ':' +
     index +'">';
   var link = ''
@@ -218,17 +218,16 @@ $(document).ready(function () {
 <body style="text-align: center;">
 <div id="toolbar">
 <div style="float: left;">
-    <input type="button" value="Roll Planar Die" onclick="roll();"
-           class="myButton">
+    <input id="dice_button" type="button" value="Roll Planar Die"
+           onclick="roll();" class="myButton">
     <div style="float: right; padding: 0 5px 0 5px;">Cost:
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
-<div style="float: left; padding: 0 10px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
 <div style="float: left; padding: 0 5px">Planar Counters:
 <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
 </div>
-<div style="float: right; padding: 0 0 0 5px;"><a onclick="help();">What's This?</a></div>
+<div style="float: right; padding: 0 0 0 10px;"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help" title="What's This?"></div>
 <div id="phenomenon" style="display: none;"></div>
