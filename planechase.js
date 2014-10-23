@@ -8,7 +8,7 @@ var eternity = {
     '198067.jpg': { 'name': "The Hippodrome" },
     '198068.jpg': { 'name': "Glimmervoid Basin" },
     '198069.jpg': { 'name': "Tazeem" },
-    '198070.jpg': { 'name': "Naar Isle", 'counter': true },
+    '198070.jpg': { 'name': "Naar Isle", 'counter': 0 },
     '198071.jpg': { 'name': "Grixis" },
     '198073.jpg': { 'name': "Academy at Tolaria West" },
     '198074.jpg': { 'name': "Murasa" },
@@ -48,12 +48,12 @@ var eternity = {
     '226512.jpg': { 'name': "Akoum" },
     '226513.jpg': { 'name': "Onakke Catacomb" },
     '226514.jpg': { 'name': "Morphic Tide", 'phenomenon': true },
-    '226515.jpg': { 'name': "Mount Keralia", 'counter': true },
-    '226517.jpg': { 'name': "Aretopolis", 'counter': true },
+    '226515.jpg': { 'name': "Mount Keralia", 'counter': 0 },
+    '226517.jpg': { 'name': "Aretopolis", 'counter': 0 },
     '226518.jpg': { 'name': "Quicksilver Sea" },
     '226520.jpg': { 'name': "Mutual Epiphany", 'phenomenon': true },
     '226521.jpg': { 'name': "Stairs to Infinity" },
-    '226523.jpg': { 'name': "Kilnspire District", 'counter': true },
+    '226523.jpg': { 'name': "Kilnspire District", 'counter': 0 },
     '226524.jpg': { 'name': "Orochi Colony" },
     '226525.jpg': { 'name': "Talon Gates" },
     '226526.jpg': { 'name': "Astral Arena" },
@@ -113,18 +113,13 @@ var eternity = {
     '226509.jpg', '226549.jpg', '226514.jpg', '226520.jpg',
     '226545.jpg', '226508.jpg', '226546.jpg', '226556.jpg'
   ],
-  'counter_planes': {
-    '226523.jpg': 0,
-    '226517.jpg': 0,
-    '226515.jpg': 0,
-    '198070.jpg': 0
-  },
   'cells': [
     '0_3', '-1_2', '0_2', '1_2', '-2_1', '-1_1', '0_1', '1_1', '2_1',
     '-3_0', '-2_0', '-1_0', '0_0', '1_0', '2_0', '3_0', '-2_-1', '-1_-1',
     '0_-1', '1_-1', '2_-1', '-1_-2', '0_-2', '1_-2', '0_-3'
   ],
   'map': {},
+  'history': [],
   'chaotic_aether': 0
 };
 
@@ -161,7 +156,7 @@ function walk() {
   var walkto = [];
 
   // clear existing state
-  $("#chaos").hide();
+  $("#dice_button")[0].value = '---';
   if (eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
@@ -206,14 +201,20 @@ function walk() {
       clean('226549.jpg');
     }
     else {
-      output += '<a href="#" onclick="roll();">' + img + '</a>';
+      output += '<a href="#" onclick="walk();">' + img + '</a>';
       clean(walkto[pl]);
     }
   }
   $("#plane").html(output);
+  eternity.history.push(eternity.names[walkto[pl]]);
   update_count();
 }
 
 function reset_cost() {
   $('#cost_button')[0].value = 0;
+}
+
+function update_count(count) {
+  $("#count_button")[0].value = count ? count :
+    eternity.planes.length + eternity.phenomena.length;
 }
