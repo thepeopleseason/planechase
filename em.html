@@ -168,8 +168,8 @@ function draw_map() {
 
 function get_link(plane, index) {
   var dist = get_distance(index);
-  var img = '<img src="images/' + plane + '" width="' +
-    (dist >= 2 ? 450 / (1 + 0.7 * dist) : 450) +
+  var img = '<img src="images/' + plane + '" height="' +
+    (dist >= 2 ? (window.innerHeight * 0.3) / (1 + 0.7 * dist) : (window.innerHeight * 0.3)) +
     '" title="'+ eternity.names[plane].name + ':' +
     index +'">';
   var link = ''
@@ -196,6 +196,10 @@ function add_counter(plane) {
   update_count(++eternity.names[plane].counter);
 }
 
+function get_help() {
+  return 'An implementation of Magic The Gathering\'s Planescape--the Eternities Map variant, as described in <a href="http://archive.wizards.com/Magic/magazine/article.aspx?x=mtg/daily/feature/100">Gavin Duggan\'s Daily MTG article from 2010</a>.';
+}
+
 $(document).ready(function () {
   // $(document).bind('keyup', 'n', function() { move('0_1'); });
   // $(document).bind('keyup', 's', function() { move('0_-1'); });
@@ -209,9 +213,6 @@ $(document).ready(function () {
   init = 0;
 });
 
-function get_help() {
-  return 'An implementation of Magic The Gathering\'s Planescape--the Eternities Map variant, as described in <a href="http://archive.wizards.com/Magic/magazine/article.aspx?x=mtg/daily/feature/100">Gavin Duggan\'s Daily MTG article from 2010</a>.';
-}
 </script>
 </head>
 <body style="text-align: center;">

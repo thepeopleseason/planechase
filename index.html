@@ -2,7 +2,9 @@
 <head>
 <title>Planechase</title>
 <link rel="stylesheet"  href="planechase.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
 
@@ -23,6 +25,10 @@ function load(plane) {
   update_count();
 }
 
+function get_help() {
+  return 'An implementation of Magic The Gathering\'s Planescape';
+}
+
 $(document).ready(function () {
   plane = pick(eternity.planes);
   update_count();
@@ -41,11 +47,13 @@ $(document).ready(function () {
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
-<div style="float: left; padding: 0 45px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
-<div style="float: right; padding: 0 5px 0 5px;">Remaining Planes:
+<div style="float: left; padding: 0 10px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
+<div style="float: left; padding: 0 5px 0 5px;">Remaining Planes:
 <input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
 </div>
+<div style="float: right; padding: 0 0 0 5px;"><a onclick="help();">What's This?</a></div>
 </div>
+<div id="help" title="What's This?"></div>
 <div id="plane" style="padding: 25px; margin: 30 auto;"></div>
 </body>
 </html>
