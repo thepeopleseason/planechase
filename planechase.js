@@ -8,7 +8,7 @@ var eternity = {
     '198067.jpg': { 'name': "The Hippodrome" },
     '198068.jpg': { 'name': "Glimmervoid Basin" },
     '198069.jpg': { 'name': "Tazeem" },
-    '198070.jpg': { 'name': "Naar Isle", 'counter': 0 },
+    '198070.jpg': { 'name': "Naar Isle", 'counter': 1 },
     '198071.jpg': { 'name': "Grixis" },
     '198073.jpg': { 'name': "Academy at Tolaria West" },
     '198074.jpg': { 'name': "Murasa" },
@@ -48,12 +48,12 @@ var eternity = {
     '226512.jpg': { 'name': "Akoum" },
     '226513.jpg': { 'name': "Onakke Catacomb" },
     '226514.jpg': { 'name': "Morphic Tide", 'phenomenon': true },
-    '226515.jpg': { 'name': "Mount Keralia", 'counter': 0 },
-    '226517.jpg': { 'name': "Aretopolis", 'counter': 0 },
+    '226515.jpg': { 'name': "Mount Keralia", 'counter': 1 },
+    '226517.jpg': { 'name': "Aretopolis", 'counter': 1 },
     '226518.jpg': { 'name': "Quicksilver Sea" },
     '226520.jpg': { 'name': "Mutual Epiphany", 'phenomenon': true },
     '226521.jpg': { 'name': "Stairs to Infinity" },
-    '226523.jpg': { 'name': "Kilnspire District", 'counter': 0 },
+    '226523.jpg': { 'name': "Kilnspire District", 'counter': 1 },
     '226524.jpg': { 'name': "Orochi Colony" },
     '226525.jpg': { 'name': "Talon Gates" },
     '226526.jpg': { 'name': "Astral Arena" },
@@ -217,4 +217,9 @@ function reset_cost() {
 function update_count(count) {
   $("#count_button")[0].value = count ? count :
     eternity.planes.length + eternity.phenomena.length;
+}
+
+function help() {
+  $("#help").html(get_help());
+  $("#help").dialog();
 }
