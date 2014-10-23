@@ -74,8 +74,10 @@ var eternity = {
     '226543.jpg': { 'name': "Nephalia" },
     '226544.jpg': { 'name': "Hedron Fields of Agadeem" },
     '226545.jpg': { 'name': "Planewide Disaster", 'phenomenon': true },
-    '226546.jpg': { 'name': "Spatial Merging", 'phenomenon': true },
-    '226549.jpg': { 'name': "Interplanar Tunnel", 'phenomenon': true },
+    '226546.jpg': { 'name': "Spatial Merging", 'phenomenon': true,
+                    'link': 'merged' },
+    '226549.jpg': { 'name': "Interplanar Tunnel", 'phenomenon': true,
+                    'link': 'load' },
     '226551.jpg': { 'name': "Jund" },
     '226552.jpg': { 'name': "Prahv" },
     '226553.jpg': { 'name': "Truga Jungle" },
@@ -135,24 +137,24 @@ function roll() {
   var result = 0;
   var diceroll = Math.round(Math.random()*5);
 
-  // clear existing state
-  $("#chaos").hide();
-
   // 0-3: blank roll
   // 4: chaos
   // 5: planeswalk
   result = (diceroll == 5) ? diceroll :
     (eternity.chaotic_aether) ? 4 : diceroll;
 
+  dice_result = '---';
   if (result > 3) {
     if (result == 4) {
       // display chaos symbol
-      $("#chaos").show();
+      dice_result = "chaos";
     }
     else {
-      walk();
+      dice_result = "planeswalk";
     }
   }
+  $("#dice_button")[0].value = dice_result;
+  $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
 }
 
 function walk() {
@@ -210,4 +212,8 @@ function walk() {
   }
   $("#plane").html(output);
   update_count();
+}
+
+function reset_cost() {
+  $('#cost_button')[0].value = 0;
 }

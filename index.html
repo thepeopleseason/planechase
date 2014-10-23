@@ -21,12 +21,36 @@
 	text-shadow:0px 1px 0px #154682;
     width: 150px;
 }
+
+.infoButton {
+    border-radius: 15px;
+    background-color: #0cc;
+    width: auto;
+}
+
+.diceButton {
+    border-radius: 1px;
+    background-color: #636;
+}
+
+#toolbar {
+    position: fixed;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    top: 0;
+    left: 0;
+    padding: 2px; /* some styling, please note overall height of the object will be 35px due to 5px padding on top/bottom. */
+    background: #fff; /* some styling */
+    border-bottom: 1px solid #333; /* some styling */
+}
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
 function update_count() {
-  $("#count").html(Object.keys(eternity.names).length);
+  $("#count_button")[0].value =
+    eternity.planes.length + eternity.phenomena.length;
 }
 
 function clean(plane) {
@@ -51,18 +75,24 @@ $(document).ready(function () {
   update_count();
   $("#plane").html('<a href="#" onclick="roll();"><img src="images/' + plane +
                    '" height="80%"></a>');
-  $("#chaos").hide();
 });
 
 </script>
 </head>
 <body style="text-align: center;">
-<div id="chaos" style="position: absolute;"><img src="images/chaos.png"></div>
-<div id="count" style="float: right;"></div>
-<div id="toolbar" style="float: top">
-<input type="button" value="Force Planeswalk" onclick="walk();" class="myButton">
+<div id="toolbar">
+<div style="float: left;">
+    <input type="button" value="Roll Planar Die" onclick="roll();"
+           class="myButton">
+    <div style="float: right; padding: 0 5px 0 5px;">Mana Cost:
+    <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
+    </div>
 </div>
-<div id="plane" style="margin: 10 auto;"></div>
-
+<div style="float: left; padding: 0 45px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
+<div style="float: right; padding: 0 5px 0 5px;">Remaining Planes:
+<input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
+</div>
+</div>
+<div id="plane" style="padding: 25px; margin: 30 auto;"></div>
 </body>
 </html>

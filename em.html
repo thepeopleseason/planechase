@@ -67,6 +67,11 @@ function get_neighbors() {
   }
 }
 
+function pheno_done() {
+  $('#phenomenon').hide();
+  $('#plane_div').show();
+}
+
 function move(index) {
   var point1 = get_point(index);
   var updatemap = {}
@@ -76,8 +81,58 @@ function move(index) {
 
   // when Hellriding, generate a new plane
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
-    // TODO: add phenomena
-    updatemap['0_0'] = pick(eternity.planes);
+    var all = eternity.planes.concat(eternity.phenomena);
+
+    newplane = pick(all);
+    // how to handle phenomena
+    if (eternity.names[newplane].phenomenon) {
+      var walkto = [];
+      var phenomenon = newplane;
+
+      // Interplanar Tunnel
+      if (newplane == '226549.jpg') {
+        var tmp_planes = eternity.planes.slice(0);
+
+        // add 5 planes to choose from
+        for (var x=0; x<5; x++) {
+          walkto.push(pick(tmp_planes));
+        }
+      }
+      // Spatial Merging (merge 2 planes)
+      else if (newplane == '226546.jpg') {
+        $('#phenomenon').html('<a href="#" onclick="pheno_done();">' +
+                              '<img src="images/' + newplane +
+                              '" height="450" title="'+ phenomenon +'"></a>');
+        walkto.push(eternity.planes);
+        walkto.push(eternity.planes);
+
+        updatemap['0_0'] = newplane;
+      }
+      else {
+        $('#plane_div').hide();
+        newplane = pick(eternity.planes);
+      }
+
+      var output = '';
+      for (pl in walkto) {
+        height = (walkto.length > 1) ? 45: 80;
+        var img = '<img src="images/' + walkto[pl] +
+          '" height="' + height + '%">';
+        if (walkto.indexOf('226549.jpg') >= 0) {
+          output += '<a href="#" onclick="load(\'' +
+            walkto[pl] + '\')">' + img + '</a>';
+        }
+        else {
+          output += '<a href="#" onclick="roll();">' + img + '</a>';
+        }
+      }
+      $('#phenomenon').html(output);
+      $('#phenomenon').show();
+    }
+    else {
+      eternity.planes.splice(eternity.planes.indexOf(newplane), 1);
+    }
+    updatemap['0_0'] = newplane;
   }
 
   // Reposition all existing planes in the map
@@ -138,8 +193,9 @@ function draw_map() {
 function get_link(plane, index) {
   var dist = get_distance(index);
   var img = '<img src="images/' + plane + '" width="' +
-    (dist >= 2 ? 450 / (1 + 0.5 * dist) : 450) +
-    '" title="'+ index +'">';
+    (dist >= 2 ? 450 / (1 + 0.7 * dist) : 450) +
+    '" title="'+ eternity.names[plane].name + ':' +
+    index +'">';
   var link = ''
   if (dist == 1) {
     link = '<a href="#" onclick="move(\'' + index + '\');">';
@@ -208,7 +264,7 @@ $(document).ready(function () {
 <input type="button" value="Roll Planar Die" onclick="roll();" class="myButton">
 </div>
 <div id="phenomenon" style="display: none;"></div>
-<div id="plane" style="margin: 10 auto;">
+<div id="plane_div" style="margin: 10 auto;">
 <table width="100%" height="100%">
 <tr><td colspan="3"></td>
   <td class="plane" id="cell_0_3">0_3</td>
