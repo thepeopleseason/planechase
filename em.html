@@ -2,12 +2,11 @@
 <head>
 <title>Eternities Map</title>
 <link rel="stylesheet" href="planechase.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
-
-var neighbors = ['-1_0','0_1','0_-1','1_0'];
-
 var init = 1;
 
 function returnInt(element) {
@@ -25,9 +24,10 @@ function get_distance(index) {
 }
 
 function get_neighbors() {
-  for (var x=0; x<neighbors.length; x++) {
-    if (typeof eternity.map[neighbors[x]] == 'undefined') {
-      eternity.map[neighbors[x]] = pick(eternity.planes);
+  for (var x=0; x<eternity.cells.length; x++) {
+    if (get_distance(eternity.cells[x]) == 1 &&
+        typeof eternity.map[eternity.cells[x]] == 'undefined') {
+      eternity.map[eternity.cells[x]] = pick(eternity.planes);
     }
   }
 }
@@ -115,7 +115,10 @@ function move(index) {
       else {
         // return removed planes back to the planar deck
         eternity.planes.push(value);
-        eternity.names[value].counter = 0;
+        // reset counters on recovery
+        if (typeof eternity.names[value].counter != 'undefined') {
+          eternity.names[value].counter = 1;
+        }
       }
     }
   });
@@ -136,6 +139,18 @@ function draw_map() {
     if (typeof eternity.map[eternity.cells[x]] != 'undefined') {
       link = get_link(eternity.map[eternity.cells[x]], eternity.cells[x]);
       $("#cell_"+eternity.cells[x]).html(link);
+    }
+    if (eternity.cells[x] == '0_0') {
+      var value;
+      if (typeof eternity.names[eternity.map[eternity.cells[x]]].counter !=
+          'undefined' &&
+          eternity.names[eternity.map[eternity.cells[x]]].counter > 0) {
+        value = eternity.names[eternity.map[eternity.cells[x]]].counter;
+      }
+      else {
+        value = '---';
+      }
+      $('#count_button')[0].value = value;
     }
   }
 
@@ -194,6 +209,9 @@ $(document).ready(function () {
   init = 0;
 });
 
+function get_help() {
+  return 'An implementation of Magic The Gathering\'s Planescape--the Eternities Map variant, as described in <a href="http://archive.wizards.com/Magic/magazine/article.aspx?x=mtg/daily/feature/100">Gavin Duggan\'s Daily MTG article from 2010</a>.';
+}
 </script>
 </head>
 <body style="text-align: center;">
@@ -201,15 +219,17 @@ $(document).ready(function () {
 <div style="float: left;">
     <input type="button" value="Roll Planar Die" onclick="roll();"
            class="myButton">
-    <div style="float: right; padding: 0 5px 0 5px;">Mana Cost:
+    <div style="float: right; padding: 0 5px 0 5px;">Cost:
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
-<div style="float: left; padding: 0 45px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
-<div style="float: right; padding: 0 5px 0 5px;">Planar Counters:
-<input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;">
+<div style="float: left; padding: 0 10px;"><input type="button" id="dice_button" value="---" class="diceButton myButton"></div>
+<div style="float: left; padding: 0 5px">Planar Counters:
+<input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
 </div>
+<div style="float: right; padding: 0 0 0 5px;"><a onclick="help();">What's This?</a></div>
 </div>
+<div id="help" title="What's This?"></div>
 <div id="phenomenon" style="display: none;"></div>
 <div id="plane_div" style="margin: 10 auto;">
 <table width="100%" height="100%">
