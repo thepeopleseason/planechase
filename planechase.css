@@ -54,3 +54,9 @@
   font-weight: bold;
   text-align: right;
 }
+
+#help {
+  font-size: small;
+  float: right;
+  padding: 0 25px;
+}

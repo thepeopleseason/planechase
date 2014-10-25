@@ -3,6 +3,8 @@
 <title>Planechase</title>
 <link rel="stylesheet"  href="planechase.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
@@ -18,11 +20,11 @@ function clean(plane) {
 }
 
 function load(plane) {
-  $("#plane").html('<a href="#" onclick="walk();"><img src="images/' +
+  $("#plane").html('<a href="#" onclick="walk(\''+plane+'\');"><img src="images/' +
                    plane + '" height="80%"></a>');
 
   eternity.planes.splice(eternity.planes.indexOf(plane), 1);
-  update_count();
+  update_count('pcount_button');
 }
 
 function get_help() {
@@ -30,10 +32,7 @@ function get_help() {
 }
 
 $(document).ready(function () {
-  plane = pick(eternity.planes);
-  update_count();
-  $("#plane").html('<a href="#" onclick="walk();"><img src="images/' + plane +
-                   '" height="80%"></a>');
+  walk(pick(eternity.planes));
 });
 
 </script>
@@ -47,12 +46,14 @@ $(document).ready(function () {
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
+<div style="float: left; padding: 0 5px 0 5px;">Planar Counters:
+<input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
+</div>
 <div style="float: left; padding: 0 5px 0 5px;">Remaining Planes:
-<input id="count_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
+<input id="pcount_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
 </div>
-<div style="float: right; padding: 0 0 0 10px;"><a onclick="help();">What's This?</a></div>
+<div id="help"><a onclick="help();">What's This?</a></div>
 </div>
-<div id="help" title="What's This?"></div>
 <div id="plane" style="padding: 25px; margin: 30 auto;"></div>
 </body>
 </html>

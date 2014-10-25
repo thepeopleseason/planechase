@@ -3,6 +3,8 @@
 <title>Eternities Map</title>
 <link rel="stylesheet" href="planechase.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
@@ -127,7 +129,7 @@ function move(index) {
   eternity.map = updatemap;
 
   // clear current status
-  $('#dice_button')[0].value = '---';
+  $('#dice_button')[0].value = 'Roll Planar Die';
 
   get_neighbors();
   draw_map();
@@ -193,7 +195,7 @@ function get_link(plane, index) {
 }
 
 function add_counter(plane) {
-  update_count(++eternity.names[plane].counter);
+  update_count('count_button', ++eternity.names[plane].counter);
 }
 
 function get_help() {
@@ -201,10 +203,10 @@ function get_help() {
 }
 
 $(document).ready(function () {
-  // $(document).bind('keyup', 'n', function() { move('0_1'); });
-  // $(document).bind('keyup', 's', function() { move('0_-1'); });
-  // $(document).bind('keyup', 'e', function() { move('1_0'); });
-  // $(document).bind('keyup', 'w', function() { move('-1_0'); });
+  // $(document).bind('keypress', 'n', function() { move('0_1'); });
+  // $(document).bind('keypress', 's', function() { move('0_-1'); });
+  // $(document).bind('keypress', 'e', function() { move('1_0'); });
+  // $(document).bind('keypress', 'w', function() { move('-1_0'); });
 
   eternity.map['0_0'] = pick(eternity.planes);
   // eternity.map['0_0'] = '226523.jpg';
@@ -224,12 +226,11 @@ $(document).ready(function () {
     <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
     </div>
 </div>
-<div style="float: left; padding: 0 5px">Planar Counters:
+<div style="float: left;">Planar Counters:
 <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
 </div>
-<div style="float: right; padding: 0 0 0 10px;"><a onclick="help();">What's This?</a></div>
+<div id="help"><a onclick="help();">What's This?</a></div>
 </div>
-<div id="help" title="What's This?"></div>
 <div id="phenomenon" style="display: none;"></div>
 <div id="plane_div" style="margin: 10 auto;">
 <table width="100%" height="100%">

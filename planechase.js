@@ -30,7 +30,7 @@ var eternity = {
     '198095.jpg': { 'name': "Otaria" },
     '198096.jpg': { 'name': "Isle of Vesuva" },
     '198097.jpg': { 'name': "Fields of Summer" },
-    '198098.jpg': { 'name': "The AEther Flues" },
+    '198098.jpg': { 'name': "The &AElig;ther Flues" },
     '198099.jpg': { 'name': "Bant" },
     '198100.jpg': { 'name': "Krosa" },
     '198101.jpg': { 'name': "Skybreen" },
@@ -129,65 +129,77 @@ function pick(my_array) {
 }
 
 function roll() {
-  var result = 0;
-  var diceroll = Math.round(Math.random()*5);
-
-  // 0-3: blank roll
-  // 4: chaos
-  // 5: planeswalk
-  result = (diceroll == 5) ? diceroll :
-    (eternity.chaotic_aether) ? 4 : diceroll;
-
-  dice_result = 'Roll Planar Die';
-  if (result > 3) {
-    if (result == 4) {
-      // display chaos symbol
-      dice_result = "Chaos";
-    }
-    else {
-      dice_result = "Planeswalk";
-    }
+  // Planeswalk on button re-press. Skip if you're mapping
+  if ($('#dice_button')[0].value == 'Planeswalk'
+      && !Object.keys(eternity.map).length) {
+    walk();
   }
-  $("#dice_button")[0].value = dice_result;
-  $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
+  else {
+    var result = 0;
+    var diceroll = Math.round(Math.random()*5);
+
+    // 0-3: blank roll
+    // 4: chaos
+    // 5: planeswalk
+    result = (diceroll == 5) ? diceroll :
+      (eternity.chaotic_aether) ? 4 : diceroll;
+
+    dice_result = 'Roll Planar Die';
+    if (result > 3) {
+      if (result == 4) {
+        // display chaos symbol
+        dice_result = "Chaos";
+      }
+      else {
+        dice_result = "Planeswalk";
+      }
+    }
+    $("#dice_button")[0].value = dice_result;
+    $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
+  }
 }
 
-function walk() {
+function walk(plane) {
   var walkto = [];
 
   // clear existing state
-  $("#dice_button")[0].value = '---';
+  $("#dice_button")[0].value = 'Roll Planar Die';
   if (eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
 
-  var all = Object.keys(eternity.names);
-  walkto.push(pick(all));
+  if (plane) {
+    walkto.push(plane);
+  }
+  else {
+    var all = Object.keys(eternity.names);
+    walkto.push(pick(all));
 
-  // encountered a phenomenon
-  while (eternity.names[walkto[walkto.length-1]].phenomenon) {
-    // Interplanar Tunnel (choose from 5 planes)
-    if (walkto[walkto.length-1] == '226549.jpg') {
-      var tmp_planes = eternity.planes.slice(0);
+    // encountered a phenomenon
+    while (eternity.names[walkto[walkto.length-1]].phenomenon) {
+      // Interplanar Tunnel (choose from 5 planes)
+      if (walkto[walkto.length-1] == '226549.jpg') {
+        var tmp_planes = eternity.planes.slice(0);
 
-      // add 5 planes to choose from
-      for (var x=0; x<5; x++) {
-        walkto.push(pick(tmp_planes));
+        // add 5 planes to choose from
+        for (var x=0; x<5; x++) {
+          walkto.push(pick(tmp_planes));
+        }
       }
-    }
-    // Spatial Merging (merge 2 planes)
-    else if (walkto[walkto.length-1] == '226546.jpg') {
-      walkto.push(pick(eternity.planes));
-      walkto.push(pick(eternity.planes));
-    }
-    else {
-      // Chaotic Aether
-      if (walkto[walkto.length-1] == '226509.jpg') {
-        eternity.chaotic_aether = 1;
+      // Spatial Merging (merge 2 planes)
+      else if (walkto[walkto.length-1] == '226546.jpg') {
+        walkto.push(pick(eternity.planes));
+        walkto.push(pick(eternity.planes));
       }
+      else {
+        // Chaotic Aether
+        if (walkto[walkto.length-1] == '226509.jpg') {
+          eternity.chaotic_aether = 1;
+        }
 
-      // Subsequent plane
-      walkto.push(pick(all));
+        // Subsequent plane
+        walkto.push(pick(all));
+      }
     }
   }
   var output = '';
@@ -206,16 +218,16 @@ function walk() {
     }
   }
   $("#plane").html(output);
-  eternity.history.push(eternity.names[walkto[pl]]);
-  update_count();
+  eternity.history.push(eternity.names[walkto[pl]].name);
+  update_count('pcount_button');
 }
 
 function reset_cost() {
   $('#cost_button')[0].value = 0;
 }
 
-function update_count(count) {
-  $("#count_button")[0].value = count ? count :
+function update_count(id, count) {
+  $("#" + id)[0].value = count ? count :
     eternity.planes.length + eternity.phenomena.length;
 }
 
