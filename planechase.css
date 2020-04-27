@@ -42,21 +42,29 @@
 }
 
 .plane {
-   text-align: center;
+    text-align: center;
+}
+
+.inactive img:hover {
+    transform: scale(2);
 }
 
 .current {
-  border: 3px solid red;
+    border: 3px solid red;
+}
+
+.current img.hover {
+    transform: scale(1);
 }
 
 .counter {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
 }
 
 #help {
-  font-size: small;
-  float: right;
-  padding: 0 25px;
+    font-size: small;
+    float: right;
+    padding: 0 25px;
 }
