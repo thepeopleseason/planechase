@@ -1,6 +1,17 @@
 <html>
 <head>
 <title>Archenemy</title>
+<style type="text/css">
+  .ongoingBtn {
+    position: relative;
+    bottom: 40px;
+    cursor: pointer;
+  }
+  .schemeDiv {
+    height: 454px;
+    width: 317px;
+  }
+</style>
 <script type="text/Javascript">
 const schemes = [
   { name: "oarc-10★-every-hope-shall-vanish.png", },
@@ -76,28 +87,55 @@ const schemes = [
 ];
 
 var deck;
+var oSchemes = [];
+var oSchemeCount = 0;
 const urlParams = new URLSearchParams(window.location.search);
 
 function set() {
   var scheme = deck.shift();
-  //clear("scheme");
-  //if (!scheme.ongoing) {
+  // TODO: check if deck is empty--if so, grep out oSchemes and create a new deck
+
+  if (!scheme.ongoing) {
     load(scheme);
-  //}
-  //else {
-  //  load(scheme, "ongoing01");
-  //}
+  }
+  else {
+    oSchemes.push(scheme);
+    redraw();
+  }
 }
 
-function clear(div) {
-  document.getElementById(div).innerHTML = '  ';
+function clearScheme(schemeName) {
+  oSchemes = oSchemes.filter(
+    function(sch) {
+      return sch.name == schemeName ? null : sch;
+    }
+  );
+  redraw();
 }
 
-function load(scheme, div = "scheme") {
-  document.getElementById(div).innerHTML = '<a href="#" onclick="'
-    + (div === "scheme" ? 'set()' : 'clear(\''+div+'\')')
-    + ';"><img src="'
-    + scheme.name + '" height="80%"></a>';
+function redraw() {
+  for (let i=0; i<12; i++) {
+    if (i >= oSchemes.length) {
+      var mydiv = document.getElementById("scheme" + (i+1));
+      while(mydiv.firstChild) {
+        mydiv.removeChild(mydiv.firstChild);
+      }
+    }
+    else {
+      load(oSchemes[i], "scheme" + (i+1));
+    }
+  }
+}
+
+function load(scheme, div = "scheme0") {
+  document.getElementById(div).innerHTML = '<a href="#" onclick="set();"><img src="'
+    + scheme.name + '" style="height: 100%;"></a>'
+    + '<div id="' + div
+    + 'Btn" class="ongoingBtn"><input type="button" value="Abandon" onclick="clearScheme(\''
+    + scheme.name + '\')"></div>';
+  if (!scheme.ongoing) {
+    document.getElementById(div + 'Btn').style.display = "none";
+  }
 }
 
 function start() {
@@ -124,19 +162,19 @@ function start() {
 }
 </script>
 
-<body style="text-align: center;" onload="start();">
-<div id="scheme" style="float; left; margin 30 auto;"></div>
-<div id="ongoing01" style="float; left; margin 30 auto;"></div>
-<div id="ongoing02" style="float; left; margin 30 auto;"></div>
-<div id="ongoing03" style="float; left; margin 30 auto;"></div>
-<div id="ongoing04" style="float; left; margin 30 auto;"></div>
-<div id="ongoing05" style="float; left; margin 30 auto;"></div>
-<div id="ongoing06" style="float; left; margin 30 auto;"></div>
-<div id="ongoing07" style="float; left; margin 30 auto;"></div>
-<div id="ongoing08" style="float; left; margin 30 auto;"></div>
-<div id="ongoing09" style="float; left; margin 30 auto;"></div>
-<div id="ongoing10" style="float; left; margin 30 auto;"></div>
-<div id="ongoing11" style="float; left; margin 30 auto;"></div>
-<div id="ongoing12" style="float; left; margin 30 auto;"></div>
+<body style="text-align: center; overflow: auto;" onload="start();">
+<div class="schemeDiv" id="scheme0" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme1" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme2" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme3" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme4" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme5" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme6" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme7" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme8" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme9" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme10" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme11" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme12" style="float: left; margin 30 auto;"></div>
 </body>
 </html>
