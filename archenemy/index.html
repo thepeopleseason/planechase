@@ -8,8 +8,8 @@
     cursor: pointer;
   }
   .schemeDiv {
-    height: 454px;
-    width: 317px;
+    height: 400px;
+    width: 280px;
   }
 </style>
 <script type="text/Javascript">
@@ -92,9 +92,15 @@ var oSchemeCount = 0;
 const urlParams = new URLSearchParams(window.location.search);
 
 function set() {
-  var scheme = deck.shift();
-  // TODO: check if deck is empty--if so, grep out oSchemes and create a new deck
+  var scheme;
+  if (deck.length == 0) {
+    init_deck();
+    deck = deck.filter(function(sch) {
+      return !oSchemes.includes(sch);
+    });
+  }
 
+  scheme = deck.shift();
   if (!scheme.ongoing) {
     load(scheme);
   }
@@ -105,11 +111,9 @@ function set() {
 }
 
 function clearScheme(schemeName) {
-  oSchemes = oSchemes.filter(
-    function(sch) {
-      return sch.name == schemeName ? null : sch;
-    }
-  );
+  oSchemes = oSchemes.filter(function(sch) {
+    return sch.name == schemeName ? null : sch;
+  });
   redraw();
 }
 
@@ -139,16 +143,19 @@ function load(scheme, div = "scheme0") {
 }
 
 function start() {
-  deck = Array.from(schemes.filter(
-    function(sch){
-      if (urlParams.get('remote')) {
-        return sch.remote == false? null : sch;
-      }
-      else {
-        return sch;
-      }
+  init_deck();
+  set();
+}
+
+function init_deck() {
+  deck = Array.from(schemes.filter(function(sch){
+    if (urlParams.get('remote')) {
+      return sch.remote == false? null : sch;
     }
-  ));
+    else {
+      return sch;
+    }
+  }));
 
   // shuffle the deck
   for (let i=deck.length-1; i>0; i--) {
@@ -157,24 +164,22 @@ function start() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
-
-  load(deck.shift());
 }
 </script>
 
 <body style="text-align: center; overflow: auto;" onload="start();">
-<div class="schemeDiv" id="scheme0" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme1" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme2" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme3" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme4" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme5" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme6" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme7" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme8" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme9" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme10" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme11" style="float: left; margin 30 auto;"></div>
-<div class="schemeDiv" id="scheme12" style="float: left; margin 30 auto;"></div>
+<div class="schemeDiv" id="scheme0" style="float: left;"></div>
+<div class="schemeDiv" id="scheme1" style="float: left;"></div>
+<div class="schemeDiv" id="scheme2" style="float: left;"></div>
+<div class="schemeDiv" id="scheme3" style="float: left;"></div>
+<div class="schemeDiv" id="scheme4" style="float: left;"></div>
+<div class="schemeDiv" id="scheme5" style="float: left;"></div>
+<div class="schemeDiv" id="scheme6" style="float: left;"></div>
+<div class="schemeDiv" id="scheme7" style="float: left;"></div>
+<div class="schemeDiv" id="scheme8" style="float: left;"></div>
+<div class="schemeDiv" id="scheme9" style="float: left;"></div>
+<div class="schemeDiv" id="scheme10" style="float: left;"></div>
+<div class="schemeDiv" id="scheme11" style="float: left;"></div>
+<div class="schemeDiv" id="scheme12" style="float: left;"></div>
 </body>
 </html>
