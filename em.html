@@ -203,10 +203,30 @@ function get_help() {
 }
 
 $(document).ready(function () {
-  // $(document).bind('keypress', 'n', function() { move('0_1'); });
-  // $(document).bind('keypress', 's', function() { move('0_-1'); });
-  // $(document).bind('keypress', 'e', function() { move('1_0'); });
-  // $(document).bind('keypress', 'w', function() { move('-1_0'); });
+  $(document).keydown(function(event) {
+    switch (event.which) {
+    case 38:
+    case 75:
+    case 78:
+      move('0_1');
+      break;
+    case 40:
+    case 74:
+    case 83:
+      move('0_-1');
+      break;
+    case 39:
+    case 69:
+    case 76:
+      move('1_0');
+      break;
+    case 37:
+    case 72:
+    case 87:
+      move('-1_0');
+      break;
+    }
+  });
 
   eternity.map['0_0'] = pick(eternity.planes);
   // eternity.map['0_0'] = '226523.jpg';
