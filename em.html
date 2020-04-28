@@ -48,7 +48,8 @@ function move(index) {
 
   // when Hellriding, generate a new plane
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
-    var all = eternity.planes.concat(eternity.phenomena);
+    // var all = eternity.planes.concat(eternity.phenomena);
+    var all = eternity.planes;
 
     newplane = pick(all);
     // how to handle phenomena
@@ -119,7 +120,7 @@ function move(index) {
         eternity.planes.push(value);
         // reset counters on recovery
         if (typeof eternity.names[value].counter != 'undefined') {
-          eternity.names[value].counter = 1;
+          eternity.names[value].counter = 0;
         }
       }
     }
@@ -171,7 +172,7 @@ function draw_map() {
 function get_link(plane, index) {
   var dist = get_distance(index);
   var img = '<img src="images/' + plane + '" height="' +
-    (window.innerHeight * 0.45) / (1 + (0.35 * dist)) +
+    (window.innerHeight * 0.40) / (1 + (0.45 * dist)) +
     '" title="'+ eternity.names[plane].name + ':' +
     index +'">';
   var link = ''
@@ -199,7 +200,7 @@ function add_counter(plane) {
 }
 
 function get_help() {
-  return 'An implementation of Magic The Gathering\'s Planescape--the Eternities Map variant, as described in <a href="https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0">Gavin Duggan\'s Daily MTG article from 2010</a>.';
+  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0">Gavin Duggan\'s Daily MTG article from 2010</a>.';
 }
 
 $(document).ready(function () {

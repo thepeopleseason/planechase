@@ -32,6 +32,14 @@ function get_help() {
 }
 
 $(document).ready(function () {
+  $(document).keydown(function(e) {
+    switch(e.which) {
+    case 13:
+      walk();
+      break;
+    }
+  });
+
   walk(pick(eternity.planes));
 });
 

@@ -46,7 +46,8 @@
 }
 
 .inactive img:hover {
-    transform: scale(2);
+    transform: scale(1.8);
+    transition-delay: 2s;
 }
 
 .current {
