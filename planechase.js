@@ -145,15 +145,17 @@ function roll() {
     result = (diceroll == 5) ? diceroll :
       (eternity.chaotic_aether) ? 4 : diceroll;
 
-    dice_result = 'Roll Planar Die';
-    if (result > 3) {
-      if (result == 4) {
-        // display chaos symbol
-        dice_result = "Chaos";
-      }
-      else {
-        dice_result = "Planeswalk";
-      }
+    var dice_result;
+    switch (result) {
+    case 4:
+      dice_result = "Chaos";
+      break;
+    case 5:
+      dice_result = "Planeswalk";
+      break;
+    default:
+      dice_result = "Roll Planar Die";
+      break;
     }
     $("#dice_button")[0].value = dice_result;
     $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
@@ -165,6 +167,7 @@ function walk(plane) {
 
   // clear existing state
   $("#dice_button")[0].value = 'Roll Planar Die';
+  reset_cost();
   if (eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
@@ -205,7 +208,7 @@ function walk(plane) {
   }
   var output = '';
   for (pl in walkto) {
-    height = (walkto.length > 1) ? 45 : 80
+    height = (walkto.length > 1) ? 50 : 80
     var img = '<img src="images/' + walkto[pl] +
       '" height="' + height + '%">';
     if (walkto.indexOf('226549.jpg') >= 0) {
@@ -220,16 +223,10 @@ function walk(plane) {
   }
   $("#plane").html(output);
   eternity.history.push(eternity.names[walkto[pl]].name);
-  update_count('pcount_button');
 }
 
 function reset_cost() {
   $('#cost_button')[0].value = 0;
-}
-
-function update_count(id, count) {
-  $("#" + id)[0].value = count ? count :
-    eternity.planes.length + eternity.phenomena.length;
 }
 
 function help() {

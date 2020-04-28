@@ -24,7 +24,6 @@ function load(plane) {
                    plane + '" height="80%"></a>');
 
   eternity.planes.splice(eternity.planes.indexOf(plane), 1);
-  update_count('pcount_button');
 }
 
 function get_help() {
@@ -56,9 +55,6 @@ $(document).ready(function () {
 </div>
 <div style="float: left; padding: 0 5px 0 5px;">Planar Counters:
 <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
-</div>
-<div style="float: left; padding: 0 5px 0 5px;">Remaining Planes:
-<input id="pcount_button" type="button" value="" class="infoButton myButton" style="float: right;" disabled>
 </div>
 <div id="help"><a onclick="help();">What's This?</a></div>
 </div>
