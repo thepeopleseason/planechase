@@ -6,7 +6,7 @@ For use with Magic the Gathering [Planechase](https://mtg.gamepedia.com/Planecha
 Features
 --------
 
-- [Eternities Map](https://archive.wizards.com/Magic/magazine/article.aspx?x=mtg/daily/feature/100) variant
+- [Eternities Map](https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0) variant
 - Eternities Map navigation now accepts arrow keys, vi navigation, and nsew
 
 TODO
