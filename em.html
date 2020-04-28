@@ -10,6 +10,7 @@
 <script src="planechase.js"></script>
 <script type="text/javascript">
 var init = 1;
+var deck;
 
 function returnInt(element) {
   return parseInt(element, 10);
@@ -29,7 +30,7 @@ function get_neighbors() {
   for (var x=0; x<eternity.cells.length; x++) {
     if (get_distance(eternity.cells[x]) == 1 &&
         typeof eternity.map[eternity.cells[x]] == 'undefined') {
-      eternity.map[eternity.cells[x]] = pick(eternity.planes);
+      eternity.map[eternity.cells[x]] = deck.shift();
     }
   }
 }
@@ -48,10 +49,12 @@ function move(index) {
 
   // when Hellriding, generate a new plane
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
+    // TODO: commented out to change to deck processing
+    //       once deck finished, return to phenomena
     // var all = eternity.planes.concat(eternity.phenomena);
-    var all = eternity.planes;
 
-    newplane = pick(all);
+    newplane = deck.shift();
+
     // how to handle phenomena
     if (eternity.names[newplane].phenomenon) {
       var walkto = [];
@@ -59,11 +62,9 @@ function move(index) {
 
       // Interplanar Tunnel
       if (newplane == '226549.jpg') {
-        var tmp_planes = eternity.planes.slice(0);
-
         // add 5 planes to choose from
         for (var x=0; x<5; x++) {
-          walkto.push(pick(tmp_planes));
+          walkto.push(deck.shift());
         }
       }
       // Spatial Merging (merge 2 planes)
@@ -71,14 +72,14 @@ function move(index) {
         $('#phenomenon').html('<a href="#" onclick="pheno_done();">' +
                               '<img src="images/' + newplane +
                               '" height="450" title="'+ phenomenon +'"></a>');
-        walkto.push(eternity.planes);
-        walkto.push(eternity.planes);
+        walkto.push(deck.shift());
+        walkto.push(deck.shift());
 
         updatemap['0_0'] = newplane;
       }
       else {
         $('#plane_div').hide();
-        newplane = pick(eternity.planes);
+        newplane = deck.shift();
       }
 
       var output = '';
@@ -97,9 +98,6 @@ function move(index) {
       $('#phenomenon').html(output);
       $('#phenomenon').show();
     }
-    else {
-      eternity.planes.splice(eternity.planes.indexOf(newplane), 1);
-    }
     updatemap['0_0'] = newplane;
   }
 
@@ -117,7 +115,8 @@ function move(index) {
       }
       else {
         // return removed planes back to the planar deck
-        eternity.planes.push(value);
+        deck.push(value);
+        shuffle_deck();
         // reset counters on recovery
         if (typeof eternity.names[value].counter != 'undefined') {
           eternity.names[value].counter = 0;
@@ -144,10 +143,10 @@ function draw_map() {
       $("#cell_"+eternity.cells[x]).html(link);
     }
     if (eternity.cells[x] == '0_0') {
+      // write Planar Counters value
       var value;
       if (typeof eternity.names[eternity.map[eternity.cells[x]]].counter !=
-          'undefined' &&
-          eternity.names[eternity.map[eternity.cells[x]]].counter > 0) {
+          'undefined') {
         value = eternity.names[eternity.map[eternity.cells[x]]].counter;
       }
       else {
@@ -158,12 +157,13 @@ function draw_map() {
   }
 
   // allow for hellriding
-  var hellrides = ['1_1', '-1_1', '-1_-1', '1_-1'];
   if (!init) {
     $('#toolbar').show();
-    for (var x in hellrides) {
-      if (typeof eternity.map[hellrides[x]] == 'undefined') {
-        $("#cell_"+hellrides[x]).html('<input type="button" value="Hellride" onclick="move(\''+hellrides[x]+'\');" class="myButton">');
+    for (var x in eternity.hellrides) {
+      if (typeof eternity.map[eternity.hellrides[x]] == 'undefined') {
+        $("#cell_"+eternity.hellrides[x]).html(
+          '<input type="button" value="Hellride" onclick="move(\''
+            + eternity.hellrides[x] + '\');" class="myButton">');
       }
     }
   }
@@ -175,6 +175,7 @@ function get_link(plane, index) {
     (window.innerHeight * 0.40) / (1 + (0.45 * dist)) +
     '" title="'+ eternity.names[plane].name + ':' +
     index +'">';
+
   var link = ''
   if (dist == 1) {
     link = '<a href="#" onclick="move(\'' + index + '\');">';
@@ -203,6 +204,23 @@ function get_help() {
   return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0">Gavin Duggan\'s Daily MTG article from 2010</a>.';
 }
 
+function init_deck() {
+  deck = Array.from(eternity.planes.filter(function(pl) {
+    return pl;
+  }));
+  shuffle_deck();
+}
+
+function shuffle_deck() {
+  // shuffle the deck
+  for (let i=deck.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*i);
+    const temp = deck[i]
+    deck[i] = deck[j];
+    deck[j] = temp;
+  }
+}
+
 $(document).ready(function () {
   $(document).keydown(function(event) {
     switch (event.which) {
@@ -229,8 +247,9 @@ $(document).ready(function () {
     }
   });
 
-  eternity.map['0_0'] = pick(eternity.planes);
-  // eternity.map['0_0'] = '226523.jpg';
+  init_deck();
+  eternity.map['0_0'] = deck.shift();
+
   draw_map();
   get_neighbors();
   init = 0;
@@ -239,7 +258,7 @@ $(document).ready(function () {
 </script>
 </head>
 <body style="text-align: center;">
-<div id="toolbar">
+<div id="toolbar" style="display: none">
 <div style="float: left;">
     <input id="dice_button" type="button" value="Roll Planar Die"
            onclick="roll();" class="myButton">
