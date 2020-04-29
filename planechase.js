@@ -236,6 +236,10 @@ function add_counter(plane) {
   update_count('count_button', ++eternity.current_planar_count);
 }
 
+function reset_cost() {
+  $('#cost_button')[0].value = 0;
+}
+
 function reset_plane() {
   $('#dice_button')[0].value = 'Roll Planar Die';
   $('#cost_button')[0].value = 0;

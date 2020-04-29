@@ -34,6 +34,12 @@ $(document).ready(function () {
   $(document).keydown(function(e) {
     switch(e.which) {
     case 13:
+      var plane = $("#plane > a")
+      if (plane.size() == 1) {
+        plane.prop('onclick')();
+      }
+      break;
+    case 39:
       walk();
       break;
     }
