@@ -69,9 +69,9 @@ function move(index) {
       }
       // Spatial Merging (merge 2 planes)
       else if (newplane == '226546.jpg') {
-        $('#phenomenon').html('<a href="#" onclick="pheno_done();">' +
-                              '<img src="images/' + newplane +
-                              '" height="450" title="'+ phenomenon +'"></a>');
+        $('#phenomenon').html(
+          '<a href="#" onclick="pheno_done();">' +
+            `<img src="images/${ newplane }" height="450" title="${ phenomenon }"></a>`);
         walkto.push(deck.shift());
         walkto.push(deck.shift());
 
@@ -84,15 +84,13 @@ function move(index) {
 
       var output = '';
       for (pl in walkto) {
-        height = (walkto.length > 1) ? 45: 80;
-        var img = '<img src="images/' + walkto[pl] +
-          '" height="' + height + '%">';
+        height = (walkto.length > 1) ? 40: 60;
+        var img = `<img src="images/${ walkto[pl] }" height="${ height }%">`;
         if (walkto.indexOf('226549.jpg') >= 0) {
-          output += '<a href="#" onclick="load(\'' +
-            walkto[pl] + '\')">' + img + '</a>';
+          output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
         }
         else {
-          output += '<a href="#" onclick="roll();">' + img + '</a>';
+          output += `<a href="#" onclick="roll();">${ img }</a>`;
         }
       }
       $('#phenomenon').html(output);
@@ -161,7 +159,7 @@ function draw_map() {
     $('#toolbar').show();
     for (var x in eternity.hellrides) {
       if (typeof eternity.map[eternity.hellrides[x]] == 'undefined') {
-        $("#cell_"+eternity.hellrides[x]).html(
+        $(`#cell_${ eternity.hellrides[x] }`).html(
           '<input type="button" value="Hellride" onclick="move(\''
             + eternity.hellrides[x] + '\');" class="myButton">');
       }
@@ -171,21 +169,23 @@ function draw_map() {
 
 function get_link(plane, index) {
   var dist = get_distance(index);
-  var img = '<img src="images/' + plane + '" height="' +
-    (window.innerHeight * 0.40) / (1 + (0.45 * dist)) +
-    '" title="'+ eternity.names[plane].name + ':' +
-    index +'">';
+  var img = `<img src="images/${ plane }" height="` +
+      (window.innerHeight * 0.40) / (1 + (0.50 * dist)) +
+      `" title="${ eternity.names[plane].name }:${ index }">`;
 
   var link = ''
   if (dist == 1) {
-    link = '<a href="#" onclick="move(\'' + index + '\');">';
+    link = `<a href="#" onclick="move('${ index }');">`;
   }
   else if (index == '0_0') {
     if (!init && eternity.names[plane].counter >= 0) {
-      link = '<a href="#" onclick="add_counter(\''+plane+'\');">';
+      link = `<a href="#" onclick="add_counter('${ plane }');">`;
+    }
+    else if (init) {
+      link = `<a href="#" onclick="draw_map();">`;
     }
     else {
-      link = '<a href="#" onclick="draw_map();">';
+      link = '<a href="#">';
     }
   }
   if (link) {
@@ -243,6 +243,15 @@ $(document).ready(function () {
     case 72:
     case 87:
       move('-1_0');
+      break;
+    case 67:
+    case 107:
+    case 187:
+      // C/=/+: Add counter
+      var plane = $("#cell_0_0 > a")
+      if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
+        plane.prop('onclick')();
+      }
       break;
     }
   });
