@@ -196,10 +196,6 @@ function get_link(plane, index) {
   }
 }
 
-function add_counter(plane) {
-  update_count('count_button', ++eternity.names[plane].counter);
-}
-
 function get_help() {
   return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0">Gavin Duggan\'s Daily MTG article from 2010</a>.';
 }
@@ -219,6 +215,10 @@ function shuffle_deck() {
     deck[i] = deck[j];
     deck[j] = temp;
   }
+}
+
+function add_counter(plane) {
+  update_count('count_button', ++eternity.names[plane].counter);
 }
 
 $(document).ready(function () {
