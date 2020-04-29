@@ -289,3 +289,14 @@ function help() {
   $("#help").html(get_help());
   $("#help").dialog();
 }
+
+function preloader() {
+  var images = Object.keys(eternity.names);
+  if (document.images) {
+    for (let i=0; i<images.length; i++) {
+      var img = new Image();
+      img.src = `images/${ images[i] }`;
+      images[i] = img;
+    }
+  }
+}

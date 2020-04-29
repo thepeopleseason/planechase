@@ -26,6 +26,7 @@ TODO
 
 * Fix phenomena to Eternities Map on Hellrides.
 * EDH-safe decks
+* Pre-load next deck items
 
 Contact
 -------
