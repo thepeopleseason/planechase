@@ -10,15 +10,6 @@
 <script src="planechase.js"></script>
 <script type="text/javascript">
 
-function clean(plane) {
-  if (eternity.planes.indexOf(plane) >= 0) {
-    eternity.planes.splice(eternity.planes.indexOf(plane), 1);
-  }
-  if (eternity.phenomena.indexOf(plane) >= 0) {
-    eternity.phenomena.splice(eternity.phenomena.indexOf(plane), 1);
-  }
-}
-
 function load(plane) {
   $("#plane").html('<a href="#" onclick="walk(\''+plane+'\');"><img src="images/' +
                    plane + '" height="80%"></a>');
@@ -34,7 +25,8 @@ $(document).ready(function () {
   $(document).keydown(function(e) {
     switch(e.which) {
     case 13:
-      // ENTER: Roll planar die
+    case 82:
+      // ENTER/R: Roll planar die
       roll();
       break;
     case 32:

@@ -48,6 +48,7 @@
 .inactive img:hover {
     transform: scale(2.2);
     transition-delay: 1.5s;
+    transition-timing-function: ease-in-out;
 }
 
 .current {

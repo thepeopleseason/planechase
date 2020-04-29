@@ -181,11 +181,8 @@ function get_link(plane, index) {
     if (!init && eternity.names[plane].counter >= 0) {
       link = `<a href="#" onclick="add_counter('${ plane }');">`;
     }
-    else if (init) {
-      link = `<a href="#" onclick="draw_map();">`;
-    }
     else {
-      link = '<a href="#">';
+      link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>`;
     }
   }
   if (link) {
@@ -227,22 +224,35 @@ $(document).ready(function () {
     case 38:
     case 75:
     case 78:
+      // N/Up Arrow/K - move up
       move('0_1');
       break;
     case 40:
     case 74:
     case 83:
+      // S/Down Arrow/J - move down
       move('0_-1');
       break;
     case 39:
     case 69:
     case 76:
+      // E/Right Arrow/L - move right
       move('1_0');
       break;
     case 37:
     case 72:
     case 87:
+      // W/Left Arrow/I - move left
       move('-1_0');
+      break;
+    case 32:
+      // SPACE: Reset planar die mana cost
+      reset_cost();
+      break;
+    case 13:
+    case 82:
+      // R/ENTER: Roll planar die
+      roll();
       break;
     case 67:
     case 107:

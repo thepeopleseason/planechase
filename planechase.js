@@ -207,7 +207,6 @@ function walk(plane) {
     var img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`
     if (walkto.indexOf('226549.jpg') >= 0) {
       output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
-      clean('226549.jpg');
     }
     else {
       output += `<a href="#"${ get_link(walkto[pl]) }>${ img }</a>`;
