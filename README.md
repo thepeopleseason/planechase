@@ -15,7 +15,7 @@ Keyboard Shortcuts
 
 Key | Function | On
 --- | -------- | ---
-`<SPACE>` | Reset planar die mana cose | Planechase / Eternties Map
+`<SPACE>` | Reset planar die mana cost | Planechase / Eternties Map
 `<ENTER>` `<R>` | Roll planar die | Planechase / Eternties Map
 `<C>` `<=>` `<+>` | Add counter to current plane | Planechase / Eternities Map
 
@@ -25,7 +25,6 @@ TODO
 ----
 
 * Fix phenomena to Eternities Map on Hellrides.
-* Update to use scryfall pngs
 * EDH-safe decks
 
 Contact

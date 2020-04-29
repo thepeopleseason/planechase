@@ -12,12 +12,8 @@
 var init = 1;
 var deck;
 
-function returnInt(element) {
-  return parseInt(element, 10);
-}
-
 function get_point(index) {
-  var point = index.split('_').map(returnInt);
+  var point = index.split('_').map(function(el) { return parseInt(el, 10) });
   return point;
 }
 
