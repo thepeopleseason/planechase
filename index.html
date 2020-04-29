@@ -34,14 +34,8 @@ $(document).ready(function () {
   $(document).keydown(function(e) {
     switch(e.which) {
     case 13:
-      // ENTER: Do default action
-      var plane = $("#plane > a")
-      if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
-        plane.prop('onclick')();
-      }
-      else {
-        roll();
-      }
+      // ENTER: Roll planar die
+      roll();
       break;
     case 32:
       // SPACE: Reset planar die mana cost
@@ -51,6 +45,14 @@ $(document).ready(function () {
       // R-ARROW: Just planeswalk
       walk();
       break;
+    case 67:
+    case 107:
+    case 187:
+      // C/=/+: Add counter
+      var plane = $("#plane > a")
+      if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
+        plane.prop('onclick')();
+      }
     }
   });
 

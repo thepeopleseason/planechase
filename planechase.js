@@ -155,7 +155,12 @@ function roll() {
       break;
     }
     $('#dice_button')[0].value = dice_result;
-    $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
+    if (dice_result === 'Planeswalk') {
+      reset_cost();
+    }
+    else {
+      $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
+    }
   }
 }
 
