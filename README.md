@@ -26,7 +26,6 @@ TODO
 ----
 
 * EDH-safe and remote-safe decks
-* Make Spatial Merging have its own div so other phenomena don't overwrite the merged planes
 
 Contact
 -------

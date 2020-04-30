@@ -29,6 +29,11 @@ function get_neighbors() {
   }
 }
 
+function merge_toggle() {
+  $('#plane_div').toggle();
+  $('#merging').toggle();
+}
+
 function pheno_toggle() {
   $('#phenomenon').toggle();
   $('#plane_div').toggle();
@@ -87,13 +92,17 @@ function move(index) {
         var img = `<img src="images/${ walkto[pl] }" height="${ height }%">`;
         if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
           output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
-        }
-        else {
-          output += `<a href="#" onclick="pheno_toggle()">${ img }</a>`;
+        } else {
+          output += `<a href="#" onclick="merge_toggle()">${ img }</a>`;
         }
       }
-      $('#phenomenon').html(output);
-      pheno_toggle();
+      if (destination === 'opca-7-spatial-merging.png') {
+        $('#merging').html(output);
+        merge_toggle();
+      } else {
+        $('#phenomenon').html(output);
+        pheno_toggle();
+      }
     }
     updatemap['0_0'] = destination;
     clean(destination);
@@ -173,7 +182,7 @@ function get_link(plane, index) {
       link = `<a href="#" onclick="add_counter('${ plane }');">${ link }</a>`;
     }
     else if (plane == 'opca-7-spatial-merging.png') {
-      link = `<a href="#" onclick="pheno_toggle();">${ link }</a>`;
+      link = `<a href="#" onclick="merge_toggle();">${ link }</a>`;
     }
     else {
       link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
@@ -310,5 +319,6 @@ $(document).ready(function () {
 </table>
 </div>
 <div id="phenomenon" style="display: none;"></div>
+<div id="merging" style="display: none;"></div>
 </body>
 </html>
