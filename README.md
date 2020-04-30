@@ -9,6 +9,7 @@ Features
 - Single-deck Planechase featuring all published planes
 - Automatic planeswalking when virtual die roller achieves planeswalk
 - [Eternities Map](https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0) variant
+  - Phenomena occur only during Hellrides.
 
 Keyboard Shortcuts
 ------------------
@@ -24,9 +25,8 @@ The Eternities Map can be navigated by use of arrow keys, vi navigation (HJKL), 
 TODO
 ----
 
-* Fix phenomena to Eternities Map on Hellrides.
-* EDH-safe decks
-* Pre-load next deck items
+* EDH-safe and remote-safe decks
+* Make Spatial Merging have its own div so other phenomena don't overwrite the merged planes
 
 Contact
 -------
