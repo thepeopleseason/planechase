@@ -1,93 +1,95 @@
 var eternity = {
   "names": {
-    "opca-1-chaotic-aether.png": { "name": "Chaotic Aether", "phenomenon": true, },
-    "opca-2-interplanar-tunnel.png": { "name": "Interplanar Tunnel", "phenomenon": true,
+    "opca-1-chaotic-aether.png": { "name": "Chaotic Aether", "type": "phenomenon", },
+    "opca-2-interplanar-tunnel.png": { "name": "Interplanar Tunnel", "type": "phenomenon",
                                        "link": "load", },
-    "opca-3-morphic-tide.png": { "name": "Morphic Tide", "phenomenon": true, },
-    "opca-4-mutual-epiphany.png": { "name": "Mutual Epiphany", "phenomenon": true, },
-    "opca-5-planewide-disaster.png": { "name": "Planewide Disaster", "phenomenon": true, },
-    "opca-6-reality-shaping.png": { "name": "Reality Shaping", "phenomenon": true, },
-    "opca-7-spatial-merging.png": { "name": "Spatial Merging", "phenomenon": true,
+    "opca-3-morphic-tide.png": { "name": "Morphic Tide", "type": "phenomenon", },
+    "opca-4-mutual-epiphany.png": { "name": "Mutual Epiphany", "type": "phenomenon", },
+    "opca-5-planewide-disaster.png": { "name": "Planewide Disaster", "type": "phenomenon", },
+    "opca-6-reality-shaping.png": { "name": "Reality Shaping", "type": "phenomenon", },
+    "opca-7-spatial-merging.png": { "name": "Spatial Merging", "type": "phenomenon",
                                     "link": "merged", },
-    "opca-8-time-distortion.png": { "name": "Time Distortion", "phenomenon": true, },
-    "opca-9-academy-at-tolaria-west.png": { "name": "Academy At Tolaria West", },
-    "opca-10-the-aether-flues.png": { "name": "The Aether Flues", },
-    "opca-11-agyrem.png": { "name": "Agyrem", },
-    "opca-12-akoum.png": { "name": "Akoum", },
-    "opca-13-aretopolis.png": { "name": "Aretopolis", "counter": 1, },
-    "opca-14-astral-arena.png": { "name": "Astral Arena", },
-    "opca-15-bant.png": { "name": "Bant", },
-    "opca-16-bloodhill-bastion.png": { "name": "Bloodhill Bastion", },
-    "opca-17-celestine-reef.png": { "name": "Celestine Reef", },
-    "opca-18-cliffside-market.png": { "name": "Cliffside Market", },
-    "opca-19-the-dark-barony.png": { "name": "The Dark Barony", },
-    "opca-20-edge-of-malacol.png": { "name": "Edge of Malacol", },
-    "opca-21-eloren-wilds.png": { "name": "Eloren Wilds", },
-    "opca-22-the-eon-fog.png": { "name": "The Eon Fog", },
-    "opca-23-feeding-grounds.png": { "name": "Feeding Grounds", },
-    "opca-24-fields-of-summer.png": { "name": "Fields of Summer", },
-    "opca-25-the-fourth-sphere.png": { "name": "The Fourth Sphere", },
-    "opca-26-furnace-layer.png": { "name": "Furnace Layer", },
-    "opca-27-gavony.png": { "name": "Gavony", },
-    "opca-28-glen-elendra.png": { "name": "Glen Elendra", },
-    "opca-29-glimmervoid-basin.png": { "name": "Glimmervoid Basin", },
-    "opca-30-goldmeadow.png": { "name": "Goldmeadow", },
-    "opca-31-grand-ossuary.png": { "name": "Grand Ossuary", },
-    "opca-32-the-great-forest.png": { "name": "The Great Forest", },
-    "opca-33-grixis.png": { "name": "Grixis", },
-    "opca-34-grove-of-the-dreampods.png": { "name": "Grove of The Dreampods", },
-    "opca-35-hedron-fields-of-agadeem.png": { "name": "Hedron Fields of Agadeem", },
-    "opca-36-the-hippodrome.png": { "name": "The Hippodrome", },
-    "opca-37-horizon-boughs.png": { "name": "Horizon Boughs", },
-    "opca-38-immersturm.png": { "name": "Immersturm", },
-    "opca-39-isle-of-vesuva.png": { "name": "Isle of Vesuva", },
-    "opca-40-izzet-steam-maze.png": { "name": "Izzet Steam Maze", },
-    "opca-41-jund.png": { "name": "Jund", },
-    "opca-42-kessig.png": { "name": "Kessig", },
-    "opca-43-kharasha-foothills.png": { "name": "Kharasha Foothills", },
-    "opca-44-kilnspire-district.png": { "name": "Kilnspire District", "counter": 1, },
-    "opca-45-krosa.png": { "name": "Krosa", },
-    "opca-46-lair-of-the-ashen-idol.png": { "name": "Lair of The Ashen Idol", },
-    "opca-47-lethe-lake.png": { "name": "Lethe Lake", },
-    "opca-48-llanowar.png": { "name": "Llanowar", },
-    "opca-49-the-maelstrom.png": { "name": "The Maelstrom", },
-    "opca-50-minamo.png": { "name": "Minamo", },
-    "opca-51-mirrored-depths.png": { "name": "Mirrored Depths", },
-    "opca-52-mount-keralia.png": { "name": "Mount Keralia", "counter": 0, },
-    "opca-53-murasa.png": { "name": "Murasa", },
-    "opca-54-naar-isle.png": { "name": "Naar Isle", "counter": 0, },
-    "opca-55-naya.png": { "name": "Naya", },
-    "opca-56-nephalia.png": { "name": "Nephalia", },
-    "opca-57-norn-s-dominion.png": { "name": "Norn's Dominion", },
-    "opca-58-onakke-catacomb.png": { "name": "Onakke Catacomb", },
-    "opca-59-orochi-colony.png": { "name": "Orochi Colony", },
-    "opca-60-orzhova.png": { "name": "Orzhova", },
-    "opca-61-otaria.png": { "name": "Otaria", },
-    "opca-62-panopticon.png": { "name": "Panopticon", },
-    "opca-63-pools-of-becoming.png": { "name": "Pools of Becoming", },
-    "opca-64-prahv.png": { "name": "Prahv", },
-    "opca-65-quicksilver-sea.png": { "name": "Quicksilver Sea", },
-    "opca-66-raven-s-run.png": { "name": "Raven's Run", },
-    "opca-67-sanctum-of-serra.png": { "name": "Sanctum of Serra", },
-    "opca-68-sea-of-sand.png": { "name": "Sea of Sand", },
-    "opca-69-selesnya-loft-gardens.png": { "name": "Selesnya Loft Gardens", },
-    "opca-70-shiv.png": { "name": "Shiv", },
-    "opca-71-skybreen.png": { "name": "Skybreen", },
-    "opca-72-sokenzan.png": { "name": "Sokenzan", },
-    "opca-73-stairs-to-infinity.png": { "name": "Stairs To Infinity", },
-    "opca-74-stensia.png": { "name": "Stensia", },
-    "opca-75-stronghold-furnace.png": { "name": "Stronghold Furnace", },
-    "opca-76-takenuma.png": { "name": "Takenuma", },
-    "opca-77-talon-gates.png": { "name": "Talon Gates", },
-    "opca-78-tazeem.png": { "name": "Tazeem", },
-    "opca-79-tember-city.png": { "name": "Tember City", },
-    "opca-80-trail-of-the-mage-rings.png": { "name": "Trail of The Mage Rings", },
-    "opca-81-truga-jungle.png": { "name": "Truga Jungle", },
-    "opca-82-turri-island.png": { "name": "Turri Island", },
-    "opca-83-undercity-reaches.png": { "name": "Undercity Reaches", },
-    "opca-84-velis-vel.png": { "name": "Velis Vel", },
-    "opca-85-windriddle-palaces.png": { "name": "Windriddle Palaces", },
-    "opca-86-the-zephyr-maze.png": { "name": "The Zephyr Maze", },
+    "opca-8-time-distortion.png": { "name": "Time Distortion", "type": "phenomenon", },
+    "opca-9-academy-at-tolaria-west.png": { "name": "Academy At Tolaria West", "type": "plane", },
+    "opca-10-the-aether-flues.png": { "name": "The Aether Flues", "type": "plane", },
+    "opca-11-agyrem.png": { "name": "Agyrem", "type": "plane", },
+    "opca-12-akoum.png": { "name": "Akoum", "type": "plane", },
+    "opca-13-aretopolis.png": { "name": "Aretopolis", "counter": 1, "type": "plane", },
+    "opca-14-astral-arena.png": { "name": "Astral Arena", "type": "plane", },
+    "opca-15-bant.png": { "name": "Bant", "type": "plane", },
+    "opca-16-bloodhill-bastion.png": { "name": "Bloodhill Bastion", "type": "plane", },
+    "opca-17-celestine-reef.png": { "name": "Celestine Reef", "type": "plane", },
+    "opca-18-cliffside-market.png": { "name": "Cliffside Market", "type": "plane", },
+    "opca-19-the-dark-barony.png": { "name": "The Dark Barony", "type": "plane", },
+    "opca-20-edge-of-malacol.png": { "name": "Edge of Malacol", "type": "plane", },
+    "opca-21-eloren-wilds.png": { "name": "Eloren Wilds", "type": "plane", },
+    "opca-22-the-eon-fog.png": { "name": "The Eon Fog", "type": "plane", },
+    "opca-23-feeding-grounds.png": { "name": "Feeding Grounds", "type": "plane", },
+    "opca-24-fields-of-summer.png": { "name": "Fields of Summer", "type": "plane", },
+    "opca-25-the-fourth-sphere.png": { "name": "The Fourth Sphere", "type": "plane", },
+    "opca-26-furnace-layer.png": { "name": "Furnace Layer", "type": "plane", },
+    "opca-27-gavony.png": { "name": "Gavony", "type": "plane", },
+    "opca-28-glen-elendra.png": { "name": "Glen Elendra", "type": "plane", },
+    "opca-29-glimmervoid-basin.png": { "name": "Glimmervoid Basin", "type": "plane", },
+    "opca-30-goldmeadow.png": { "name": "Goldmeadow", "type": "plane", },
+    "opca-31-grand-ossuary.png": { "name": "Grand Ossuary", "type": "plane", },
+    "opca-32-the-great-forest.png": { "name": "The Great Forest", "type": "plane", },
+    "opca-33-grixis.png": { "name": "Grixis", "type": "plane", },
+    "opca-34-grove-of-the-dreampods.png": { "name": "Grove of The Dreampods", "type": "plane", },
+    "opca-35-hedron-fields-of-agadeem.png": { "name": "Hedron Fields of Agadeem",
+                                              "type": "plane", },
+    "opca-36-the-hippodrome.png": { "name": "The Hippodrome", "type": "plane", },
+    "opca-37-horizon-boughs.png": { "name": "Horizon Boughs", "type": "plane", },
+    "opca-38-immersturm.png": { "name": "Immersturm", "type": "plane", },
+    "opca-39-isle-of-vesuva.png": { "name": "Isle of Vesuva", "type": "plane", },
+    "opca-40-izzet-steam-maze.png": { "name": "Izzet Steam Maze", "type": "plane", },
+    "opca-41-jund.png": { "name": "Jund", "type": "plane", },
+    "opca-42-kessig.png": { "name": "Kessig", "type": "plane", },
+    "opca-43-kharasha-foothills.png": { "name": "Kharasha Foothills", "type": "plane", },
+    "opca-44-kilnspire-district.png": { "name": "Kilnspire District", "counter": 1,
+                                        "type": "plane", },
+    "opca-45-krosa.png": { "name": "Krosa", "type": "plane", },
+    "opca-46-lair-of-the-ashen-idol.png": { "name": "Lair of The Ashen Idol", "type": "plane", },
+    "opca-47-lethe-lake.png": { "name": "Lethe Lake", "type": "plane", },
+    "opca-48-llanowar.png": { "name": "Llanowar", "type": "plane", },
+    "opca-49-the-maelstrom.png": { "name": "The Maelstrom", "type": "plane", },
+    "opca-50-minamo.png": { "name": "Minamo", "type": "plane", },
+    "opca-51-mirrored-depths.png": { "name": "Mirrored Depths", "type": "plane", },
+    "opca-52-mount-keralia.png": { "name": "Mount Keralia", "counter": 0, "type": "plane", },
+    "opca-53-murasa.png": { "name": "Murasa", "type": "plane", },
+    "opca-54-naar-isle.png": { "name": "Naar Isle", "counter": 0, "type": "plane", },
+    "opca-55-naya.png": { "name": "Naya", "type": "plane", },
+    "opca-56-nephalia.png": { "name": "Nephalia", "type": "plane", },
+    "opca-57-norn-s-dominion.png": { "name": "Norn's Dominion", "type": "plane", },
+    "opca-58-onakke-catacomb.png": { "name": "Onakke Catacomb", "type": "plane", },
+    "opca-59-orochi-colony.png": { "name": "Orochi Colony", "type": "plane", },
+    "opca-60-orzhova.png": { "name": "Orzhova", "type": "plane", },
+    "opca-61-otaria.png": { "name": "Otaria", "type": "plane", },
+    "opca-62-panopticon.png": { "name": "Panopticon", "type": "plane", },
+    "opca-63-pools-of-becoming.png": { "name": "Pools of Becoming", "type": "plane", },
+    "opca-64-prahv.png": { "name": "Prahv", "type": "plane", },
+    "opca-65-quicksilver-sea.png": { "name": "Quicksilver Sea", "type": "plane", },
+    "opca-66-raven-s-run.png": { "name": "Raven's Run", "type": "plane", },
+    "opca-67-sanctum-of-serra.png": { "name": "Sanctum of Serra", "type": "plane", },
+    "opca-68-sea-of-sand.png": { "name": "Sea of Sand", "type": "plane", },
+    "opca-69-selesnya-loft-gardens.png": { "name": "Selesnya Loft Gardens", "type": "plane", },
+    "opca-70-shiv.png": { "name": "Shiv", "type": "plane", },
+    "opca-71-skybreen.png": { "name": "Skybreen", "type": "plane", },
+    "opca-72-sokenzan.png": { "name": "Sokenzan", "type": "plane", },
+    "opca-73-stairs-to-infinity.png": { "name": "Stairs To Infinity", "type": "plane", },
+    "opca-74-stensia.png": { "name": "Stensia", "type": "plane", },
+    "opca-75-stronghold-furnace.png": { "name": "Stronghold Furnace", "type": "plane", },
+    "opca-76-takenuma.png": { "name": "Takenuma", "type": "plane", },
+    "opca-77-talon-gates.png": { "name": "Talon Gates", "type": "plane", },
+    "opca-78-tazeem.png": { "name": "Tazeem", "type": "plane", },
+    "opca-79-tember-city.png": { "name": "Tember City", "type": "plane", },
+    "opca-80-trail-of-the-mage-rings.png": { "name": "Trail of The Mage Rings", "type": "plane", },
+    "opca-81-truga-jungle.png": { "name": "Truga Jungle", "type": "plane", },
+    "opca-82-turri-island.png": { "name": "Turri Island", "type": "plane", },
+    "opca-83-undercity-reaches.png": { "name": "Undercity Reaches", "type": "plane", },
+    "opca-84-velis-vel.png": { "name": "Velis Vel", "type": "plane", },
+    "opca-85-windriddle-palaces.png": { "name": "Windriddle Palaces", "type": "plane", },
+    "opca-86-the-zephyr-maze.png": { "name": "The Zephyr Maze", "type": "plane", },
   },
   "planes": [
     "opca-9-academy-at-tolaria-west.png",
@@ -146,31 +148,24 @@ var eternity = {
   "hellrides": ["1_1", "-1_1", "-1_-1", "1_-1"],
   "map": {},
   "history": [],
-  "chaotic_aether": 0
+  "deck": [],
+  "chaotic_aether": 0,
 };
-
-function pick(my_array) {
-  index = Math.floor(Math.random() * my_array.length);
-  return my_array.splice(index, 1)[0];
-}
 
 function roll() {
   // Planeswalk on button re-press. Skip if you're mapping
-  if ($('#dice_button')[0].value == 'Planeswalk'
-      && !Object.keys(eternity.map).length) {
+  if ($('#dice_button')[0].value == 'Planeswalk' && !Object.keys(eternity.map).length) {
     walk();
   }
   else {
-    var result = 0;
-    var diceroll = Math.round(Math.random()*5);
+    let result = 0;
+    let diceroll = Math.round(Math.random()*5);
 
-    // 0-3: blank roll
-    // 4: chaos
-    // 5: planeswalk
+    // 0-3: blank roll / 4: chaos / 5: planeswalk
     result = (diceroll == 5) ? diceroll :
       (eternity.chaotic_aether) ? 4 : diceroll;
 
-    var dice_result;
+    let dice_result;
     switch (result) {
     case 4:
       dice_result = "Chaos";
@@ -192,53 +187,53 @@ function roll() {
   }
 }
 
-function walk(plane) {
+function clean(plane) {
+  eternity.deck.splice(eternity.deck.indexOf(plane), 1);  // remove plane from deck
+}
+
+function walk(plane=null, aether=false) {
   var walkto = [];
 
-  reset_plane();
+  reset_plane(aether);
   if (plane) {
     walkto.push(plane);
+    clean(plane);
   }
   else {
-    var all = Object.keys(eternity.names);
-    walkto.push(pick(all));
+    if (eternity.deck.length == 0) {
+      init_deck();
+    }
+    walkto.push(eternity.deck.shift());
 
     // encountered a phenomenon
-    while (eternity.names[walkto[walkto.length-1]].phenomenon) {
-      // Interplanar Tunnel (choose from 5 planes)
-      if (walkto[walkto.length-1] == '226549.jpg') {
-        var tmp_planes = eternity.planes.slice(0);
+    if (eternity.names[walkto[walkto.length-1]].type === "phenomenon") {
 
-        // add 5 planes to choose from
-        for (var x=0; x<5; x++) {
-          walkto.push(pick(tmp_planes));
-        }
+      if (walkto[walkto.length-1] == 'opca-2-interplanar-tunnel.png') {
+        walkto = walkto.concat(get_next_planes(5));  // Interplanar Tunnel (choose from 5 planes)
       }
-      // Spatial Merging (merge 2 planes)
-      else if (walkto[walkto.length-1] == '226546.jpg') {
-        walkto.push(pick(eternity.planes));
-        walkto.push(pick(eternity.planes));
+      else if (walkto[walkto.length-1] == 'opca-7-spatial-merging.png') {
+        walkto = walkto.concat(get_next_planes(2));  // Spatial Merging (merge 2 planes)
+        walkto.forEach(pl => clean(pl));
       }
-      else {
-        // Chaotic Aether
-        if (walkto[walkto.length-1] == '226509.jpg') {
-          eternity.chaotic_aether = 1;
-        }
-
-        // Subsequent plane
-        walkto.push(pick(all));
+      else if (walkto[walkto.length-1] == 'opca-1-chaotic-aether.png') { // Chaotic Aether
+        eternity.chaotic_aether = 1;
       }
     }
   }
+
   var output = '';
   for (pl in walkto) {
-    var img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`
-    if (walkto.indexOf('226549.jpg') >= 0) {
-      output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
+    let img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`
+    if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
+      output += `<a href="#" onclick="walk('${ walkto[pl] }')">${ img }</a>`;
+    }
+    else if (walkto[pl] === 'opca-1-chaotic-aether.png') {
+      output += `<a href="#" onclick="walk('${ get_next_planes() }', true);">${ img }</a>`;
     }
     else {
       output += `<a href="#"${ get_link(walkto[pl]) }>${ img }</a>`;
     }
+
     if (typeof eternity.names[walkto[pl]].counter != 'undefined') {
       eternity.current_planar_count = eternity.names[walkto[pl]].counter;
     }
@@ -246,37 +241,60 @@ function walk(plane) {
       eternity.current_planar_count = '---';
     }
     update_count('count_button', eternity.current_planar_count);
+
+    eternity.history.push(walkto[pl]);
   }
-  $("#plane").html(output);
-  eternity.history.push(eternity.names[walkto[pl]].name);
+  $("#plane_div").html(output);
+}
+
+function get_next_planes(count=1) {
+  var planes = eternity.deck.filter(function(pl) {
+    return eternity.names[pl].type === 'plane';
+  });
+  if (count > 1) {
+    return planes.slice(0, count);
+  }
+  else {
+    return planes[0];
+  }
 }
 
 function get_link(plane) {
-  var link = '';
-  if (!eternity.names[plane].phenomenon) {
-    if (typeof eternity.names[plane].counter != 'undefined') {
-      link = ` onclick="add_counter('${ plane }');"`;
+  var link = ' onclick="walk();"';
+  if (eternity.names[plane].type === "phenomenon") {
+    switch (plane) {
+    case 'opca-2-interplanar-tunnel.png':
+    case 'opca-7-spatial-merging.png':
+      link = '';
+      break;
     }
-    else {
-      link = ' onclick="walk();"';
-    }
+  }
+  else if (typeof eternity.names[plane].counter != 'undefined') {
+    link = ` onclick="add_counter('${ plane }');"`;
+  }
+  else {
+    link = ' onclick="walk();"';
   }
   return link;
 }
 
 function add_counter(plane) {
-  update_count('count_button', ++eternity.current_planar_count);
+  update_count(
+    'count_button',
+    Object.keys(eternity.map).length
+      ? ++eternity.names[plane].counter
+      : ++eternity.current_planar_count);
 }
 
 function reset_cost() {
   $('#cost_button')[0].value = 0;
 }
 
-function reset_plane() {
+function reset_plane(aether=false) {
   $('#dice_button')[0].value = 'Roll Planar Die';
-  $('#cost_button')[0].value = 0;
+  reset_cost();
   eternity.current_planar_count = 0;
-  if (eternity.chaotic_aether) {
+  if (!aether && eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
 }
@@ -288,6 +306,24 @@ function update_count(id, count) {
 function help() {
   $("#help").html(get_help());
   $("#help").dialog();
+}
+
+function init_deck(filter=null) {
+  eternity.deck = Array.from(Object.keys(eternity.names));
+  if (filter) {
+    eternity.deck = eternity.deck.filter(filter);
+  }
+  shuffle_deck();
+}
+
+function shuffle_deck(deck=eternity.deck) {
+  for (let i=deck.length-1; i>0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = deck[i];
+    deck[i] = deck[j];
+    deck[j] = temp;
+  }
+  return deck;
 }
 
 function preloader() {

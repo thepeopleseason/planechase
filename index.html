@@ -9,13 +9,7 @@
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
-
-function load(plane) {
-  $("#plane").html('<a href="#" onclick="walk(\''+plane+'\');"><img src="images/' +
-                   plane + '" height="80%"></a>');
-
-  eternity.planes.splice(eternity.planes.indexOf(plane), 1);
-}
+const urlParams = new URLSearchParams(window.location.search);
 
 function get_help() {
   return 'An implementation of Magic The Gathering\'s Planescape';
@@ -35,23 +29,26 @@ $(document).ready(function () {
       break;
     case 39:
       // R-ARROW: Just planeswalk
-      walk();
+      if (urlParams.get('debug')) {
+        walk();
+      }
       break;
     case 67:
     case 107:
     case 187:
       // C/=/+: Add counter
-      var plane = $("#plane > a")
+      var plane = $("#plane_div > a")
       if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
         plane.prop('onclick')();
       }
       break;
     }
   });
-  preloader();
-  walk(pick(eternity.planes));
-});
 
+  init_deck();
+  walk();
+  preloader();
+});
 </script>
 </head>
 <body style="text-align: center;">
@@ -70,7 +67,7 @@ $(document).ready(function () {
     <a onclick="help();">What's This?</a></div>
 </div>
 
-<div id="plane" style="padding: 25px; margin: 30 auto;"></div>
+<div id="plane_div"></div>
 
 </body>
 </html>

@@ -41,8 +41,18 @@
     border-bottom: 1px solid #333; /* some styling */
 }
 
-.plane {
+.point {
     text-align: center;
+}
+
+#plane_div {
+    text-align: center;
+    padding: 35px;
+    margin: 35 auto;
+}
+#phenomenon {
+    padding: 25px;
+    margin: 35 auto;
 }
 
 .inactive img:hover {
@@ -52,7 +62,7 @@
 }
 
 .current {
-    border: 3px solid red;
+    border: 3px solid blue;
 }
 
 .current img.hover {
