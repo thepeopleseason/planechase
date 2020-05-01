@@ -113,7 +113,7 @@ function move(index) {
         eternity.deck = shuffle_deck();
         // reset counters on recovery
         if (typeof eternity.names[value].counter != 'undefined') {
-          eternity.names[value].counter = 0;
+          eternity.counters[value] = 0;
         }
       }
     }
@@ -140,9 +140,11 @@ function draw_map() {
       let counter = '---';
       // write Planar Counters value
       if (typeof eternity.names[eternity.map['0_0']].counter != 'undefined') {
-        // TODO: refactor to stop using eternity.names[x].counter so
-        // we can add + 1 to counter number on return to plane on map
-        counter = eternity.names[eternity.map['0_0']].counter;
+        if (typeof eternity.counters[eternity.map['0_0']] == 'undefined') {
+          eternity.counters[eternity.map['0_0']] = 0;
+        }
+        eternity.counters[eternity.map['0_0']] += eternity.names[eternity.map['0_0']].counter;
+        counter = eternity.counters[eternity.map['0_0']];
       }
       $('#count_button')[0].value = counter;
     }

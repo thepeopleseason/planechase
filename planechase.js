@@ -156,6 +156,7 @@ var eternity = {
   "deck": [],
   "chaotic_aether": 0,
   "current": [],
+  "counters": {},
 };
 
 function div_toggle(div="#chaos") {
@@ -319,7 +320,7 @@ function get_link(plane) {
 
 function add_counter(plane) {
   $('#count_button')[0].value = Object.keys(eternity.map).length
-    ? ++eternity.names[plane].counter
+    ? ++eternity.counters[plane]
     : ++eternity.current_planar_count;
 }
 
