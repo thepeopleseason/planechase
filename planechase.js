@@ -201,8 +201,7 @@ function roll() {
         if (eternity.current.includes('opca-63-pools-of-becoming.png')) {
           next_planes = eternity.deck.splice(0, 3);
           for (pl in next_planes) {
-            img = `<img src="images/${ next_planes[pl] }" height="50%">`;
-            output += `<a href="#" onclick="div_toggle('#chaos')">${ img }</a>`;
+            output += get_html(next_planes[pl], 50, 'div_toggle', '#chaos');
           }
           eternity.deck = eternity.deck.concat(next_planes);
           $("#chaos").html(output);
@@ -210,8 +209,7 @@ function roll() {
         }
         if (eternity.current.includes('opca-73-stairs-to-infinity.png')) {
           let scry = get_next_planes();
-          img = `<img src="images/${ scry }" height="50%">`;
-          output += `<a href="#" onclick="scry()">${ img }</a>`;
+          output += get_html(scry, 60, 'scry');
           $("#chaos").html(output);
           div_toggle("#chaos");
         }
@@ -261,20 +259,19 @@ function walk(plane=null, aether=false) {
     }
   }
 
-  var output = '';
+  let output = '';
+  let size = (walkto.length > 1) ? 50 : 80;
   for (pl in walkto) {
-    let img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`;
     if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
-      output += `<a href="#" onclick="walk('${ walkto[pl] }')">${ img }</a>`;
+      output += get_html(walkto[pl], size, 'walk', walkto[pl]);
     }
     else if (walkto[pl] === 'opca-1-chaotic-aether.png') {
-      output += `<a href="#" onclick="walk('${ get_next_planes() }', true);">${ img }</a>`;
+      output += get_html(walkto[pl], size, get_next_planes());
     }
     else {
-      output += `<a href="#"${ get_link(walkto[pl]) }>${ img }</a>`;
+      output += get_html(walkto[pl], size);
     }
 
-    // TODO: side effect -- move outside of output generation
     if (typeof eternity.names[walkto[pl]].counter != 'undefined') {
       eternity.current_planar_count = eternity.names[walkto[pl]].counter;
     }
@@ -369,6 +366,18 @@ function preloader() {
       images[i] = img;
     }
   }
+}
+
+function get_html(plane, size, func=null, arg='') {
+  let output = '';
+  let img = `<img src="images/${ plane }" height="${ size }%">`;
+  if (func === null) {
+    output += `<a href="#"${ get_link(plane) }>${ img }</a>`;
+  }
+  else {
+    output += `<a href="#" onclick="${ func }('${ arg }');">${ img }</a>`;
+  }
+  return output;
 }
 
 function pc_keybindings(event) {

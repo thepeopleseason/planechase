@@ -78,13 +78,13 @@ function move(index) {
 
       let output = '';
       let output_div = (destination === 'opca-7-spatial-merging.png') ? "#merging" : "#phenomenon";
+      let size = (walkto.length > 1) ? 40: 60;
       for (let pl in walkto) {
-        height = (walkto.length > 1) ? 40: 60;
         var img = `<img src="images/${ walkto[pl] }" height="${ height }%">`;
         if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
-          output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
+          output += get_html(walkto[pl], size, 'load', walkto[pl])
         } else {
-          output += `<a href="#" onclick="div_toggle('${ output_div }')">${ img }</a>`;
+          output += get_html(walkto[pl], size, 'div_toggle', output_div);
         }
       }
 
