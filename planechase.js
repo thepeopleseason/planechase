@@ -152,12 +152,16 @@ var eternity = {
     "-3_0", "-2_0", "-1_0", "0_0", "1_0", "2_0", "3_0", "-2_-1", "-1_-1",
     "0_-1", "1_-1", "2_-1", "-1_-2", "0_-2", "1_-2", "0_-3"
   ],
-  "hellrides": ["1_1", "-1_1", "-1_-1", "1_-1"],
   "map": {},
-  "history": [],
   "deck": [],
   "chaotic_aether": 0,
+  "current": [],
 };
+
+function div_toggle(div="#chaos") {
+  $(div).toggle();
+  $('#plane_div').toggle();
+}
 
 function roll() {
   // Planeswalk on button re-press. Skip if you're mapping
@@ -190,12 +194,40 @@ function roll() {
     }
     else {
       $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
+      if (dice_result === 'Chaos') {
+        let output = '';
+        let img = '';
+        if (eternity.current.includes('opca-63-pools-of-becoming.png')) {
+          next_planes = eternity.deck.splice(0, 3);
+          for (pl in next_planes) {
+            img = `<img src="images/${ next_planes[pl] }" height="50%">`;
+            output += `<a href="#" onclick="div_toggle('#chaos')">${ img }</a>`;
+          }
+          eternity.deck = eternity.deck.concat(next_planes);
+          $("#chaos").html(output);
+          div_toggle("#chaos");
+        }
+        if (eternity.current.includes('opca-73-stairs-to-infinity.png')) {
+          let scry = get_next_planes();
+          img = `<img src="images/${ scry }" height="50%">`;
+          output += `<a href="#" onclick="scry()">${ img }</a>`;
+          $("#chaos").html(output);
+          div_toggle("#chaos");
+        }
+      }
     }
   }
 }
 
+function scry() {
+  if (confirm("Move this plane to the bottom of the planar deck?")) {
+    eternity.deck.push(eternity.deck.shift());
+  }
+  div_toggle("#chaos");
+}
+
 function clean(plane) {
-  eternity.deck.splice(eternity.deck.indexOf(plane), 1);  // remove plane from deck
+  return eternity.deck.splice(eternity.deck.indexOf(plane), 1);  // remove plane from deck
 }
 
 function walk(plane=null, aether=false) {
@@ -230,7 +262,7 @@ function walk(plane=null, aether=false) {
 
   var output = '';
   for (pl in walkto) {
-    let img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`
+    let img = `<img src="images/${ walkto[pl] }" height="${ (walkto.length > 1) ? 50 : 80 }%">`;
     if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
       output += `<a href="#" onclick="walk('${ walkto[pl] }')">${ img }</a>`;
     }
@@ -241,16 +273,16 @@ function walk(plane=null, aether=false) {
       output += `<a href="#"${ get_link(walkto[pl]) }>${ img }</a>`;
     }
 
+    // TODO: side effect -- move outside of output generation
     if (typeof eternity.names[walkto[pl]].counter != 'undefined') {
       eternity.current_planar_count = eternity.names[walkto[pl]].counter;
     }
     else {
       eternity.current_planar_count = '---';
     }
-    update_count('count_button', eternity.current_planar_count);
-
-    eternity.history.push(walkto[pl]);
+    $('#count_button')[0].value = eternity.current_planar_count;
   }
+  eternity.current = walkto;
   $("#plane_div").html(output);
 }
 
@@ -286,11 +318,9 @@ function get_link(plane) {
 }
 
 function add_counter(plane) {
-  update_count(
-    'count_button',
-    Object.keys(eternity.map).length
-      ? ++eternity.names[plane].counter
-      : ++eternity.current_planar_count);
+  $('#count_button')[0].value = Object.keys(eternity.map).length
+    ? ++eternity.names[plane].counter
+    : ++eternity.current_planar_count;
 }
 
 function reset_cost() {
@@ -304,10 +334,6 @@ function reset_plane(aether=false) {
   if (!aether && eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
-}
-
-function update_count(id, count) {
-  $("#" + id)[0].value = count;
 }
 
 function help() {
@@ -336,10 +362,107 @@ function shuffle_deck(deck=eternity.deck) {
 function preloader() {
   var images = Object.keys(eternity.names);
   if (document.images) {
-    for (let i=0; i<images.length; i++) {
+    for (let i in images) {
       var img = new Image();
       img.src = `images/${ images[i] }`;
       images[i] = img;
     }
   }
 }
+
+function pc_keybindings(event) {
+  switch(event.which) {
+  case 13:
+  case 82:
+    // ENTER/R: Roll planar die
+    roll();
+    break;
+  case 32:
+    // SPACE: Reset planar die mana cost
+    reset_cost();
+    break;
+  case 39:
+    // R-ARROW: Just planeswalk
+    if (urlParams.get('debug')) {
+      walk();
+    }
+    break;
+  case 67:
+  case 107:
+  case 187:
+    // C/=/+: Add counter
+    var plane = $("#plane_div > a")
+    if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
+      plane.prop('onclick')();
+    }
+    break;
+  }
+}
+
+function em_keybindings(event) {
+  switch (event.which) {
+  case 27:
+    // ESC - toggle phenomenon and planes
+    div_toggle();
+    break;
+  case 38:
+  case 75:
+  case 78:
+    // N/Up Arrow/K - move up
+    move('0_1');
+    break;
+  case 57:
+    // Numpad9 - hellride NE
+    move('1_1');
+    break;
+  case 39:
+  case 69:
+  case 76:
+    // E/Right Arrow/L - move right
+    move('1_0');
+    break;
+  case 51:
+    // Numpad3 - hellride SE
+    move('1_-1');
+    break;
+  case 40:
+  case 74:
+  case 83:
+    // S/Down Arrow/J - move down
+    move('0_-1');
+    break;
+  case 49:
+    // Numpad1 - hellride SW
+    move('-1_-1');
+    break;
+  case 37:
+  case 72:
+  case 87:
+    // W/Left Arrow/I - move left
+    move('-1_0');
+    break;
+  case 55:
+    // Numpad7 - hellride NW
+    move('-1_1');
+    break;
+  case 32:
+    // SPACE: Reset planar die mana cost
+    reset_cost();
+    break;
+  case 13:
+  case 82:
+    // R/ENTER: Roll planar die
+    roll();
+    break;
+  case 67:
+  case 107:
+  case 187:
+    // C/=/+: Add counter
+    var plane = $("#cell_0_0 > a")
+    if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
+      plane.prop('onclick')();
+    }
+    break;
+  }
+}
+

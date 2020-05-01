@@ -21,7 +21,7 @@ function get_distance(index) {
 }
 
 function get_neighbors() {
-  for (let x=0; x<eternity.cells.length; x++) {
+  for (let x in eternity.cells) {
     if (typeof eternity.map[eternity.cells[x]] == 'undefined' &&
         get_distance(eternity.cells[x]) == 1) {
       eternity.map[eternity.cells[x]] = eternity.deck.shift();
@@ -29,30 +29,13 @@ function get_neighbors() {
   }
 }
 
-function merge_toggle() {
-  $('#plane_div').toggle();
-  $('#merging').toggle();
-}
-
-function pheno_toggle() {
-  $('#phenomenon').toggle();
-  $('#plane_div').toggle();
-}
-
 function load(plane) {
   eternity.map['0_0'] = plane;
   clean(plane);
   draw_map();
-  pheno_toggle();
+  div_toggle('#phenomenon');
 }
 
-function reset_plane() {
-  $('#dice_button')[0].value = 'Roll Planar Die';
-  reset_cost();
-  if (eternity.chaotic_aether == 1) {
-    eternity.chaotic_aether = 0;
-  }
-}
 
 function move(index) {
   let updatemap = {}
@@ -62,7 +45,14 @@ function move(index) {
   // Hellriding
   var point1 = get_point(index);
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
-    let hellride_deck = shuffle_deck(eternity.deck.concat(eternity.phenomena));
+    let current_phenomena = eternity.phenomena;
+
+    if (Object.values(eternity.map).includes('opca-7-spatial-merging.png')) {
+      current_phenomena = current_phenomena.filter(function (ph) {
+        return ph != 'opca-7-spatial-merging.png';
+      });
+    }
+    let hellride_deck = shuffle_deck(eternity.deck.concat(current_phenomena));
     let destination = hellride_deck.shift();
 
     // how to handle phenomena
@@ -74,7 +64,7 @@ function move(index) {
         walkto = walkto.concat(get_next_planes(5));  // Interplanar Tunnel: choose from 5 planes
       }
       else if (destination == 'opca-7-spatial-merging.png') {
-        walkto = get_next_planes(2);  // Spatial Merging (merge 2 planes)
+        walkto = walkto.concat(get_next_planes(2));  // Spatial Merging (merge 2 planes)
         walkto.forEach(pl => clean(pl));
 
         updatemap['0_0'] = destination;
@@ -86,23 +76,20 @@ function move(index) {
         destination = eternity.deck.shift();
       }
 
-      var output = '';
-      for (pl in walkto) {
+      let output = '';
+      let output_div = (destination === 'opca-7-spatial-merging.png') ? "#merging" : "#phenomenon";
+      for (let pl in walkto) {
         height = (walkto.length > 1) ? 40: 60;
         var img = `<img src="images/${ walkto[pl] }" height="${ height }%">`;
         if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
           output += `<a href="#" onclick="load('${ walkto[pl] }')">${ img }</a>`;
         } else {
-          output += `<a href="#" onclick="merge_toggle()">${ img }</a>`;
+          output += `<a href="#" onclick="div_toggle('${ output_div }')">${ img }</a>`;
         }
       }
-      if (destination === 'opca-7-spatial-merging.png') {
-        $('#merging').html(output);
-        merge_toggle();
-      } else {
-        $('#phenomenon').html(output);
-        pheno_toggle();
-      }
+
+      $(output_div).html(output);
+      div_toggle(output_div);
     }
     updatemap['0_0'] = destination;
     clean(destination);
@@ -134,35 +121,43 @@ function move(index) {
 
   // update the map, draw new neighbors
   eternity.map = updatemap;
-
   get_neighbors();
   draw_map();
+
+  eternity.current = eternity.map['0_0'];
 }
 
 function draw_map() {
-  for (var x=0; x<eternity.cells.length; x++) {
+  for (let x in eternity.cells) {
     let point = eternity.cells[x];
+
     $("#cell_"+point).html('');
     if (typeof eternity.map[point] != 'undefined') {
       link = get_link(eternity.map[point], point);
       $("#cell_"+point).html(link);
     }
     if (point == '0_0') {
+      let counter = '---';
       // write Planar Counters value
-      $('#count_button')[0].value =
-        (typeof eternity.names[eternity.map['0_0']].counter != 'undefined')
-        ? eternity.names[eternity.map['0_0']].counter : '---';
+      if (typeof eternity.names[eternity.map['0_0']].counter != 'undefined') {
+        // TODO: refactor to stop using eternity.names[x].counter so
+        // we can add + 1 to counter number on return to plane on map
+        counter = eternity.names[eternity.map['0_0']].counter;
+      }
+      $('#count_button')[0].value = counter;
     }
   }
 
-  // allow for hellriding
   if (!init) {
     $('#toolbar').show();
-    for (var x in eternity.hellrides) {
-      if (typeof eternity.map[eternity.hellrides[x]] == 'undefined') {
-        $(`#cell_${ eternity.hellrides[x] }`).html(
+    for (let x in eternity.cells) {
+      let point = get_point(eternity.cells[x]);
+      if ((Math.abs(point[0]) == 1 && Math.abs(point[1]) == 1) &&
+          (typeof eternity.map[eternity.cells[x]] == 'undefined')) {
+        // allow for hellriding
+        $(`#cell_${ eternity.cells[x] }`).html(
           '<input type="button" value="Hellride" onclick="move(\''
-            + eternity.hellrides[x] + '\');" class="myButton">');
+            + eternity.cells[x] + '\');" class="myButton">');
       }
     }
   }
@@ -182,7 +177,7 @@ function get_link(plane, index) {
       link = `<a href="#" onclick="add_counter('${ plane }');">${ link }</a>`;
     }
     else if (plane == 'opca-7-spatial-merging.png') {
-      link = `<a href="#" onclick="merge_toggle();">${ link }</a>`;
+      link = `<a href="#" onclick="div_toggle('#merging');">${ link }</a>`;
     }
     else {
       link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
@@ -204,52 +199,7 @@ function init_deck(filter=null) {
 }
 
 $(document).ready(function () {
-  $(document).keydown(function(event) {
-    switch (event.which) {
-    case 38:
-    case 75:
-    case 78:
-      // N/Up Arrow/K - move up
-      move('0_1');
-      break;
-    case 40:
-    case 74:
-    case 83:
-      // S/Down Arrow/J - move down
-      move('0_-1');
-      break;
-    case 39:
-    case 69:
-    case 76:
-      // E/Right Arrow/L - move right
-      move('1_0');
-      break;
-    case 37:
-    case 72:
-    case 87:
-      // W/Left Arrow/I - move left
-      move('-1_0');
-      break;
-    case 32:
-      // SPACE: Reset planar die mana cost
-      reset_cost();
-      break;
-    case 13:
-    case 82:
-      // R/ENTER: Roll planar die
-      roll();
-      break;
-    case 67:
-    case 107:
-    case 187:
-      // C/=/+: Add counter
-      var plane = $("#cell_0_0 > a")
-      if ((plane.size() == 1) && (/add_counter/.test(plane.prop('onclick').toString()))) {
-        plane.prop('onclick')();
-      }
-      break;
-    }
-  });
+  $(document).keydown(em_keybindings);
 
   init_deck();
   eternity.map['0_0'] = eternity.deck.shift();
@@ -320,5 +270,6 @@ $(document).ready(function () {
 </div>
 <div id="phenomenon" style="display: none;"></div>
 <div id="merging" style="display: none;"></div>
+<div id="chaos" style="display: none;"></div>
 </body>
 </html>

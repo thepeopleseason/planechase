@@ -50,7 +50,8 @@
     padding: 35px;
     margin: 35 auto;
 }
-#phenomenon, #merging {
+#phenomenon, #merging, #chaos {
+    text-align: center;
     padding: 25px;
     margin: 35 auto;
 }

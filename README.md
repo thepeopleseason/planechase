@@ -26,7 +26,6 @@ TODO
 ----
 
 * EDH-safe and remote-safe decks
-* Add Pools of Becoming Chaos and Stairs to Infinity Chaos Processing
 
 Contact
 -------
