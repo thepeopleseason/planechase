@@ -245,9 +245,9 @@ function walk(plane=null, aether=false) {
 
     // encountered a phenomenon
     if (eternity.names[walkto[walkto.length-1]].type === "phenomenon") {
-
       if (walkto[walkto.length-1] == 'opca-2-interplanar-tunnel.png') {
         walkto = walkto.concat(get_next_planes(5));  // Interplanar Tunnel (choose from 5 planes)
+        shuffle_deck();
       }
       else if (walkto[walkto.length-1] == 'opca-7-spatial-merging.png') {
         walkto = walkto.concat(get_next_planes(2));  // Spatial Merging (merge 2 planes)

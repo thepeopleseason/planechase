@@ -78,9 +78,8 @@ function move(index) {
 
       let output = '';
       let output_div = (destination === 'opca-7-spatial-merging.png') ? "#merging" : "#phenomenon";
-      let size = (walkto.length > 1) ? 40: 60;
+      let size = (walkto.length > 1) ? 30: 60;
       for (let pl in walkto) {
-        var img = `<img src="images/${ walkto[pl] }" height="${ height }%">`;
         if (walkto.indexOf('opca-2-interplanar-tunnel.png') >= 0) {
           output += get_html(walkto[pl], size, 'load', walkto[pl])
         } else {

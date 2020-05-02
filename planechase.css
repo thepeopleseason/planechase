@@ -56,6 +56,12 @@
     margin: 35 auto;
 }
 
+#phenomenon img:hover, #merging img:hover, #chaos img:hover {
+    transform: scale(1.5);
+    transition-delay: 1.5s;
+    transition-timing-function: ease-in-out;
+}
+
 .inactive img:hover {
     transform: scale(2.2);
     transition-delay: 1.5s;
