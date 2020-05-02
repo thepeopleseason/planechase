@@ -39,11 +39,12 @@ function load(plane) {
 
 function move(index) {
   let updatemap = {}
+  let walkto = [];
 
   reset_plane();
 
   // Hellriding
-  var point1 = get_point(index);
+  let point1 = get_point(index);
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
     let current_phenomena = eternity.phenomena;
 
@@ -52,12 +53,12 @@ function move(index) {
         return ph != 'opca-7-spatial-merging.png';
       });
     }
-    let hellride_deck = shuffle_deck(eternity.deck.concat(current_phenomena));
+    let hellride_deck = Array.from(eternity.deck);
+    hellride_deck = shuffle_deck(hellride_deck.concat(current_phenomena))
     let destination = hellride_deck.shift();
 
     // how to handle phenomena
     if (eternity.names[destination].type === "phenomenon") {
-      let walkto = [];
       walkto.push(destination);
 
       if (destination == 'opca-2-interplanar-tunnel.png') {
@@ -123,7 +124,8 @@ function move(index) {
   get_neighbors();
   draw_map();
 
-  eternity.current = eternity.map['0_0'];
+  eternity.current =
+    (eternity.map['0_0'] == 'opca-7-spatial-merging.png') ? walkto : [eternity.map['0_0']]
 }
 
 function draw_map() {
