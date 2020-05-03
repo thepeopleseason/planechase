@@ -73,7 +73,9 @@
 }
 
 .current img.hover {
-    transform: scale(1);
+    transform: scale(1.5);
+    transition-delay: 1.5s;
+    transition-timing-function: ease-in-out;
 }
 
 .counter {

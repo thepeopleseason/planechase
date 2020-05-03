@@ -226,7 +226,10 @@ function scry() {
 }
 
 function clean(plane) {
-  return eternity.deck.splice(eternity.deck.indexOf(plane), 1);  // remove plane from deck
+  let index = eternity.deck.indexOf(plane);
+  if (index !== -1) {
+    return eternity.deck.splice(index, 1);  // remove plane from deck
+  }
 }
 
 function walk(plane=null, aether=false) {
