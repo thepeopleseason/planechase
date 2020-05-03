@@ -157,6 +157,7 @@ var eternity = {
   "chaotic_aether": 0,
   "current": [],
   "counters": {},
+  "urlParams": {},
 };
 
 function div_toggle(div="#chaos") {
@@ -342,12 +343,26 @@ function help() {
   $("#help").dialog();
 }
 
-function init_deck(filter=null) {
+function init_deck(filter=deck_filter) {
   eternity.deck = Array.from(Object.keys(eternity.names));
   if (filter) {
     eternity.deck = eternity.deck.filter(filter);
   }
   shuffle_deck();
+}
+
+function deck_filter(e) {
+  let filter = true;
+  if (eternity.urlParams.get('edh')) {
+    filter = typeof eternity.names[e].edh == 'undefined' || eternity.names[e].edh;
+  }
+  if (!filter) {
+    return filter;
+  }
+  else if (eternity.urlParams.get('remote')) {
+    filter = typeof eternity.names[e].remote == 'undefined' || eternity.names[e].remote;
+  }
+  return filter;
 }
 
 function shuffle_deck(deck=eternity.deck) {
@@ -396,7 +411,7 @@ function pc_keybindings(event) {
     break;
   case 39:
     // R-ARROW: Just planeswalk
-    if (urlParams.get('debug')) {
+    if (eternity.urlParams.get('debug')) {
       walk();
     }
     break;

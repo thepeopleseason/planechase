@@ -9,13 +9,13 @@
 <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="planechase.js"></script>
 <script type="text/javascript">
-const urlParams = new URLSearchParams(window.location.search);
 
 function get_help() {
   return 'An implementation of Magic The Gathering\'s Planescape';
 }
 
 $(document).ready(function () {
+  eternity.urlParams = new URLSearchParams(window.location.search);
   $(document).keydown(pc_keybindings);
 
   init_deck();

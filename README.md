@@ -22,10 +22,19 @@ Key | Function | On
 
 The Eternities Map can be navigated by use of arrow keys, vi navigation (HJKL), and cardinal direction keys (NSEW).
 
+Options
+-------
+
+- URL Parameters
+  - `remote=1` : enables only remote-friendly planes
+  - `edh=1` : enables EDH-friendly planes
+
 TODO
 ----
 
-* EDH-safe and remote-safe decks
+* BUG: Sometimes Spatial Merging will show up in the map unbidden
+* BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
+  (e.g. hidden when the plane div is hidden).
 
 Contact
 -------
