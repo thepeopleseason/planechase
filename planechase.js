@@ -270,7 +270,7 @@ function walk(plane=null, aether=false) {
       output += get_html(walkto[pl], size, 'walk', walkto[pl]);
     }
     else if (walkto[pl] === 'opca-1-chaotic-aether.png') {
-      output += get_html(walkto[pl], size, get_next_planes());
+      output += get_html(walkto[pl], size, 'walk', get_next_planes());
     }
     else {
       output += get_html(walkto[pl], size);
