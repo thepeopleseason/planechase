@@ -132,10 +132,11 @@ function draw_map() {
   for (let x in eternity.cells) {
     let point = eternity.cells[x];
 
-    $("#cell_"+point).html('');
+    let cell = $("#cell_"+point);
+    cell.html('');
     if (typeof eternity.map[point] != 'undefined') {
       link = get_link(eternity.map[point], point);
-      $("#cell_"+point).html(link);
+      cell.html(link);
     }
     if (point == '0_0') {
       let counter = '---';
@@ -169,7 +170,7 @@ function draw_map() {
 function get_link(plane, index) {
   let dist = get_distance(index)
   let link = `<img src="images/${ plane }" height="` +
-      (window.innerHeight * 0.30) / (1 + (0.50 * dist)) +
+      (window.innerHeight * 0.35) / (1 + (0.7 * dist)) +
       `" title="${ eternity.names[plane].name }:${ index }">`;
 
   if (dist == 1) {
@@ -231,44 +232,44 @@ $(document).ready(function () {
 </div>
 <div id="help"><a onclick="help();">What's This?</a></div>
 </div>
-<div id="plane_div">
-<table width="100%" height="100%">
+<div id="plane_div" style="text-align: center;">
+<table style="margin-left:auto;margin-right:auto;">
 <tr><td colspan="3"></td>
-  <td class="point inactive" id="cell_0_3">0_3</td>
+  <td class="point dist-3" id="cell_0_3">0_3</td>
   <td colspan="3"></td></tr>
 <tr><td colspan="2"></td>
-  <td class="point inactive" id="cell_-1_2">-1_2</td>
-  <td class="point inactive" id="cell_0_2">0_2</td>
-  <td class="point inactive" id="cell_1_2">1_2</td>
+  <td class="point dist-3" id="cell_-1_2">-1_2</td>
+  <td class="point dist-2" id="cell_0_2">0_2</td>
+  <td class="point dist-3" id="cell_1_2">1_2</td>
   <td colspan="2"></td></tr>
 <tr><td colspan="1"></td>
-  <td class="point inactive" id="cell_-2_1">-2_1</td>
-  <td class="point inactive" id="cell_-1_1">-1_1</td>
-  <td class="point inactive" id="cell_0_1">0_1</td>
-  <td class="point inactive" id="cell_1_1">1_1</td>
-  <td class="point inactive" id="cell_2_1">2_1</td>
+  <td class="point dist-3" id="cell_-2_1">-2_1</td>
+  <td class="point dist-2" id="cell_-1_1">-1_1</td>
+  <td class="point dist-1" id="cell_0_1">0_1</td>
+  <td class="point dist-2" id="cell_1_1">1_1</td>
+  <td class="point dist-3" id="cell_2_1">2_1</td>
   <td colspan="1"></td></tr>
-<tr><td class="point inactive" id="cell_-3_0">-3_0</td>
-  <td class="point inactive" id="cell_-2_0">-2_0</td>
-  <td class="point inactive" id="cell_-1_0">-1_0</td>
+<tr><td class="point dist-3" id="cell_-3_0">-3_0</td>
+  <td class="point dist-2" id="cell_-2_0">-2_0</td>
+  <td class="point dist-1" id="cell_-1_0">-1_0</td>
   <td class="point current" id="cell_0_0">0_0</td>
-  <td class="point inactive" id="cell_1_0">1_0</td>
-  <td class="point inactive" id="cell_2_0">2_0</td>
-  <td class="point inactive" id="cell_3_0">3_0</td></tr>
+  <td class="point dist-1" id="cell_1_0">1_0</td>
+  <td class="point dist-2" id="cell_2_0">2_0</td>
+  <td class="point dist-3" id="cell_3_0">3_0</td></tr>
 <tr><td colspan="1"></td>
-  <td class="point inactive" id="cell_-2_-1">-2_-1</td>
-  <td class="point inactive" id="cell_-1_-1">-1_-1</td>
-  <td class="point inactive" id="cell_0_-1">0_-1</td>
-  <td class="point inactive" id="cell_1_-1">1_-1</td>
-  <td class="point inactive" id="cell_2_-1">2_-1</td>
+  <td class="point dist-3" id="cell_-2_-1">-2_-1</td>
+  <td class="point dist-2" id="cell_-1_-1">-1_-1</td>
+  <td class="point dist-1" id="cell_0_-1">0_-1</td>
+  <td class="point dist-2" id="cell_1_-1">1_-1</td>
+  <td class="point dist-3" id="cell_2_-1">2_-1</td>
   <td colspan="1"></td></tr>
 <tr><td colspan="2"></td>
-  <td class="point inactive" id="cell_-1_-2">-1_-2</td>
-  <td class="point inactive" id="cell_0_-2">0_-2</td>
-  <td class="point inactive" id="cell_1_-2">1_-2</td>
+  <td class="point dist-3" id="cell_-1_-2">-1_-2</td>
+  <td class="point dist-2" id="cell_0_-2">0_-2</td>
+  <td class="point dist-3" id="cell_1_-2">1_-2</td>
   <td colspan="2"></td></tr>
 <tr><td colspan="3"></td>
-  <td class="point inactive" id="cell_0_-3">0_-3</td>
+  <td class="point dist-3" id="cell_0_-3">0_-3</td>
   <td colspan="3"></td></tr>
 </table>
 </div>

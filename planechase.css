@@ -59,13 +59,21 @@
 #phenomenon img:hover, #merging img:hover, #chaos img:hover {
     transform: scale(1.5);
     transition-delay: 1.5s;
-    transition-timing-function: ease-in-out;
 }
 
-.inactive img:hover {
-    transform: scale(2.2);
-    transition-delay: 1.5s;
-    transition-timing-function: ease-in-out;
+.dist-1 img:hover {
+    transform: scale(1.7);
+    transition-delay: 1s;
+}
+
+.dist-2 img:hover {
+    transform: scale(2.4);
+    transition-delay: 1s;
+}
+
+.dist-3 img:hover {
+    transform: scale(3.1);
+    transition-delay: 1s;
 }
 
 .current {
@@ -74,8 +82,7 @@
 
 .current img.hover {
     transform: scale(1.5);
-    transition-delay: 1.5s;
-    transition-timing-function: ease-in-out;
+    transition-delay: 2s;
 }
 
 .counter {
