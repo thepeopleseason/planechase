@@ -11,14 +11,14 @@ Features
 - [Eternities Map](https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0) variant
   - Phenomena occur only during Hellrides.
 
-Keyboard Shortcuts
+Shortcuts
 ------------------
 
-Key | Function | On
---- | -------- | ---
-`<SPACE>` | Reset planar die mana cost | Planechase / Eternties Map
-`<ENTER>` `<R>` | Roll planar die | Planechase / Eternties Map
-`<C>` `<=>` `<+>` | Add counter to current plane | Planechase / Eternities Map
+Key | Function | Mouse | On
+--- | -------- | ----- | --
+`<SPACE>` | Reset planar die mana cost | Click on Cost number | Planechase / Eternties Map
+`<ENTER>` `<R>` | Roll planar die | Click on Roll button | Planechase / Eternties Map
+`<C>` `<=>` `<+>` | Add counter to current plane | Click on current plane | Planechase / Eternities Map
 
 The Eternities Map can be navigated by use of arrow keys, vi navigation (HJKL), and cardinal direction keys (NSEW).
 
@@ -28,7 +28,7 @@ Options
 - URL Parameters
   - `remote=1` : enables only remote-friendly planes
   - `edh=1` : enables EDH-friendly planes
-  - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3. 
+  - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
 
 TODO
 ----
