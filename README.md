@@ -28,6 +28,7 @@ Options
 - URL Parameters
   - `remote=1` : enables only remote-friendly planes
   - `edh=1` : enables EDH-friendly planes
+  - `size=2` : change the radius of visible/recycled planes on the eternities map
 
 TODO
 ----
