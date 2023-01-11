@@ -10,6 +10,7 @@
 <script src="planechase.js"></script>
 <script type="text/javascript">
 var init = 1;
+const urlParams = new URLSearchParams(window.location.search);
 
 function get_point(index) {
   return index.split('_').map(function(el) { return parseInt(el, 10) });
@@ -104,7 +105,7 @@ function move(index) {
       newindex = point2.join('_');
 
       // remove all planes greater than 3 hops away
-      if (get_distance(newindex) < 4) {
+      if (get_distance(newindex) < (parseInt(urlParams.get('size')) || 3) + 1) {
         updatemap[newindex] = value;
       }
       else {
