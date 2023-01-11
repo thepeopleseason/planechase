@@ -1,3 +1,5 @@
+/* Copyright 2014-2023 James Hsiao */
+
 var eternity = {
   "names": {
     "opca-1-chaotic-aether.png": { "name": "Chaotic Aether", "type": "phenomenon", },
