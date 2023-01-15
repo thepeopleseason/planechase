@@ -19,6 +19,7 @@ Key | Function | Mouse | On
 `<SPACE>` | Reset planar die mana cost | Click on Cost number | Planechase / Eternties Map
 `<ENTER>` `<R>` | Roll planar die | Click on Roll button | Planechase / Eternties Map
 `<C>` `<=>` `<+>` | Add counter to current plane | Click on current plane | Planechase / Eternities Map
+`<ESC>` | Toggle view of phenomenon | --- | Planechase / Eternities Map
 
 The Eternities Map can be navigated by use of arrow keys, vi navigation (HJKL), and cardinal direction keys (NSEW).
 
