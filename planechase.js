@@ -99,6 +99,9 @@ var eternity = {
     "opca-84-velis-vel.png": { "name": "Velis Vel", "type": "plane", },
     "opca-85-windriddle-palaces.png": { "name": "Windriddle Palaces", "type": "plane", },
     "opca-86-the-zephyr-maze.png": { "name": "The Zephyr Maze", "type": "plane", },
+    "moc-49-esper.png": { "name": "Esper", "type": "plane", },
+    "moc-61-nyx.png": { "name": "Nyx", "type": "plane", },
+    "moc-49-towashi.png": { "name": "Towashi", "type": "plane", },
   },
   "planes": [
     "opca-9-academy-at-tolaria-west.png",
@@ -141,7 +144,8 @@ var eternity = {
     "opca-80-trail-of-the-mage-rings.png", "opca-81-truga-jungle.png",
     "opca-82-turri-island.png", "opca-83-undercity-reaches.png",
     "opca-84-velis-vel.png", "opca-85-windriddle-palaces.png",
-    "opca-86-the-zephyr-maze.png",
+    "opca-86-the-zephyr-maze.png", "moc-49-esper.png", "moc-61-nyx.png",
+    "moc-67-towashi.png"
   ],
   "phenomena": [
     "opca-1-chaotic-aether.png", "opca-2-interplanar-tunnel.png",
