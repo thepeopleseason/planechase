@@ -101,7 +101,7 @@ var eternity = {
     "opca-86-the-zephyr-maze.png": { "name": "The Zephyr Maze", "type": "plane", },
     "moc-49-esper.png": { "name": "Esper", "type": "plane", },
     "moc-61-nyx.png": { "name": "Nyx", "type": "plane", },
-    "moc-49-towashi.png": { "name": "Towashi", "type": "plane", },
+    "moc-67-towashi.png": { "name": "Towashi", "type": "plane", },
   },
   "planes": [
     "opca-9-academy-at-tolaria-west.png",
