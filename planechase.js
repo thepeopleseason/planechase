@@ -112,6 +112,7 @@ var eternity = {
     "moc-57-megaflora-jungle.png": { "name": "Megaflora Jungle", "type": "plane", },
     "moc-58-naktamun.png": { "name": "Naktamun", "type": "plane", },
     "moc-59-new-argive.png": { "name": "New Argive", "type": "plane", },
+    "moc-60-norn-s-seedcore.png": { "name": "Norn's Seedcore", "type": "plane", },
     "moc-61-nyx.png": { "name": "Nyx", "type": "plane", },
     "moc-62-paliano.png": { "name": "Paliano", "type": "plane", },
     "moc-63-the-pit.png": { "name": "The Pit", "type": "plane", },
