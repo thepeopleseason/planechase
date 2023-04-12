@@ -108,7 +108,7 @@ var eternity = {
     "moc-53-the-great-aerie.png": { "name": "The Great Aerie", "type": "plane", },
     "moc-54-inys-haen.png": { "name": "Inys Haen", "type": "plane", },
     "moc-55-ketria.png": { "name": "Ketria", "type": "plane", },
-    "moc-56-littiara.png": { "name": "Littiara", "type": "plane", },
+    "moc-56-littiara.png": { "name": "Littjara", "type": "plane", },
     "moc-57-megaflora-jungle.png": { "name": "Megaflora Jungle", "type": "plane", },
     "moc-58-naktamun.png": { "name": "Naktamun", "type": "plane", },
     "moc-59-new-argive.png": { "name": "New Argive", "type": "plane", },
