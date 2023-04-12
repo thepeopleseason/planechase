@@ -37,6 +37,8 @@ TODO
 * BUG: Sometimes Spatial Merging will show up in the map unbidden
 * BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
   (e.g. hidden when the plane div is hidden).
+* TODO: Create a better interface for showing the phenomenon div.
+* TODO: Update processing of Norn's Seedcore with the Phenomenon div. 
 
 Contact
 -------
