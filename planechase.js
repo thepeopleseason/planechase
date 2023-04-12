@@ -100,7 +100,7 @@ var eternity = {
     "opca-85-windriddle-palaces.png": { "name": "Windriddle Palaces", "type": "plane", },
     "opca-86-the-zephyr-maze.png": { "name": "The Zephyr Maze", "type": "plane", },
     "moc-47-the-caldaia.png": { "name": "The Caldaia", "type": "plane", },
-    "moc-48-enigma-rides.png": { "name": "Enigma Rides", "type": "plane", },
+    "moc-48-enigma-ridges.png": { "name": "Enigma Ridges", "type": "plane", },
     "moc-49-esper.png": { "name": "Esper", "type": "plane", },
     "moc-50-the-fertile-lands-of-saulvinia.png": { "name": "The Fertile Lands of Saulvinia", "type": "plane", },
     "moc-51-ghirapur.png": { "name": "Ghirapur", "type": "plane", },
