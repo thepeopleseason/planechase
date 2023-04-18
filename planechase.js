@@ -230,7 +230,8 @@ function roll() {
     }
     $('#dice_button')[0].value = dice_result;
     if (dice_result === 'Planeswalk') {
-      reset_cost();
+      // reset_cost();
+      console.log("planeswalk");
     }
     else {
       $('#cost_button')[0].value = parseInt($('#cost_button')[0].value) + 1;
@@ -246,7 +247,8 @@ function roll() {
           $("#chaos").html(output);
           div_toggle("#chaos");
         }
-        if (eternity.current.includes('opca-73-stairs-to-infinity.png')) {
+        if (eternity.current.includes('opca-73-stairs-to-infinity.png') ||
+            eternity.current.includes('moc-50-the-fertile-lands-of-saulvinia.png')) {
           let scry = get_next_planes();
           output += get_html(scry, 60, 'scry');
           $("#chaos").html(output);
