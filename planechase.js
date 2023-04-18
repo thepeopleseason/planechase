@@ -206,6 +206,7 @@ function div_toggle(div="#chaos") {
 function roll() {
   // Planeswalk on button re-press. Skip if you're mapping
   if ($('#dice_button')[0].value == 'Planeswalk' && !Object.keys(eternity.map).length) {
+    $('#dice_button')[0].value = "Roll Planar Die";
     if (!eternity.urlParams.get('manual')) {
       walk();
     }
