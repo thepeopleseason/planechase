@@ -383,7 +383,6 @@ function reset_cost() {
 
 function reset_plane(aether=false) {
   $('#dice_button')[0].value = 'Roll Planar Die';
-  reset_cost();
   eternity.current_planar_count = 0;
   if (!aether && eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
