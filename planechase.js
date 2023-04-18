@@ -250,8 +250,13 @@ function roll() {
           $("#chaos").html(output);
           div_toggle("#chaos");
         }
-        if (eternity.current.includes('opca-73-stairs-to-infinity.png') ||
-            eternity.current.includes('moc-50-the-fertile-lands-of-saulvinia.png')) {
+        if (eternity.current.includes('opca-73-stairs-to-infinity.png')) {
+          let scry = eternity.deck[0];
+          output += get_html(scry, 60, 'scry');
+          $("#chaos").html(output);
+          div_toggle("#chaos");
+        }
+        if (eternity.current.includes('moc-50-the-fertile-lands-of-saulvinia.png')) {
           let scry = get_next_planes();
           output += get_html(scry, 60, 'scry');
           $("#chaos").html(output);
