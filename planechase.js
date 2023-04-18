@@ -206,7 +206,9 @@ function div_toggle(div="#chaos") {
 function roll() {
   // Planeswalk on button re-press. Skip if you're mapping
   if ($('#dice_button')[0].value == 'Planeswalk' && !Object.keys(eternity.map).length) {
-    walk();
+    if (!eternity.urlParams.get('manual')) {
+      walk();
+    }
   }
   else {
     let result = 0;
@@ -462,7 +464,7 @@ function pc_keybindings(event) {
     break;
   case 39:
     // R-ARROW: Just planeswalk
-    if (eternity.urlParams.get('debug')) {
+    if (eternity.urlParams.get('debug') || eternity.urlParams.get('manual')) {
       walk();
     }
     break;
