@@ -117,9 +117,10 @@ function move(index) {
         if (typeof eternity.names[value].counter != 'undefined') {
           eternity.counters[value] = 0;
         }
-        // reset #chaos on recovery of norn's seedcore
+        // reset #seedcore on recovery of norn's seedcore
         if (value == "moc-60-norn-s-seedcore.png") {
           $('#seedcore').html('');
+          eternity.realmbreaker = [];
         }
       }
     }
@@ -130,6 +131,7 @@ function move(index) {
   eternity.map = updatemap;
   get_neighbors();
   if (eternity.map['0_0'] == "moc-60-norn-s-seedcore.png") {
+    eternity.realmbreaker.push(eternity.map['0_0']);
     seedcore_chaos();
   }
   draw_map();
@@ -142,8 +144,11 @@ function seedcore_chaos() {
   let output = '';
   let pl = get_next_planes();
   let div_output = '#seedcore';
-  output += get_html(pl, 50, 'div_toggle', '#seedcore');
-  $(div_output).append(output);
+  eternity.realmbreaker.push(pl);
+  $.each(eternity.realmbreaker, function(index) {
+    output += get_html(eternity.realmbreaker[index], 30, 'div_toggle', '#seedcore');
+  });
+  $(div_output).html(output);
   eternity.deck = shuffle_deck();
   div_toggle("#seedcore");
 }
@@ -214,7 +219,7 @@ function get_link(plane, index=false) {
 }
 
 function get_help() {
-  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in Gavin Duggan\'s now-deleted article on the Mothership and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o">this Tolarian Community College video</a>.';
+  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0"Gavin Duggan\'s article</a> and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o">this Tolarian Community College video</a>.';
 }
 
 function init_deck(filter=null) {

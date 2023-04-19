@@ -273,10 +273,14 @@ function roll() {
 
 function seedcore_chaos() {
   let output = '';
-  let realmbreaker = get_next_planes();
+  let pl = get_next_planes();
   let div_output = '#plane_div';
-  output += get_html(get_next_planes(), 50);
-  $(div_output).append(output);
+  eternity.realmbreaker.push(pl);
+  $.each(eternity.realmbreaker, function(index) {
+    output += get_html(eternity.realmbreaker[index], 40);
+  });
+  $(div_output).html(output);
+  clean(pl);
 }
 
 function scry() {
@@ -306,7 +310,6 @@ function walk(plane=null, aether=false) {
       init_deck();
     }
     walkto.push(eternity.deck.shift());
-    console.log(walkto);
 
     // encountered a phenomenon
     if (eternity.names[walkto[walkto.length-1]].type === "phenomenon") {
@@ -322,12 +325,18 @@ function walk(plane=null, aether=false) {
         eternity.chaotic_aether = 1;
       }
     }
+
+    // Norn's seedcore
+    if (walkto[walkto.length-1] == 'moc-60-norn-s-seedcore.png') {
+      walkto = walkto.concat(get_next_planes());  // Norn's Seedcore (merge planes on chaos roll)
+      eternity.realmbreaker = walkto;
+      walkto.forEach(pl => clean(pl));
+    }
+    else {
+      eternity.realmbreaker = [];
+    }
   }
 
-  if (walkto[walkto.length-1] == 'moc-60-norn-s-seedcore.png') {
-    walkto = walkto.concat(get_next_planes());  // Norn's Seedcore (merge planes on chaos roll)
-    walkto.forEach(pl => clean(pl));
-  }
 
   let output = '';
   let size = (walkto.length > 1) ? 50 : 80;
@@ -558,4 +567,3 @@ function em_keybindings(event) {
     break;
   }
 }
-
