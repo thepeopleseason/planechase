@@ -156,6 +156,14 @@ function seedcore_chaos() {
   let pl = get_next_planes(1, eternity.realmbreaker);
   let div_output = '#seedcore';
   eternity.realmbreaker.push(pl);
+  if (!eternity.counters[pl] && eternity.names[pl].counter) {
+    if (pl == 'opca-13-aretopolis.png' || pl == 'opca-44-kilnspire-district.png') {
+      eternity.counters[pl] = 1;
+    }
+    else {
+      eternity.counters[pl] = 0;
+    }
+  }
   $.each(eternity.realmbreaker, function(i) {
     output += get_link(eternity.realmbreaker[i], index=false, size=30);
   });
@@ -214,7 +222,7 @@ function get_link(plane, index=false, size=null) {
   }
   else if (index == '0_0' || !index) {
     if (!init && eternity.names[plane].counter >= 0) {
-      link = `<a href="#" onclick="add_counter('${ plane }');">${ link }</a>`;
+      link = `<a onclick="add_counter('${ plane }');">${ link }</a>`;
     }
     else if (plane == 'opca-7-spatial-merging.png') {
       link = `<a href="#" onclick="div_toggle('#merging');">${ link }</a>`;
