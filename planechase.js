@@ -204,6 +204,17 @@ function div_toggle(div="#chaos") {
   $('#plane_div').toggle();
 }
 
+function show_counters() {
+  let output = '';
+  $.each(eternity.counters, function(k, v) {
+    if (k == undefined) { return; }
+    output += eternity.names[k].name + ": " + eternity.counters[k] + "\n";
+  });
+  if (output.length) {
+    alert(output);
+  }
+}
+
 function roll() {
   // Planeswalk on button re-press. Skip if you're mapping
   if ($('#dice_button')[0].value == 'Planeswalk' && !Object.keys(eternity.map).length) {
@@ -276,6 +287,9 @@ function seedcore_chaos() {
   let pl = get_next_planes();
   let div_output = '#plane_div';
   eternity.realmbreaker.push(pl);
+  if (typeof eternity.names[pl].counter != 'undefined' && !eternity.counters[pl]) {
+    eternity.counters[pl] = eternity.names[pl].counter;
+  }
   $.each(eternity.realmbreaker, function(index) {
     output += get_html(eternity.realmbreaker[index], 40);
   });
@@ -352,12 +366,12 @@ function walk(plane=null, aether=false) {
     }
 
     if (typeof eternity.names[walkto[pl]].counter != 'undefined') {
-      eternity.current_planar_count = eternity.names[walkto[pl]].counter;
+      eternity.counters[walkto[pl]] = eternity.names[walkto[pl]].counter;
+      $('#count_button')[0].value = eternity.counters[walkto[pl]];
     }
     else {
-      eternity.current_planar_count = '---';
+      $('#count_button')[0].value = '---';
     }
-    $('#count_button')[0].value = eternity.current_planar_count;
   }
   eternity.current = walkto;
   $("#plane_div").html(output);
@@ -395,9 +409,7 @@ function get_link(plane) {
 }
 
 function add_counter(plane) {
-  $('#count_button')[0].value = Object.keys(eternity.map).length
-    ? ++eternity.counters[plane]
-    : ++eternity.current_planar_count;
+  $('#count_button')[0].value = ++eternity.counters[plane];
 }
 
 function reset_cost() {
@@ -406,7 +418,16 @@ function reset_cost() {
 
 function reset_plane(aether=false) {
   $('#dice_button')[0].value = 'Roll Planar Die';
-  eternity.current_planar_count = 0;
+  if (eternity.current[0] == 'moc-60-norn-s-seedcore.png') {
+    $.each(eternity.realmbreaker, function(i) {
+      if (eternity.counters[eternity.realmbreaker[i]] > -1) {
+        eternity.counters[eternity.realmbreaker[i]] = 0;
+      }
+    });
+  }
+  if (eternity.counters[eternity.current[0]] > -1) {
+    eternity.counters[eternity.current[0]] = 0;
+  }
   if (!aether && eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
@@ -464,10 +485,10 @@ function get_html(plane, size, func=null, arg='') {
   let output = '';
   let img = `<img src="images/${ plane }" height="${ size }%">`;
   if (func === null) {
-    output += `<a href="#"${ get_link(plane) }>${ img }</a>`;
+    output += `<a ${ get_link(plane) }>${ img }</a>`;
   }
   else {
-    output += `<a href="#" onclick="${ func }('${ arg }');">${ img }</a>`;
+    output += `<a onclick="${ func }('${ arg }');">${ img }</a>`;
   }
   return output;
 }

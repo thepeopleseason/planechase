@@ -32,16 +32,6 @@ function get_neighbors() {
   }
 }
 
-function show_counters() {
-  let output = '';
-  $.each(eternity.counters, function(k, v) {
-    output += eternity.names[k].name + ": " + eternity.counters[k] + "\n";
-  });
-  if (output.length) {
-    alert(output);
-  }
-}
-
 function load(plane) {
   eternity.map['0_0'] = plane;
   clean(plane);
@@ -156,13 +146,8 @@ function seedcore_chaos() {
   let pl = get_next_planes(1, eternity.realmbreaker);
   let div_output = '#seedcore';
   eternity.realmbreaker.push(pl);
-  if (!eternity.counters[pl] && eternity.names[pl].counter) {
-    if (pl == 'opca-13-aretopolis.png' || pl == 'opca-44-kilnspire-district.png') {
-      eternity.counters[pl] = 1;
-    }
-    else {
-      eternity.counters[pl] = 0;
-    }
+  if (typeof eternity.names[pl].counter != 'undefined' && !eternity.counters[pl]) {
+    eternity.counters[pl] = eternity.names[pl].counter;
   }
   $.each(eternity.realmbreaker, function(i) {
     output += get_link(eternity.realmbreaker[i], index=false, size=30);
@@ -218,20 +203,20 @@ function get_link(plane, index=false, size=null) {
       `" title="${ eternity.names[plane].name }:${ index }">`;
 
   if (dist == 1) {
-    link = `<a href="#" onclick="move('${ index }');">${ link }</a>`;
+    link = `<a onclick="move('${ index }');">${ link }</a>`;
   }
   else if (index == '0_0' || !index) {
     if (!init && eternity.names[plane].counter >= 0) {
       link = `<a onclick="add_counter('${ plane }');">${ link }</a>`;
     }
     else if (plane == 'opca-7-spatial-merging.png') {
-      link = `<a href="#" onclick="div_toggle('#merging');">${ link }</a>`;
+      link = `<a onclick="div_toggle('#merging');">${ link }</a>`;
     }
     else if (plane == 'moc-60-norn-s-seedcore.png') {
-      link = `<a href="#" onclick="div_toggle('#seedcore');">${ link }</a>`;
+      link = `<a onclick="div_toggle('#seedcore');">${ link }</a>`;
     }
     else {
-      link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
+      link = `<a ${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
     }
   }
   return link;
