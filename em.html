@@ -131,7 +131,9 @@ function move(index) {
   eternity.map = updatemap;
   get_neighbors();
   if (eternity.map['0_0'] == "moc-60-norn-s-seedcore.png") {
-    eternity.realmbreaker.push(eternity.map['0_0']);
+    if (!eternity.realmbreaker.includes(eternity.map['0_0'])) {
+      eternity.realmbreaker.push(eternity.map['0_0']);
+    }
     seedcore_chaos();
   }
   draw_map();
