@@ -263,14 +263,20 @@ function roll() {
           div_toggle("#chaos");
         }
         if (eternity.current.includes('moc-60-norn-s-seedcore.png')) {
-          let realmbreaker = get_next_planes();
-          output += get_html(get_next_planes(), 50);
-          $("#plane_div").append(output);
-          clean(realmbreaker);
+          seedcore_chaos();
         }
       }
     }
   }
+}
+
+function seedcore_chaos() {
+  let output = '';
+  let realmbreaker = get_next_planes();
+  let div_output = '#plane_div';
+  output += get_html(get_next_planes(), 50);
+  $(div_output).append(output);
+  clean(realmbreaker);
 }
 
 function scry() {

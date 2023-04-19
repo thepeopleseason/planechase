@@ -125,10 +125,24 @@ function move(index) {
   // update the map, draw new neighbors
   eternity.map = updatemap;
   get_neighbors();
+  if (eternity.map['0_0'] == "moc-60-norn-s-seedcore.png") {
+    seedcore_chaos();
+  }
   draw_map();
 
   eternity.current =
     (eternity.map['0_0'] == 'opca-7-spatial-merging.png') ? walkto : [eternity.map['0_0']]
+}
+
+function seedcore_chaos() {
+  let output = '';
+  let realmbreaker = get_next_planes();
+  let div_output = '#chaos';
+  output += get_html(get_next_planes(), 50, 'div_toggle', '#chaos');
+  $(div_output).append(output);
+  console.log(output);
+  clean(realmbreaker);
+  div_toggle("#chaos");
 }
 
 function draw_map() {
@@ -170,8 +184,8 @@ function draw_map() {
   }
 }
 
-function get_link(plane, index) {
-  let dist = get_distance(index)
+function get_link(plane, index=false) {
+  let dist = index ? get_distance(index) : 0;
   let link = `<img src="images/${ plane }" height="` +
       (window.innerHeight * 0.35) / (1 + (0.7 * dist)) +
       `" title="${ eternity.names[plane].name }:${ index }">`;
@@ -185,6 +199,9 @@ function get_link(plane, index) {
     }
     else if (plane == 'opca-7-spatial-merging.png') {
       link = `<a href="#" onclick="div_toggle('#merging');">${ link }</a>`;
+    }
+    else if (plane == 'moc-60-norn-s-seedcore.png') {
+      link = `<a href="#" onclick="div_toggle('#chaos');">${ link }</a>`;
     }
     else {
       link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
