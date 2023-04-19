@@ -32,6 +32,33 @@ Options
   - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
   - `manual=1` : enable manual mode: disable automatic planeswalking. Right arrow manually planeswalks.
 
+Norn's Seedcore
+---------------
+Norn's Seedcore is a new plane from the March of the Machine Commander
+decks. It reads:
+
+> When you planeswalk to Norn’s Seedcore, chaos ensues.
+>
+> Whenever chaos ensues, reveal cards from the top of your planar deck
+> until you reveal a plane card. Planeswalk to it, except don’t
+> planeswalk away from any plane. Put the rest of the revealed cards
+> on the bottom of vour planar deck in any order.
+
+One-at-a-time Planechase will reveal an additional plane with Norn's
+Seedcore, and subsequent Chaos rolls will add additional planes to the
+display. Planeswalking away from Norn's Seedcore will shuffle all
+previously-associated planes with it into the Planes deck.
+
+When planeswalking to Norn's Seedcore on the Eternities Map, the
+interface will automatically reveal an additional plane. To return to
+the map, click on Norn's Seedcore. If you return to Norn's Seedcore
+while it is still on the map, any planes previously associated with it
+will still be linked to it, and they will only be removed once Norn's
+Seedcore has been removed from the map.
+
+Note: A plane may both be on the map and associated with Norn's
+Seedcore simultaneously.
+
 TODO
 ----
 
@@ -39,7 +66,9 @@ TODO
 * BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
   (e.g. hidden when the plane div is hidden).
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
-* TODO: Create a better interface for showing the phenomenon div.
+* TODO: Create a better interface for showing the phenomenon/chaos/seedcore div.
+* TODO: Enable counters for Norn's Seedcore planes
+* TODO: Enable choosing of planes for games
 
 Contact
 -------
