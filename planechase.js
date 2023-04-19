@@ -363,9 +363,9 @@ function walk(plane=null, aether=false) {
   $("#plane_div").html(output);
 }
 
-function get_next_planes(count=1) {
+function get_next_planes(count=1, exclude=[]) {
   var planes = eternity.deck.filter(function(pl) {
-    return eternity.names[pl].type === 'plane';
+    return eternity.names[pl].type === 'plane' && !exclude.includes(pl);
   });
   if (count > 1) {
     return planes.slice(0, count);

@@ -32,13 +32,22 @@ function get_neighbors() {
   }
 }
 
+function show_counters() {
+  let output = '';
+  $.each(eternity.counters, function(k, v) {
+    output += eternity.names[k].name + ": " + eternity.counters[k] + "\n";
+  });
+  if (output.length) {
+    alert(output);
+  }
+}
+
 function load(plane) {
   eternity.map['0_0'] = plane;
   clean(plane);
   draw_map();
   div_toggle('#phenomenon');
 }
-
 
 function move(index) {
   let updatemap = {}
@@ -144,11 +153,11 @@ function move(index) {
 
 function seedcore_chaos() {
   let output = '';
-  let pl = get_next_planes();
+  let pl = get_next_planes(1, eternity.realmbreaker);
   let div_output = '#seedcore';
   eternity.realmbreaker.push(pl);
-  $.each(eternity.realmbreaker, function(index) {
-    output += get_html(eternity.realmbreaker[index], 30, 'div_toggle', '#seedcore');
+  $.each(eternity.realmbreaker, function(i) {
+    output += get_link(eternity.realmbreaker[i], index=false, size=30);
   });
   $(div_output).html(output);
   eternity.deck = shuffle_deck();
@@ -194,7 +203,7 @@ function draw_map() {
   }
 }
 
-function get_link(plane, index=false) {
+function get_link(plane, index=false, size=null) {
   let dist = index ? get_distance(index) : 0;
   let link = `<img src="images/${ plane }" height="` +
       (window.innerHeight * 0.35) / (1 + (0.7 * dist)) +
@@ -203,7 +212,7 @@ function get_link(plane, index=false) {
   if (dist == 1) {
     link = `<a href="#" onclick="move('${ index }');">${ link }</a>`;
   }
-  else if (index == '0_0') {
+  else if (index == '0_0' || !index) {
     if (!init && eternity.names[plane].counter >= 0) {
       link = `<a href="#" onclick="add_counter('${ plane }');">${ link }</a>`;
     }
@@ -258,7 +267,7 @@ $(document).ready(function () {
     </div>
 </div>
 <div style="float: left;">Planar Counters:
-<input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" disabled>
+<input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" onclick="show_counters()">
 </div>
 <div id="help"></div>
 <div id="help_link"><a onclick="help();">What's This?</a></div>

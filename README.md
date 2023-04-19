@@ -56,8 +56,13 @@ while it is still on the map, any planes previously associated with it
 will still be linked to it, and they will only be removed once Norn's
 Seedcore has been removed from the map.
 
+If you encounter a plane with plane-specific counters, pressing the
+counter button in the toolbar will reveal all pertinent counter
+values.
+
 Note: A plane may both be on the map and associated with Norn's
 Seedcore simultaneously.
+
 
 TODO
 ----
@@ -67,7 +72,6 @@ TODO
   (e.g. hidden when the plane div is hidden).
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
 * TODO: Create a better interface for showing the phenomenon/chaos/seedcore div.
-* TODO: Enable counters for Norn's Seedcore planes
 * TODO: Enable choosing of planes for games
 
 Contact
