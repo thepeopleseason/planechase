@@ -192,6 +192,7 @@ var eternity = {
   ],
   "map": {},
   "deck": [],
+  "realmbreaker": [],
   "chaotic_aether": 0,
   "current": [],
   "counters": {},

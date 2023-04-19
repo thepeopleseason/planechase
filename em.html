@@ -119,7 +119,7 @@ function move(index) {
         }
         // reset #chaos on recovery of norn's seedcore
         if (value == "moc-60-norn-s-seedcore.png") {
-          $('#chaos').html('');
+          $('#seedcore').html('');
         }
       }
     }
@@ -140,12 +140,12 @@ function move(index) {
 
 function seedcore_chaos() {
   let output = '';
-  let realmbreaker = get_next_planes();
-  let div_output = '#chaos';
-  output += get_html(get_next_planes(), 50, 'div_toggle', '#chaos');
+  let pl = get_next_planes();
+  let div_output = '#seedcore';
+  output += get_html(pl, 50, 'div_toggle', '#seedcore');
   $(div_output).append(output);
-  console.log(output);
-  div_toggle("#chaos");
+  eternity.deck = shuffle_deck();
+  div_toggle("#seedcore");
 }
 
 function draw_map() {
@@ -204,7 +204,7 @@ function get_link(plane, index=false) {
       link = `<a href="#" onclick="div_toggle('#merging');">${ link }</a>`;
     }
     else if (plane == 'moc-60-norn-s-seedcore.png') {
-      link = `<a href="#" onclick="div_toggle('#chaos');">${ link }</a>`;
+      link = `<a href="#" onclick="div_toggle('#seedcore');">${ link }</a>`;
     }
     else {
       link = `<a href="#"${ init ? 'onclick="draw_map();"' : ''}>${ link }</a>`;
@@ -297,6 +297,7 @@ $(document).ready(function () {
   <td colspan="3"></td></tr>
 </table>
 </div>
+<div id="seedcore" style="display: none;"></div>
 <div id="phenomenon" style="display: none;"></div>
 <div id="merging" style="display: none;"></div>
 <div id="chaos" style="display: none;"></div>
