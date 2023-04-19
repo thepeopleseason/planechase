@@ -117,6 +117,10 @@ function move(index) {
         if (typeof eternity.names[value].counter != 'undefined') {
           eternity.counters[value] = 0;
         }
+        // reset #chaos on recovery of norn's seedcore
+        if (value == "moc-60-norn-s-seedcore.png") {
+          $('#chaos').html('');
+        }
       }
     }
   });
@@ -141,7 +145,6 @@ function seedcore_chaos() {
   output += get_html(get_next_planes(), 50, 'div_toggle', '#chaos');
   $(div_output).append(output);
   console.log(output);
-  clean(realmbreaker);
   div_toggle("#chaos");
 }
 

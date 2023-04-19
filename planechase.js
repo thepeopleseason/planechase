@@ -276,7 +276,6 @@ function seedcore_chaos() {
   let div_output = '#plane_div';
   output += get_html(get_next_planes(), 50);
   $(div_output).append(output);
-  clean(realmbreaker);
 }
 
 function scry() {
