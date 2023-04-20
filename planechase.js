@@ -208,10 +208,10 @@ function show_counters() {
   let output = '';
   $.each(eternity.counters, function(k, v) {
     if (k == undefined) { return; }
-    output += eternity.names[k].name + ": " + eternity.counters[k] + "\n";
+    output += eternity.names[k].name + ": " + eternity.counters[k] + "<br/>";
   });
   if (output.length) {
-    alert(output);
+    help(output);
   }
 }
 
@@ -433,8 +433,8 @@ function reset_plane(aether=false) {
   }
 }
 
-function help() {
-  $("#help").html(get_help());
+function help(text=get_help()) {
+  $("#help").html(text);
   $("#help").dialog();
 }
 
