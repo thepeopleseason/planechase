@@ -200,7 +200,7 @@ function get_link(plane, index=false, size=null) {
   let dist = index ? get_distance(index) : 0;
   let link = `<img src="images/${ plane }" height="` +
       (window.innerHeight * 0.35) / (1 + (0.7 * dist)) +
-      `" title="${ eternity.names[plane].name }:${ index }">`;
+      `" title="${ eternity.names[plane].name }">`;
 
   if (dist == 1) {
     link = `<a onclick="move('${ index }');">${ link }</a>`;
