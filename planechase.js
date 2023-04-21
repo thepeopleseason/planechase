@@ -425,7 +425,7 @@ function reset_plane(aether=false) {
       }
     });
   }
-  if (eternity.counters[eternity.current[0]] > -1) {
+  if (!Object.keys(eternity.map).length && eternity.counters[eternity.current[0]] > -1) {
     eternity.counters[eternity.current[0]] = 0;
   }
   if (!aether && eternity.chaotic_aether) {
