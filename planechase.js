@@ -197,7 +197,12 @@ var eternity = {
   "current": [],
   "counters": {},
   "urlParams": {},
+  "sorted": [],
 };
+
+function get_sorted_planes() {
+  eternity.sorted = Object.keys(eternity.names).sort((a, b) => (eternity.names[a].name < eternity.names[b].name) ? -1 : (eternity.names[a].name > eternity.names[b].name) ? 1 : 0 );
+}
 
 function div_toggle(div="#chaos") {
   $(div).toggle();

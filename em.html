@@ -260,49 +260,53 @@ $(document).ready(function () {
     </div>
 </div>
 <div style="float: left;">Planar Counters:
-<input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" onclick="show_counters()">
+  <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" onclick="show_counters()">
+</div>
+
+  <div style="float: left; padding: 0 5px 0 45px;" id="toggle_seedcore">
+    <a href='#' onclick="div_toggle('#seedcore')">Toggle Seedcore View</a></div>
+
+  <div style="float: left; padding 0 5px 0 300px;" id="help_link"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help"></div>
-<div id="help_link"><a onclick="help();">What's This?</a></div>
-</div>
 <div id="plane_div" style="text-align: center;">
-<table style="margin-left:auto;margin-right:auto;">
+<table style="margin:auto;">
 <tr><td colspan="3"></td>
-  <td class="point dist-3" id="cell_0_3">0_3</td>
+  <td class="point dist-3" id="cell_0_3"></td>
   <td colspan="3"></td></tr>
 <tr><td colspan="2"></td>
-  <td class="point dist-3" id="cell_-1_2">-1_2</td>
-  <td class="point dist-2" id="cell_0_2">0_2</td>
-  <td class="point dist-3" id="cell_1_2">1_2</td>
+  <td class="point dist-3" id="cell_-1_2"></td>
+  <td class="point dist-2" id="cell_0_2"></td>
+  <td class="point dist-3" id="cell_1_2"></td>
   <td colspan="2"></td></tr>
 <tr><td colspan="1"></td>
-  <td class="point dist-3" id="cell_-2_1">-2_1</td>
-  <td class="point dist-2" id="cell_-1_1">-1_1</td>
-  <td class="point dist-1" id="cell_0_1">0_1</td>
-  <td class="point dist-2" id="cell_1_1">1_1</td>
-  <td class="point dist-3" id="cell_2_1">2_1</td>
+  <td class="point dist-3" id="cell_-2_1"></td>
+  <td class="point dist-2" id="cell_-1_1"></td>
+  <td class="point dist-1" id="cell_0_1"></td>
+  <td class="point dist-2" id="cell_1_1"></td>
+  <td class="point dist-3" id="cell_2_1"></td>
   <td colspan="1"></td></tr>
-<tr><td class="point dist-3" id="cell_-3_0">-3_0</td>
-  <td class="point dist-2" id="cell_-2_0">-2_0</td>
-  <td class="point dist-1" id="cell_-1_0">-1_0</td>
-  <td class="point current" id="cell_0_0">0_0</td>
-  <td class="point dist-1" id="cell_1_0">1_0</td>
-  <td class="point dist-2" id="cell_2_0">2_0</td>
-  <td class="point dist-3" id="cell_3_0">3_0</td></tr>
+<tr><td class="point dist-3" id="cell_-3_0"></td>
+  <td class="point dist-2" id="cell_-2_0"></td>
+  <td class="point dist-1" id="cell_-1_0"></td>
+  <td class="point current" id="cell_0_0"></td>
+  <td class="point dist-1" id="cell_1_0"></td>
+  <td class="point dist-2" id="cell_2_0"></td>
+  <td class="point dist-3" id="cell_3_0"></td></tr>
 <tr><td colspan="1"></td>
-  <td class="point dist-3" id="cell_-2_-1">-2_-1</td>
-  <td class="point dist-2" id="cell_-1_-1">-1_-1</td>
-  <td class="point dist-1" id="cell_0_-1">0_-1</td>
-  <td class="point dist-2" id="cell_1_-1">1_-1</td>
-  <td class="point dist-3" id="cell_2_-1">2_-1</td>
+  <td class="point dist-3" id="cell_-2_-1"></td>
+  <td class="point dist-2" id="cell_-1_-1"></td>
+  <td class="point dist-1" id="cell_0_-1"></td>
+  <td class="point dist-2" id="cell_1_-1"></td>
+  <td class="point dist-3" id="cell_2_-1"></td>
   <td colspan="1"></td></tr>
 <tr><td colspan="2"></td>
-  <td class="point dist-3" id="cell_-1_-2">-1_-2</td>
-  <td class="point dist-2" id="cell_0_-2">0_-2</td>
-  <td class="point dist-3" id="cell_1_-2">1_-2</td>
+  <td class="point dist-3" id="cell_-1_-2"></td>
+  <td class="point dist-2" id="cell_0_-2"></td>
+  <td class="point dist-3" id="cell_1_-2"></td>
   <td colspan="2"></td></tr>
 <tr><td colspan="3"></td>
-  <td class="point dist-3" id="cell_0_-3">0_-3</td>
+  <td class="point dist-3" id="cell_0_-3"></td>
   <td colspan="3"></td></tr>
 </table>
 </div>
