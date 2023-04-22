@@ -43,6 +43,8 @@ function move(index) {
   let updatemap = {}
   let walkto = [];
 
+  let phenomenon = 0;
+
   reset_plane();
 
   // Hellriding
@@ -61,6 +63,7 @@ function move(index) {
 
     // how to handle phenomena
     if (eternity.names[destination].type === "phenomenon") {
+      phenomenon = 1;
       walkto.push(destination);
 
       if (destination == 'opca-2-interplanar-tunnel.png') {
@@ -96,6 +99,9 @@ function move(index) {
     updatemap['0_0'] = destination;
     clean(destination);
   }
+  if (!phenomenon) {
+    $('#phenomenon').html('');
+  }
 
   // Reposition all existing planes in the map
   $.each(eternity.map, function(key, value) {
@@ -121,6 +127,10 @@ function move(index) {
           $('#seedcore').html('');
           eternity.realmbreaker = [];
         }
+        // reset #merging on recovery of spatial merging
+        if (value == "opca-7-spatial-merging.png") {
+          $('#merging').html('');
+        }
       }
     }
   });
@@ -137,6 +147,31 @@ function move(index) {
   }
   draw_map();
 
+  // toggle togglers if necessary
+  if ($('#seedcore').html().length) {
+    $('#toggle_seedcore').show();
+  }
+  else {
+    $('#toggle_seedcore').hide();
+  }
+  if ($('#merging').html().length) {
+    $('#toggle_merging').show();
+  }
+  else {
+    $('#toggle_merging').hide();
+  }
+  if ($('#phenomenon').html().length) {
+    $('#toggle_phenomenon').show();
+  }
+  else {
+    $('#toggle_phenomenon').hide();
+  }
+  if ($('#chaos').html().length) {
+    $('#toggle_chaos').show();
+  }
+  else {
+    $('#toggle_chaos').hide();
+  }
   eternity.current =
     (eternity.map['0_0'] == 'opca-7-spatial-merging.png') ? walkto : [eternity.map['0_0']]
 }
@@ -263,14 +298,20 @@ $(document).ready(function () {
   <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" onclick="show_counters()">
 </div>
 
-  <div style="float: left; padding: 0 5px 0 45px;" id="toggle_seedcore">
+  <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_seedcore">
     <a href='#' onclick="div_toggle('#seedcore')">Toggle Seedcore View</a></div>
+  <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_merging">
+    <a href='#' onclick="div_toggle('#merging')">Toggle Merging View</a></div>
+  <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_phenomenon">
+    <a href='#' onclick="div_toggle('#phenomenon')">Toggle Phenomenon View</a></div>
+  <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_chaos">
+    <a href='#' onclick="div_toggle('#chaos')">Toggle Chaos View</a></div>
 
   <div style="float: left; padding 0 5px 0 300px;" id="help_link"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help"></div>
 <div id="plane_div" style="text-align: center;">
-<table style="margin:auto;">
+<table style="margin: auto;">
 <tr><td colspan="3"></td>
   <td class="point dist-3" id="cell_0_3"></td>
   <td colspan="3"></td></tr>
