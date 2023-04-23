@@ -261,7 +261,13 @@ function roll() {
         if (eternity.current.includes('opca-63-pools-of-becoming.png')) {
           next_planes = eternity.deck.splice(0, 3);
           for (pl in next_planes) {
+            console.log(next_planes[pl]);
             output += get_html(next_planes[pl], 50, 'div_toggle', '#chaos');
+            if (next_planes[pl] == 'moc-60-norn-s-seedcore.png') {
+              let seedcore = get_next_planes()
+              console.log(seedcore);
+              output += get_html(seedcore, 50, 'div_toggle', '#chaos');
+            }
           }
           eternity.deck = eternity.deck.concat(next_planes);
           $("#chaos").html(output);

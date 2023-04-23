@@ -73,6 +73,7 @@ TODO
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
 * TODO: Enable choosing of planes for games
 * BUG: Spatial Merging should allow for counter-enabled planes
+* TODO: Pools of Becoming + Stairs to Infinity/Fertile Lands of Saulvinia
 
 Contact
 -------
