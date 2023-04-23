@@ -71,7 +71,6 @@ TODO
 * BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
   (e.g. hidden when the plane div is hidden).
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
-* TODO: Create a better interface for showing the phenomenon/chaos/seedcore div.
 * TODO: Enable choosing of planes for games
 * BUG: Spatial Merging should allow for counter-enabled planes
 

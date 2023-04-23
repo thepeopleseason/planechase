@@ -283,6 +283,12 @@ function roll() {
           seedcore_chaos();
         }
       }
+      if ($('#chaos').html().length) {
+        $('#toggle_chaos').show();
+      }
+      else {
+        $('#toggle_chaos').hide();
+      }
     }
   }
 }
@@ -355,7 +361,6 @@ function walk(plane=null, aether=false) {
       eternity.realmbreaker = [];
     }
   }
-
 
   let output = '';
   let size = (walkto.length > 1) ? 50 : 80;
@@ -436,6 +441,8 @@ function reset_plane(aether=false) {
   if (!aether && eternity.chaotic_aether) {
     eternity.chaotic_aether = 0;
   }
+  $("#chaos").html('');
+  $('#toggle_chaos').hide();
 }
 
 function help(text=get_help()) {
