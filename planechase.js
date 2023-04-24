@@ -472,7 +472,7 @@ function generate_chooser(key) {
 }
 
 function preview(pl) {
-  $('#preview').html(`<img src="images/${ pl }" height="${ window.innerHeight * 0.55 }">`);
+  $('#preview').html(`<img src="images/${ pl }" width="480">`);
 }
 
 function select_toggle() {
