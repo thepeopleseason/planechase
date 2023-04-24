@@ -19,7 +19,7 @@ $(document).ready(function () {
   eternity.urlParams = new URLSearchParams(window.location.search);
   $(document).keydown(pc_keybindings);
 
-  generate_chooser();
+  generate_chooser("pcPlanes");
   preloader();
 });
 </script>
@@ -43,6 +43,7 @@ $(document).ready(function () {
 </div>
 <div id="help"></div>
 
+<div id="options" style="top: 25; position: fixed;"></div>
 <div id="start" style="top: 25; position: fixed;">
 <input type="button" value="Start Planechase!" id="start_button"
    onclick="start();" class="myButton">

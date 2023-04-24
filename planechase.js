@@ -453,15 +453,18 @@ function help(text=get_help()) {
 function init_deck() {
   get_selected_planes();
   eternity.deck = eternity.selected_planes;
+  localStorage.setItem("pcPlanes", JSON.stringify(eternity.selected_planes));
   shuffle_deck();
 }
 
-function generate_chooser() {
+function generate_chooser(key) {
   let output = '<form name="chooser_form" id="chooser_form">'
   get_sorted_planes();
+  saved_planes = JSON.parse(localStorage.getItem(key)) || [];
   output += '<input type="checkbox" name="select" onclick="select_toggle()" checked><em>Select All/None</em><br/>';
   $.each(eternity.sorted, function(i) {
-    output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" checked>`;
+    let checked = saved_planes.includes(eternity.sorted[i]) ? 'checked' : '';
+    output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" ${ checked }>`;
     output += `<a onmouseover="preview('${ eternity.sorted[i] }');">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
   });
   output += '</form>';

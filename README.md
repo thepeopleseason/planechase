@@ -72,6 +72,7 @@ TODO
 * BUG: Spatial Merging should allow for counter-enabled planes
 * TODO: Pools of Becoming + Stairs to Infinity
 * TODO: change get_next_planes to go through deck until plane
+* TODO: game history (navigable in manual mode?)
 
 Contact
 -------

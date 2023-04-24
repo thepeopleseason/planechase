@@ -264,6 +264,8 @@ function get_help() {
 function init_deck() {
   get_selected_planes();
   eternity.deck = eternity.planes.filter(selected_filter);
+  localStorage.setItem("emPlanes", JSON.stringify(eternity.selected_planes));
+
   eternity.deck = shuffle_deck();
 }
 
@@ -285,7 +287,7 @@ $(document).ready(function () {
   eternity.urlParams = new URLSearchParams(window.location.search);
   $(document).keydown(em_keybindings);
 
-  generate_chooser();
+  generate_chooser("emPlanes");
   preloader();
 });
 
@@ -313,7 +315,7 @@ $(document).ready(function () {
   <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_chaos">
     <a href='#' onclick="div_toggle('#chaos')">Toggle Chaos View</a></div>
 
-  <div style="float: left; padding 0 5px 0 300px;" id="help_link"><a onclick="help();">What's This?</a></div>
+  <div style="float: right; padding 0 5px 0 300px;" id="help_link"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help"></div>
 <div id="start" style="top: 25; position: fixed;">
