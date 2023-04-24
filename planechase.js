@@ -25,20 +25,16 @@ var eternity = {
     "opca-19-the-dark-barony.png": { "name": "The Dark Barony", "type": "plane", },
     "opca-20-edge-of-malacol.png": { "name": "Edge of Malacol", "type": "plane", },
     "opca-21-eloren-wilds.png": { "name": "Eloren Wilds", "type": "plane", },
-    "opca-22-the-eon-fog.png": { "name": "The Eon Fog", "type": "plane",
-                                 "edh": false, },
+    "opca-22-the-eon-fog.png": { "name": "The Eon Fog", "type": "plane", },
     "opca-23-feeding-grounds.png": { "name": "Feeding Grounds", "type": "plane", },
     "opca-24-fields-of-summer.png": { "name": "Fields of Summer", "type": "plane", },
     "opca-25-the-fourth-sphere.png": { "name": "The Fourth Sphere", "type": "plane", },
     "opca-26-furnace-layer.png": { "name": "Furnace Layer", "type": "plane", },
     "opca-27-gavony.png": { "name": "Gavony", "type": "plane", },
-    "opca-28-glen-elendra.png": { "name": "Glen Elendra", "type": "plane",
-                                  "remote": false, },
-    "opca-29-glimmervoid-basin.png": { "name": "Glimmervoid Basin", "type": "plane",
-                                       "remote": false, },
+    "opca-28-glen-elendra.png": { "name": "Glen Elendra", "type": "plane", },
+    "opca-29-glimmervoid-basin.png": { "name": "Glimmervoid Basin", "type": "plane", },
     "opca-30-goldmeadow.png": { "name": "Goldmeadow", "type": "plane", },
-    "opca-31-grand-ossuary.png": { "name": "Grand Ossuary", "type": "plane",
-                                   "edh": false, },
+    "opca-31-grand-ossuary.png": { "name": "Grand Ossuary", "type": "plane", },
     "opca-32-the-great-forest.png": { "name": "The Great Forest", "type": "plane", },
     "opca-33-grixis.png": { "name": "Grixis", "type": "plane", },
     "opca-34-grove-of-the-dreampods.png": { "name": "Grove of The Dreampods", "type": "plane", },
@@ -65,21 +61,18 @@ var eternity = {
     "opca-53-murasa.png": { "name": "Murasa", "type": "plane", },
     "opca-54-naar-isle.png": { "name": "Naar Isle", "counter": 0, "type": "plane", },
     "opca-55-naya.png": { "name": "Naya", "type": "plane", },
-    "opca-56-nephalia.png": { "name": "Nephalia", "type": "plane",
-                              "edh": false, },
+    "opca-56-nephalia.png": { "name": "Nephalia", "type": "plane", },
     "opca-57-norn-s-dominion.png": { "name": "Norn's Dominion", "type": "plane", },
     "opca-58-onakke-catacomb.png": { "name": "Onakke Catacomb", "type": "plane", },
     "opca-59-orochi-colony.png": { "name": "Orochi Colony", "type": "plane", },
     "opca-60-orzhova.png": { "name": "Orzhova", "type": "plane", },
-    "opca-61-otaria.png": { "name": "Otaria", "type": "plane",
-                            "remote": false, },
+    "opca-61-otaria.png": { "name": "Otaria", "type": "plane", },
     "opca-62-panopticon.png": { "name": "Panopticon", "type": "plane", },
     "opca-63-pools-of-becoming.png": { "name": "Pools of Becoming", "type": "plane", },
     "opca-64-prahv.png": { "name": "Prahv", "type": "plane", },
     "opca-65-quicksilver-sea.png": { "name": "Quicksilver Sea", "type": "plane", },
     "opca-66-raven-s-run.png": { "name": "Raven's Run", "type": "plane", },
-    "opca-67-sanctum-of-serra.png": { "name": "Sanctum of Serra", "type": "plane",
-                                      "edh": false, },
+    "opca-67-sanctum-of-serra.png": { "name": "Sanctum of Serra", "type": "plane", },
     "opca-68-sea-of-sand.png": { "name": "Sea of Sand", "type": "plane", },
     "opca-69-selesnya-loft-gardens.png": { "name": "Selesnya Loft Gardens", "type": "plane", },
     "opca-70-shiv.png": { "name": "Shiv", "type": "plane", },
@@ -198,6 +191,7 @@ var eternity = {
   "counters": {},
   "urlParams": {},
   "sorted": [],
+  "selected_planes": [],
 };
 
 function get_sorted_planes() {
@@ -261,13 +255,12 @@ function roll() {
         if (eternity.current.includes('opca-63-pools-of-becoming.png')) {
           next_planes = eternity.deck.splice(0, 3);
           for (pl in next_planes) {
-            console.log(next_planes[pl]);
             output += get_html(next_planes[pl], 50, 'div_toggle', '#chaos');
-            if (next_planes[pl] == 'moc-60-norn-s-seedcore.png') {
-              let seedcore = get_next_planes()
-              console.log(seedcore);
-              output += get_html(seedcore, 50, 'div_toggle', '#chaos');
+            if (next_planes[pl] == 'moc-60-norn-s-seedcore.png' || next_planes[pl] == 'moc-50-the-fertile-lands-of-saulvinia.png') {
+              let chaosplane = get_next_planes()
+              output += get_html(chaosplane, 50, 'div_toggle', '#chaos');
             }
+            // TODO: add handling for stairs to infinity
           }
           eternity.deck = eternity.deck.concat(next_planes);
           $("#chaos").html(output);
@@ -394,6 +387,7 @@ function walk(plane=null, aether=false) {
 }
 
 function get_next_planes(count=1, exclude=[]) {
+  // BUG: should go through next planes
   var planes = eternity.deck.filter(function(pl) {
     return eternity.names[pl].type === 'plane' && !exclude.includes(pl);
   });
@@ -456,26 +450,44 @@ function help(text=get_help()) {
   $("#help").dialog();
 }
 
-function init_deck(filter=deck_filter) {
-  eternity.deck = Array.from(Object.keys(eternity.names));
-  if (filter) {
-    eternity.deck = eternity.deck.filter(filter);
-  }
+function init_deck() {
+  get_selected_planes();
+  eternity.deck = eternity.selected_planes;
   shuffle_deck();
 }
 
-function deck_filter(e) {
-  let filter = true;
-  if (eternity.urlParams.get('edh')) {
-    filter = typeof eternity.names[e].edh == 'undefined' || eternity.names[e].edh;
-  }
-  if (!filter) {
-    return filter;
-  }
-  else if (eternity.urlParams.get('remote')) {
-    filter = typeof eternity.names[e].remote == 'undefined' || eternity.names[e].remote;
-  }
-  return filter;
+function generate_chooser() {
+  let output = '<form name="chooser_form" id="chooser_form">'
+  get_sorted_planes();
+  output += '<input type="checkbox" name="select" onclick="select_toggle()" checked><em>Select All/None</em><br/>';
+  $.each(eternity.sorted, function(i) {
+    output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" checked>`;
+    output += `<a onmouseover="preview('${ eternity.sorted[i] }');">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
+  });
+  output += '</form>';
+  $('#chooser').html(output);
+}
+
+function preview(pl) {
+  $('#preview').html(`<img src="images/${ pl }" height="${ window.innerHeight * 0.55 }">`);
+}
+
+function select_toggle() {
+  $.each(document.chooser_form.chooser, function(i) {
+    document.chooser_form.chooser[i].checked = document.chooser_form.select.checked;
+  });
+}
+
+function get_selected_planes() {
+  let selected = [];
+  $('input[name="chooser"]:checked').each(function() {
+    selected.push($(this).val());
+  });
+  eternity.selected_planes = selected;
+}
+
+function selected_filter(pl) {
+  return eternity.selected_planes.includes(pl);
 }
 
 function shuffle_deck(deck=eternity.deck) {
@@ -490,13 +502,17 @@ function shuffle_deck(deck=eternity.deck) {
 
 function preloader() {
   var images = Object.keys(eternity.names);
-  if (document.images) {
-    for (let i in images) {
-      var img = new Image();
-      img.src = `images/${ images[i] }`;
-      images[i] = img;
-    }
-  }
+  images.forEach(function(i) { var img=new Image(); img.src=`images/${i}`; });
+}
+
+function start() {
+  init_deck();
+  $('#chooser').hide();
+  $('#preview').hide();
+  $('#start').hide();
+  $('#plane_div').show();
+  $('#toolbar').show();
+  walk();
 }
 
 function get_html(plane, size, func=null, arg='') {
@@ -513,6 +529,10 @@ function get_html(plane, size, func=null, arg='') {
 
 function pc_keybindings(event) {
   switch(event.which) {
+  case 27:
+    // ESC - toggle phenomenon and planes
+    div_toggle();
+    break;
   case 13:
   case 82:
     // ENTER/R: Roll planar die

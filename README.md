@@ -27,8 +27,6 @@ Options
 -------
 
 - URL Parameters
-  - `remote=1` : enables only remote-friendly planes
-  - `edh=1` : enables EDH-friendly planes
   - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
   - `manual=1` : enable manual mode: disable automatic planeswalking. Right arrow manually planeswalks.
 
@@ -71,9 +69,9 @@ TODO
 * BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
   (e.g. hidden when the plane div is hidden).
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
-* TODO: Enable choosing of planes for games
 * BUG: Spatial Merging should allow for counter-enabled planes
-* TODO: Pools of Becoming + Stairs to Infinity/Fertile Lands of Saulvinia
+* TODO: Pools of Becoming + Stairs to Infinity
+* TODO: change get_next_planes to go through deck until plane
 
 Contact
 -------

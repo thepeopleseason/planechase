@@ -50,7 +50,7 @@ function move(index) {
   // Hellriding
   let point1 = get_point(index);
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
-    let current_phenomena = eternity.phenomena;
+    let current_phenomena = eternity.phenomena.filter(selected_filter);
 
     if (Object.values(eternity.map).includes('opca-7-spatial-merging.png')) {
       current_phenomena = current_phenomena.filter(function (ph) {
@@ -258,28 +258,34 @@ function get_link(plane, index=false, size=null) {
 }
 
 function get_help() {
-  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0" target="_blank">Gavin Duggan\'s article</a> and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o" target="_blank">this Tolarian Community College video</a>.';
+  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0" target="_blank">Gavin Duggan\'s article</a> and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o" target="_blank">this Tolarian Community College video</a>.<br /><hr />Unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of <a href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards of the Coast LLC.';
 }
 
-function init_deck(filter=null) {
-  eternity.deck = Array.from(eternity.planes);
-  if (filter) {
-    eternity.deck = eternity.deck.filter(filter);
-  }
+function init_deck() {
+  get_selected_planes();
+  eternity.deck = eternity.planes.filter(selected_filter);
   eternity.deck = shuffle_deck();
+}
+
+function start() {
+  init_deck();
+  $('#chooser').hide();
+  $('#preview').hide();
+  $('#start').hide();
+  $('#plane_div').show();
+  $('#toolbar').show();
+
+  eternity.map['0_0'] = eternity.deck.shift();
+  draw_map();
+  get_neighbors();
+  init = 0;
 }
 
 $(document).ready(function () {
   eternity.urlParams = new URLSearchParams(window.location.search);
   $(document).keydown(em_keybindings);
 
-  init_deck();
-  eternity.map['0_0'] = eternity.deck.shift();
-
-  draw_map();
-  get_neighbors();
-  init = 0;
-
+  generate_chooser();
   preloader();
 });
 
@@ -310,7 +316,12 @@ $(document).ready(function () {
   <div style="float: left; padding 0 5px 0 300px;" id="help_link"><a onclick="help();">What's This?</a></div>
 </div>
 <div id="help"></div>
-<div id="plane_div" style="text-align: center;">
+<div id="preview" style="top: 100; left: 400; position: fixed; "></div>
+<div id="chooser" style="text-align: left;"></div>
+<div id="start" style="top: 25; left: 500; position: fixed;">
+<input type="button" value="Start Planechase!" id="start_button"
+   onclick="start();" class="myButton">
+</div><div id="plane_div" style="text-align: center; display: none;">
 <table style="margin: auto;">
 <tr><td colspan="3"></td>
   <td class="point dist-3" id="cell_0_3"></td>
