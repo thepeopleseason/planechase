@@ -258,7 +258,7 @@ function get_link(plane, index=false, size=null) {
 }
 
 function get_help() {
-  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0" target="_blank">Gavin Duggan\'s article</a> and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o" target="_blank">this Tolarian Community College video</a>.<br /><hr />Unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of <a href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards of the Coast LLC.';
+  return 'An implementation of the Eternities Map variant of Magic The Gathering\'s Planescape, as described in <a href="https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0" target="_blank">Gavin Duggan\'s article</a> and <a href="https://www.youtube.com/watch?v=TGJaJ29Zs6o" target="_blank">this Tolarian Community College video</a>.<br/>For more information, questions, bug reports, <a href="https://github.com/thepeopleseason/planechase/">reach out here</a>.';
 }
 
 function init_deck() {
@@ -309,7 +309,7 @@ $(document).ready(function () {
   <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_seedcore">
     <a href='#' onclick="div_toggle('#seedcore')">Toggle Seedcore View</a></div>
   <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_merging">
-    <a href='#' onclick="div_toggle('#merging')">Toggle Merging View</a></div>
+    <a href='#' onclick="div_toggle('#merging')">Toggle Spatial Merging View</a></div>
   <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_phenomenon">
     <a href='#' onclick="div_toggle('#phenomenon')">Toggle Phenomenon View</a></div>
   <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_chaos">
@@ -322,7 +322,7 @@ $(document).ready(function () {
 <input type="button" value="Start Planechase!" id="start_button"
    onclick="start();" class="myButton">
 </div>
-<div id="preview" style="top: 100; position: fixed; "></div>
+<div id="preview" style="top: 100; position: fixed;"></div>
 <div id="chooser" style="margin-left: 500; text-align: left;"></div>
 <div id="plane_div" style="text-align: center; display: none;">
 <table style="margin: auto;">
@@ -369,5 +369,11 @@ $(document).ready(function () {
 <div id="phenomenon" style="margin-top: 50; display: none;"></div>
 <div id="merging" style="margin-top: 50; display: none;"></div>
 <div id="chaos" style="margin-top: 50; display: none;"></div>
+
+<div class="footer"> Unofficial Fan Content permitted under the Fan
+Content Policy. Not approved/endorsed by Wizards. Portions of the
+materials used are property of <a
+href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards
+of the Coast LLC.</div>
 </body>
 </html>

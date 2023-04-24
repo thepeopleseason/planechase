@@ -19,7 +19,7 @@ Key | Function | Mouse | On
 `<SPACE>` | Reset planar die mana cost | Click on Cost number | Planechase / Eternties Map
 `<ENTER>` `<R>` | Roll planar die | Click on Roll button | Planechase / Eternties Map
 `<C>` `<=>` `<+>` | Add counter to current plane | Click on current plane | Planechase / Eternities Map
-`<ESC>` | Toggle view of phenomenon | --- | Planechase / Eternities Map
+`<ESC>` | Toggle card-specific view | Click on 'Toggle' link in toolbar | Planechase / Eternities Map
 
 The Eternities Map can be navigated by use of arrow keys, vi navigation (HJKL), and cardinal direction keys (NSEW).
 
@@ -72,7 +72,7 @@ TODO
 * BUG: Spatial Merging should allow for counter-enabled planes
 * TODO: Pools of Becoming + Stairs to Infinity
 * TODO: change get_next_planes to go through deck until plane
-* TODO: game history (navigable in manual mode?)
+* TODO: full manual mode (no processing, enable scrying, game history);
 
 Contact
 -------

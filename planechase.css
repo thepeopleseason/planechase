@@ -93,6 +93,16 @@
     text-align: right;
 }
 
+.footer {
+    position: fixed;
+    text-align: center;
+    font-size: 0.5vw;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+
 #help_link {
     font-size: small;
     float: right;
