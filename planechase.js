@@ -501,8 +501,8 @@ function shuffle_deck(deck=eternity.deck) {
 }
 
 function preloader() {
-  var images = Object.keys(eternity.names);
-  images.forEach(function(i) { var img=new Image(); img.src=`images/${i}`; });
+  var images = eternity.sorted;
+  images.forEach(function(i) { var img=new Image(); img.src=`images/${i}`; images[i] = img;});
 }
 
 function start() {
