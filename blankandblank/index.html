@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Sword of _ and _</title>
+<script type="text/javascript">
+  var first = Array(
+    { name: "Body", effect: "create a 2/2 green Wolf creature token." },
+    { name: "Feast", effect: "that player discards a card." },
+    { name: "Fire", effect: "~ deals 2 damage to any target." },
+    { name: "Forge", effect: "exile the top two cards of your library. You may play those cards this turn." },
+    { name: "Hearth", effect: "exile up to one target creature you own." },
+    { name: "Light", effect: "you gain 3 life." },
+    { name: "Sinew", effect: "destroy up to one target planeswalker." },
+    { name: "Truth", effect: "put a +1/+1 counter on a creature you control." },
+    { name: "War", effect: "~ deals damage to that player equal to the number of cards in their hand." },
+    { name: "Once", effect: "surveil 2." },
+  );
+  var second = Array(
+    { name: "Mind", effect: "That player mills ten cards." },
+    { name: "Famine", effect: "Untap all lands you control." },
+    { name: "Ice", effect: "Draw a card." },
+    { name: "Frontier", effect: "You may play an additional land this turn." },
+    { name: "Home", effect: "Search your library for a basic land card. Put both cards onto the battlefield under your control, then shuffle." },
+    { name: "Shadow", effect: "Return up to one target creature card from your graveyard to your hand." },
+    { name: "Steel", effect: "Destroy up to one target artifact." },
+    { name: "Justice", effect: "Proliferate." },
+    { name: "Peace", effect: "Gain 1 life for each card in your hand." },
+    { name: "Future", effect: "Then you may cast an instant or sorcery spell with mana value 2 or less from your graveyard without paying its mana cost. If that spell would be put into your graveyard, exile it instead." },
+  );
+
+  function generate_sword() {
+    let sword = [first[Math.floor(Math.random()*first.length)],
+                 second[Math.floor(Math.random()*second.length)]]
+    let name = `Sword of ${ sword[0].name } and ${ sword[1].name }`;
+    let effect = `Whenever equipped creature deals combat damage to a player, ${ sword[0].effect } ${ sword[1].effect }<br/><br/>Equip {2}`.replace('~', name);
+
+    let output = `<b>${ name}</b>  {3}<br/><hr>Artifact -- Equipment<br/><hr>${effect}<br/><hr/>`;
+    document.getElementById('output').innerHTML=output;
+  }
+</script>
+
+</head>
+<body onload="generate_sword()">
+<div style="margin: 5 5 10 5;">
+  <input type="button" value="Generate Sword" onclick="generate_sword()">
+</div>
+<div id="output" style="width: 230px;"></div>
+</body>
+</html>

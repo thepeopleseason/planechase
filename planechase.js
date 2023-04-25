@@ -463,7 +463,7 @@ function init_deck() {
 }
 
 function generate_chooser(key, big=false) {
-  let output = '<form name="chooser_form" id="chooser_form">'
+  let output = '<form name="chooser_form" id="chooser_form">';
   get_sorted_planes();
   saved_planes = JSON.parse(localStorage.getItem(key)) || [];
   output += '<input type="checkbox" name="select" onclick="select_toggle()" checked><em>Select All/None</em><br/>';
