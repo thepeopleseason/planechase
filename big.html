@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Planechase</title>
+<link rel="stylesheet"  href="planechase.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="planechase.js"></script>
+<script type="text/javascript">
+  /* Copyright 2014-2023 James Hsiao */
+
+function get_help() {
+  return `An implementation of Magic The Gathering's Planescape<br />For more information, questions, bug reports, <a href="https://github.com/thepeopleseason/planechase/">reach out here</a>.`;
+}
+
+$(document).ready(function () {
+  eternity.urlParams = new URLSearchParams(window.location.search);
+  $(document).keydown(pc_keybindings);
+
+  generate_chooser("pcPlanes", true);
+  preloader();
+});
+</script>
+</head>
+<body style="text-align: center;">
+<div id="toolbar" style="display: none;">
+<div style="float: left;">
+    <input type="button" value="Roll Planar Die" id="dice_button"
+           onclick="roll();" class="myButton">
+    <div style="float: right; padding: 0 5px 0 5px;">Mana Cost:
+    <input type="button" id="cost_button" value="0" class="infobutton myButton" onclick="reset_cost()">
+    </div>
+  </div>
+<div style="float: left; padding: 0 5px 0 5px;">Planar Counters:
+  <input id="count_button" type="button" value="---" class="infoButton myButton" style="float: right;" onclick="show_counters()">
+  </div>
+  <div style="float: left; padding: 0 5px 0 45px; display: none;" id="toggle_chaos">
+    <a href='#' onclick="div_toggle('#chaos')">Toggle Chaos View</a></div>
+<div id="help_link">
+    <a onclick="help();">What's This?</a></div>
+</div>
+<div id="help"></div>
+
+<div id="options" style="top: 25; position: fixed;"></div>
+<div id="start" style="top: 25; position: fixed;">
+<input type="button" value="Start Planechase!" id="start_button"
+   onclick="start();" class="myButton">
+</div>
+<div id="preview" style="top: 100; position: fixed; "></div>
+<div id="chooser" style="margin-left: 950; text-align: left;"></div>
+<div id="plane_div" style="display: none;"></div>
+<div id="chaos" style="display: none;"></div>
+<div class="footer"> Unofficial Fan Content permitted under the Fan
+Content Policy. Not approved/endorsed by Wizards. Portions of the
+materials used are property of <a
+href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards
+of the Coast LLC.</div>
+
+</body>
+</html>
