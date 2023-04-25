@@ -462,7 +462,7 @@ function init_deck() {
   shuffle_deck();
 }
 
-function generate_chooser(key) {
+function generate_chooser(key, big=false) {
   let output = '<form name="chooser_form" id="chooser_form">'
   get_sorted_planes();
   saved_planes = JSON.parse(localStorage.getItem(key)) || [];
@@ -470,14 +470,14 @@ function generate_chooser(key) {
   $.each(eternity.sorted, function(i) {
     let checked = saved_planes.includes(eternity.sorted[i]) ? 'checked' : '';
     output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" ${ checked }>`;
-    output += `<a onmouseover="preview('${ eternity.sorted[i] }');">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
+    output += `<a onmouseover="preview('${ eternity.sorted[i] }', ${ big });">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
   });
   output += '</form>';
   $('#chooser').html(output);
 }
 
-function preview(pl) {
-  $('#preview').html(`<img src="images/${ pl }" width="480">`);
+function preview(pl, big=false) {
+  $('#preview').html(`<img src="images/${ pl }" width="${ big ? 925 : 480}">`);
 }
 
 function select_toggle() {
