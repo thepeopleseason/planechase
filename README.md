@@ -65,7 +65,7 @@ Seedcore simultaneously.
 TODO
 ----
 
-* BUG: Sometimes Spatial Merging will show up in the map unbidden
+* BUG: Sometimes Spatial Merging will show up in the map unbidden (EM)
 * BUG: Sometimes the phenomenon/chaos divs will get into a bad toggle state
   (e.g. hidden when the plane div is hidden).
 * BUG: Resetting the mana cost with the spacebar sometimes kicks off a roll of the planar die.
@@ -77,4 +77,4 @@ TODO
 Contact
 -------
 
-Please direct any questions, feature requests, etc. to [@thepeopleseason](https://twitter.com/thepeopleseason) on Twitter.
+Please direct any questions, feature requests, etc. to the github repository or to [@thepeopleseason](https://twitter.com/thepeopleseason) on Twitter.

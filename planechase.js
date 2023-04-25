@@ -274,7 +274,7 @@ function roll() {
         }
         if (eternity.current.includes('moc-50-the-fertile-lands-of-saulvinia.png')) {
           let scry = get_next_planes();
-          output += get_html(scry, 60, 'scry');
+          output += get_html(scry, 60, 'scry', 'false');
           $("#chaos").html(output);
           div_toggle("#chaos");
         }
@@ -307,9 +307,14 @@ function seedcore_chaos() {
   clean(pl);
 }
 
-function scry() {
-  if (confirm("Move this plane to the bottom of the planar deck?")) {
+function scry(confirm_move=true) {
+  if (confirm_move == 'false') {
     eternity.deck.push(eternity.deck.shift());
+  }
+  else {
+    if (confirm("Move this plane to the bottom of the planar deck?")) {
+      eternity.deck.push(eternity.deck.shift());
+    }
   }
   div_toggle("#chaos");
 }
