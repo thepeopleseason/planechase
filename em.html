@@ -287,6 +287,11 @@ $(document).ready(function () {
   eternity.urlParams = new URLSearchParams(window.location.search);
   $(document).keydown(em_keybindings);
 
+  if (eternity.urlParams.get('bigpreview')) {
+    $('#preview>img').width(925);
+    $('#chooser')[0].style.marginLeft = 950;
+  }
+
   generate_chooser("emPlanes");
   preloader();
 });
