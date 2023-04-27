@@ -23,6 +23,11 @@ $(document).ready(function () {
     $('#preview>img').width(925);
     $('#chooser')[0].style.marginLeft = 950;
   }
+
+  if (eternity.urlParams.get('chroma')) {
+    document.bgColor = '#00b140';
+  }
+
   generate_chooser("pcPlanes");
   preloader();
 });

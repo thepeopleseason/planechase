@@ -28,6 +28,7 @@ Options
 
 - URL Parameters
   - `bigpreview=1` : enable large previews of planes when choosing which cards to include.
+  - `chroma=1` : set background to chromakey green.
   - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
   - `manual=1` : enable manual mode: disable automatic planeswalking. Right arrow manually planeswalks.
 
