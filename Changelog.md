@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-04-30
+
+### Added
+
+- Enabled WakeLocking for devices (hopefully)
+
 ## 2023-04-29
 
 ### Added

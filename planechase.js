@@ -190,6 +190,7 @@ var eternity = {
   "current": [],
   "counters": {},
   "urlParams": {},
+  "screenLock": null,
   "sorted": [],
   "selected_planes": [],
 };
@@ -513,7 +514,8 @@ function preloader() {
   images.forEach(function(i) { var img=new Image(); img.src=`images/${i}`; images[i] = img;});
 }
 
-function start() {
+async function start() {
+  eternity.screenLock = await getScreenLock();
   init_deck();
   $('#chooser').hide();
   $('#preview').hide();
@@ -533,6 +535,27 @@ function get_html(plane, size, func=null, arg='') {
     output += `<a onclick="${ func }('${ arg }');">${ img }</a>`;
   }
   return output;
+}
+
+async function getScreenLock() {
+  if ('wakeLock' in navigator) {
+    let screenLock;
+    try {
+      screenLock = await navigator.wakeLock.request('screen');
+    } catch(err) {
+      console.log(err.name, err.message);
+    }
+    return screenLock;
+  }
+}
+
+function release() {
+  if (typeof eternity.screenLock !== 'undefined' && eternity.screenLock != null) {
+    eternity.screenLock.release().then(() => {
+      console.log("screenLock released");
+      eternity.screenLock = null;
+    });
+  }
 }
 
 function pc_keybindings(event) {

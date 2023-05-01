@@ -269,7 +269,8 @@ function init_deck() {
   eternity.deck = shuffle_deck();
 }
 
-function start() {
+async function start() {
+  eternity.screenLock = await getScreenLock();
   init_deck();
   $('#chooser').hide();
   $('#preview').hide();
