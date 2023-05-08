@@ -466,10 +466,18 @@ function init_deck() {
 function generate_chooser(key) {
   let output = '<form name="chooser_form" id="chooser_form">';
   get_sorted_planes();
-  saved_planes = JSON.parse(localStorage.getItem(key)) || [];
-  output += '<input type="checkbox" name="select" onclick="select_toggle()" checked><em>Select All/None</em><br/>';
+  saved_planes = JSON.parse(localStorage.getItem(key));
+  let scheck = '';
+  if (saved_planes) {
+    if (saved_planes.length == eternity.sorted.length) {
+      scheck = 'checked';
+    }
+  } else {
+    scheck = 'checked';
+  }
+  output += `<input type="checkbox" name="select" onclick="select_toggle()" ${ scheck }><em>Select All/None</em><br/>`;
   $.each(eternity.sorted, function(i) {
-    let checked = saved_planes.includes(eternity.sorted[i]) ? 'checked' : '';
+    let checked = scheck || saved_planes.includes(eternity.sorted[i]) ? 'checked' : '';
     output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" ${ checked }>`;
     output += `<a onmouseover="preview('${ eternity.sorted[i] }');">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
   });
