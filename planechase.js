@@ -118,7 +118,7 @@ var eternity = {
     "moc-70-the-western-cloud.png": { "name": "The Western Cloud", "type": "plane", },
     "moc-71-the-wilds.png": { "name": "The Wilds", "type": "plane", },
   },
-  "multiverse_names": {
+  "custom_names": {
     "multiverse-01-the-academy-of-paliano.jpeg": { "name": "The Academy of Paliano (Multiverse)", "type": "plane", },
     "multiverse-02-accelerated-potentiality.jpeg": { "name": "Accelerated Potentiality (Multiverse)", "type": "phenomenon", },
     "multiverse-03-akros.jpeg": { "name": "Akros (Multiverse)", "type": "plane", },
@@ -267,8 +267,8 @@ var eternity = {
 };
 
 function get_sorted_planes() {
-  if (eternity.urlParams.get('mv')) {
-    eternity.names = { ...eternity.names, ...eternity.multiverse_names };
+  if (eternity.urlParams.get('custom')) {
+    eternity.names = { ...eternity.names, ...eternity.custom_names };
   }
   eternity.sorted = Object.keys(eternity.names).sort((a, b) => (eternity.names[a].name < eternity.names[b].name) ? -1 : (eternity.names[a].name > eternity.names[b].name) ? 1 : 0 );
 }
