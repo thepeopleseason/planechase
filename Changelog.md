@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-05-16
+
+### Added
+
+- Added [Multiverse](https://www.reddit.com/r/custommagic/comments/7sgecl/multiverse_the_custom_planechase_expansion/) planes and `mv=1` URL parameter.
+
 ## 2023-04-30
 
 ### Added

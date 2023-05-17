@@ -31,6 +31,7 @@ Options
   - `chroma=1` : set background to chromakey green.
   - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
   - `manual=1` : enable manual mode: disable automatic planeswalking. Right arrow manually planeswalks.
+  - `mv=1` : enable custom planes from [Multiverse](https://www.reddit.com/r/custommagic/comments/7sgecl/multiverse_the_custom_planechase_expansion/)
 
 Norn's Seedcore
 ---------------
