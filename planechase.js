@@ -543,7 +543,7 @@ function generate_chooser(key) {
   saved_planes = JSON.parse(localStorage.getItem(key));
   let scheck = '';
   if (saved_planes) {
-    if (saved_planes.length == eternity.sorted.length) {
+    if (saved_planes.length == eternity.sorted.length || saved_planes.length == 0) {
       scheck = 'checked';
     }
   } else {
