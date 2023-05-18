@@ -549,11 +549,11 @@ function generate_chooser(key) {
   } else {
     scheck = 'checked';
   }
-  output += `<input type="checkbox" name="select" onclick="select_toggle()" ${ scheck }><em>Select All/None</em><br/>`;
+  output += `<input id="selectall" type="checkbox" name="select" onclick="select_toggle()" ${ scheck }><em><label for="selectall">Select All/None</a></em><br/>`;
   $.each(eternity.sorted, function(i) {
     let checked = scheck || saved_planes.includes(eternity.sorted[i]) ? 'checked' : '';
-    output += `<input type="checkbox" name="chooser" value="${ eternity.sorted[i] }" ${ checked }>`;
-    output += `<a onmouseover="preview('${ eternity.sorted[i] }');">${ eternity.names[eternity.sorted[i]].name }</a><br />`;
+    output += `<input id="${ eternity.sorted[i]}" type="checkbox" name="chooser" value="${ eternity.sorted[i] }" ${ checked }>`;
+    output += `<a onmouseover="preview('${ eternity.sorted[i] }');"><label for="${ eternity.sorted[i] }">${ eternity.names[eternity.sorted[i]].name }</label></a><br />`;
   });
   output += '</form>';
   $('#chooser').html(output);
