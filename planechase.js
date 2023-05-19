@@ -625,6 +625,19 @@ function get_html(plane, size, func=null, arg='') {
   return output;
 }
 
+function write_footer() {
+  let footer = `Unofficial Fan Content permitted under the Fan
+Content Policy. Not approved/endorsed by Wizards. Portions of the
+materials used are property of <a
+href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards
+of the Coast LLC.  <a href="#" onclick="help(custom_credits())">Custom Plane Credits</a> <a href="https://github.com/thepeopleseason/planechase/blob/master/Changelog.md">Changelog</a>`;
+  $('#footer').html(footer);
+}
+
+function custom_credits() {
+  return `Multiverse Planes created by <a href="https://twitter.com/Magical__Hacker">@Magical__Hacker</a><br/>digitalmayhemx Planes created by <a href="https://www.reddit.com/u/digitalmayhemx">digitalmayhemx</a>`;
+}
+
 async function getScreenLock() {
   if ('wakeLock' in navigator) {
     let screenLock;
