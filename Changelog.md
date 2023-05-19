@@ -8,7 +8,7 @@
 
 ### Changed
 
--- `mv=1` is now `custom=1` URL parameter.
+- `mv=1` is now `custom=1` URL parameter.
 
 ## 2023-05-16
 
