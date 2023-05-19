@@ -1,5 +1,15 @@
 # Changelog
 
+## 2023-05-19
+
+### Added
+
+- Added [digitalmayhemx](https://imgur.com/a/hf4TP) planes
+
+### Changed
+
+-- `mv=1` is now `custom=1` URL parameter.
+
 ## 2023-05-16
 
 ### Added

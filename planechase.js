@@ -159,6 +159,10 @@ var eternity = {
     "multiverse-38-trest.jpeg": { "name": "Trest (Multiverse)", "type": "plane", },
     "multiverse-39-the-underworld.jpeg": { "name": "The Underworld (Multiverse)", "type": "plane", },
     "multiverse-40-vahd.jpeg": { "name": "Vahd (Multiverse)", "type": "plane", },
+    "digitalmayhemx-ghirapur.jpeg": { "name": "Ghirapur (digitalmayhemx)", "type": "plane" },
+    "digitalmayhemx-naktamun.jpeg": { "name": "Naktamun (digitalmayhemx)", "type": "plane" },
+    "digitalmayhemx-orazca.jpeg": { "name": "Orazca (digitalmayhemx)", "type": "plane" },
+    "digitalmayhemx-scorching-sands.jpeg": {"name": "Scorching Sands (digitalmayhemx)", "type": "plane" },
   },
   "planes": [
     "opca-9-academy-at-tolaria-west.png",
@@ -238,6 +242,8 @@ var eternity = {
     "multiverse-36-thieves--quarter.jpeg",
     "multiverse-37-towabara.jpeg", "multiverse-38-trest.jpeg",
     "multiverse-39-the-underworld.jpeg", "multiverse-40-vahd.jpeg",
+    "digitalmayhemx-ghirapur.jpeg", "digitalmayhemx-naktamun.jpeg",
+    "digitalmayhemx-orazca.jpeg", "digitalmayhemx-scorching-sands.jpeg",
   ],
   "phenomena": [
     "opca-1-chaotic-aether.png", "opca-2-interplanar-tunnel.png",
