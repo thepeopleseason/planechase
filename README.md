@@ -64,6 +64,14 @@ values.
 Note: A plane may both be on the map and associated with Norn's
 Seedcore simultaneously.
 
+Adding Custom Planes
+--------------------
+
+To add custom planes, update the `eternity` object located at the top
+of `planechase.js`. Add the details of each plane under the
+`custom_names` key--each value should be an object with a `name`
+(preferably with an indicator that it is different from WOTC-created
+planes) and `type` where type can be either `plane` or `phenomenon`.
 
 TODO
 ----

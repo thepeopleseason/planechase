@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-05-22
+
+### Changed
+
+- Changed structure of the main eternity object to simplify process of adding custom planes. 
+
 ## 2023-05-19
 
 ### Added
