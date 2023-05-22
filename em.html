@@ -50,7 +50,9 @@ function move(index) {
   // Hellriding
   let point1 = get_point(index);
   if (Math.abs(point1[0]) == 1 && Math.abs(point1[1]) == 1) {
-    let current_phenomena = eternity.phenomena.filter(selected_filter);
+    let current_phenomena =
+        Object.keys(eternity.names).filter(i => eternity.names[i].type == 'phenomenon')
+        .filter(selected_filter);
 
     if (Object.values(eternity.map).includes('opca-7-spatial-merging.png')) {
       current_phenomena = current_phenomena.filter(function (ph) {
@@ -263,7 +265,8 @@ function get_help() {
 
 function init_deck() {
   get_selected_planes();
-  eternity.deck = eternity.planes.filter(selected_filter);
+  eternity.deck = Object.keys(eternity.names).filter(i => eternity.names[i].type == 'plane')
+    .filter(selected_filter);
   localStorage.setItem("emPlanes", JSON.stringify(eternity.selected_planes));
 
   eternity.deck = shuffle_deck();
