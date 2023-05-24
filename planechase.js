@@ -545,7 +545,7 @@ function write_footer() {
 Content Policy. Not approved/endorsed by Wizards. Portions of the
 materials used are property of <a
 href="https://magic.wizards.com/">Wizards of the Coast</a>. ©Wizards
-of the Coast LLC.  <a href="#" onclick="help(custom_credits())">Custom Plane Credits</a> <a href="https://github.com/thepeopleseason/planechase/blob/master/Changelog.md">Changelog</a>`;
+of the Coast LLC.  <a href="#" onclick="help(custom_credits())">Custom Plane Credits</a> <a href="https://github.com/thepeopleseason/planechase/blob/master/Changelog.md">Changelog</a>  If you want to <a href="https://ko-fi.com/thepeopleseason">drop a tip for me</a>.`;
   $('#footer').html(footer);
 }
 
