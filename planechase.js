@@ -117,6 +117,7 @@ var eternity = {
     "moc-69-valor-s-reach.png": { "name": "Valor's Reach", "type": "plane", },
     "moc-70-the-western-cloud.png": { "name": "The Western Cloud", "type": "plane", },
     "moc-71-the-wilds.png": { "name": "The Wilds", "type": "plane", },
+    "who-588-the-lux-foundation-library.png": { "name": "The Lux Foundation Library", "type": "plane", }
   },
   "custom_planes": {
     "multiverse-01-the-academy-of-paliano.jpeg": { "name": "The Academy of Paliano (Multiverse)", "type": "plane", },
