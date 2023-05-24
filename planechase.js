@@ -1,7 +1,7 @@
 /* Copyright 2014-2023 James Hsiao */
 
 var eternity = {
-  "names": {
+  "planes": {
     "opca-1-chaotic-aether.png": { "name": "Chaotic Aether", "type": "phenomenon", },
     "opca-2-interplanar-tunnel.png": { "name": "Interplanar Tunnel", "type": "phenomenon",
                                        "link": "load", },
@@ -118,7 +118,7 @@ var eternity = {
     "moc-70-the-western-cloud.png": { "name": "The Western Cloud", "type": "plane", },
     "moc-71-the-wilds.png": { "name": "The Wilds", "type": "plane", },
   },
-  "custom_names": {
+  "custom_planes": {
     "multiverse-01-the-academy-of-paliano.jpeg": { "name": "The Academy of Paliano (Multiverse)", "type": "plane", },
     "multiverse-02-accelerated-potentiality.jpeg": { "name": "Accelerated Potentiality (Multiverse)", "type": "phenomenon", },
     "multiverse-03-akros.jpeg": { "name": "Akros (Multiverse)", "type": "plane", },
@@ -169,21 +169,26 @@ var eternity = {
     "-3_0", "-2_0", "-1_0", "0_0", "1_0", "2_0", "3_0", "-2_-1", "-1_-1",
     "0_-1", "1_-1", "2_-1", "-1_-2", "0_-2", "1_-2", "0_-3"
   ],
-  "map": {},
-  "deck": [],
-  "realmbreaker": [],
   "chaotic_aether": 0,
-  "current": [],
   "counters": {},
-  "urlParams": {},
+  "custom": false,
+  "current": [],
+  "deck": [],
+  "map": {},
+  "names": {},
+  "realmbreaker": [],
   "screenLock": null,
   "sorted": [],
   "selected_planes": [],
+  "urlParams": {},
 };
 
 function get_sorted_planes() {
-  if (eternity.urlParams.get('custom')) {
-    eternity.names = { ...eternity.names, ...eternity.custom_names };
+  if (eternity.custom || $('#options #custom')[0].checked) {
+    eternity.names = { ...eternity.planes, ...eternity.custom_planes };
+  }
+  else {
+    eternity.names = eternity.planes;
   }
   eternity.sorted = Object.keys(eternity.names).sort((a, b) => (eternity.names[a].name < eternity.names[b].name) ? -1 : (eternity.names[a].name > eternity.names[b].name) ? 1 : 0 );
 }
@@ -545,6 +550,10 @@ of the Coast LLC.  <a href="#" onclick="help(custom_credits())">Custom Plane Cre
 
 function custom_credits() {
   return `Multiverse Planes created by <a href="https://twitter.com/Magical__Hacker">@Magical__Hacker</a><br/>digitalmayhemx Planes created by <a href="https://www.reddit.com/u/digitalmayhemx">digitalmayhemx</a>`;
+}
+
+function toggle_chroma() {
+  document.bgColor = $('#options #chroma')[0].checked ? '#00b140' : '#ffffff';
 }
 
 async function getScreenLock() {

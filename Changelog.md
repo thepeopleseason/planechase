@@ -1,10 +1,16 @@
 # Changelog
 
+## 2023-05-24
+
+### Changed
+
+- Changed options from urlParams to checkboxes
+
 ## 2023-05-22
 
 ### Changed
 
-- Changed structure of the main eternity object to simplify process of adding custom planes. 
+- Changed structure of the main eternity object to simplify process of adding custom planes.
 
 ## 2023-05-19
 

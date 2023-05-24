@@ -17,6 +17,7 @@ function get_help() {
 
 $(document).ready(function () {
   eternity.urlParams = new URLSearchParams(window.location.search);
+  eternity.custom = eternity.urlParams.get('custom');
   $(document).keydown(pc_keybindings);
 
   if (eternity.urlParams.get('bigpreview')) {
@@ -54,9 +55,13 @@ $(document).ready(function () {
 <div id="help"></div>
 
 <div id="options" style="top: 25; position: fixed;"></div>
-<div id="start" style="top: 25; position: fixed;">
+<div id="start" style="top: 25; position: fixed; text-align: left;">
 <input type="button" value="Start Planechase!" id="start_button"
    onclick="start();" class="myButton">
+<form id="options">
+<input id="custom" type="checkbox" onchange="generate_chooser('pcPlanes')"><label for="custom">Enable Custom Planes</label><br />
+<input id="chroma" type="checkbox" onchange="toggle_chroma()"><label for="chroma">Enable Chromakey</label>
+</form>
 </div>
 <div id="preview" style="top: 100; position: fixed; "><img src="images/back.jpg" width="480"></div>
 <div id="chooser" style="margin-left: 500; text-align: left;"></div>
