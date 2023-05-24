@@ -8,7 +8,8 @@ Features
 
 - Single-deck Planechase featuring all published planes
 - Automatic planeswalking when virtual die roller achieves planeswalk
-- [Eternities Map](https://magic.wizards.com/en/articles/archive/feature/eternities-map-2010-07-19-0) variant
+- [Eternities Map](https://web.archive.org/web/20220922215232/https://magic.wizards.com/en/articles/\
+archive/feature/eternities-map-2010-07-19-0) variant
   - Phenomena occur only during Hellrides.
 
 Shortcuts
@@ -31,7 +32,7 @@ Options
   - `chroma=1` : set background to chromakey green.
   - `size=2` : change the radius of visible/recycled planes on the eternities map. Default radius is 3, maximum 3.
   - `manual=1` : enable manual mode: disable automatic planeswalking. Right arrow manually planeswalks.
-  - `custom=1` : enable custom planes from [Multiverse](https://www.reddit.com/r/custommagic/comments/7sgecl/multiverse_the_custom_planechase_expansion/)
+  - `custom=1` : enable custom planes from [Multiverse](https://www.reddit.com/r/custommagic/comments/7sgecl/multiverse_the_custom_planechase_expansion/), [digitalmayhemx](https://www.reddit.com/u/digitalmayhemx) and other potential sources
 
 Norn's Seedcore
 ---------------
@@ -69,7 +70,7 @@ Adding Custom Planes
 
 To add custom planes, update the `eternity` object located at the top
 of `planechase.js`. Add the details of each plane under the
-`custom_names` key--each value should be an object with a `name`
+`custom_planes` key--each value should be an object with a `name`
 (preferably with an indicator that it is different from WOTC-created
 planes) and `type` where type can be either `plane` or `phenomenon`.
 
