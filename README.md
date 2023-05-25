@@ -74,6 +74,9 @@ of `planechase.js`. Add the details of each plane under the
 (preferably with an indicator that it is different from WOTC-created
 planes) and `type` where type can be either `plane` or `phenomenon`.
 
+Submit a pull request with those changes, and I'll double-check them 
+and update the site accordingly. 
+
 TODO
 ----
 
