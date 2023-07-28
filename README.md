@@ -88,6 +88,7 @@ TODO
 * TODO: Pools of Becoming + Stairs to Infinity
 * TODO: change get_next_planes to go through deck until plane
 * TODO: full manual mode (no processing, enable scrying, game history);
+* TODO: implement Fixed Point in Time
 
 Contact
 -------
