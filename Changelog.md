@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-07-28
+
+### Added
+
+- Added MTGWHO Planes from current previews.
+
 ## 2023-05-24
 
 ### Changed
