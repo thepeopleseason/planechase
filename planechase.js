@@ -124,6 +124,8 @@ var eternity = {
     "who-580-the-doctor-s-tomb.png": { "name": "The Doctor's Tomb", "type": "plane", },
     "who-582-fixed-point-in-time.png": { "name": "Fixed Point in Time", "type": "phenomenon", },
     "who-588-the-lux-foundation-library.png": { "name": "The Lux Foundation Library", "type": "plane", },
+    "who-592-new-new-york.jpg": { "name": "New New York", "type": "plane", },
+    "who-596-prime-minister-s-cabinet-room.jpg": { "name": "Prime Minister's Cabinet Room", "type": "plane", },
     "who-601-tardis-bay.png": { "name": "TARDIS Bay", "type": "plane", },
     "who-604-unit-headquarters.png": { "name": "UNIT Headquarters", "type": "plane", }
   },
