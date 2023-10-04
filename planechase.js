@@ -129,9 +129,11 @@ var eternity = {
     "who-588-the-lux-foundation-library.png": { "name": "The Lux Foundation Library", "type": "plane", },
     "who-592-new-new-york.png": { "name": "New New York", "type": "plane", },
     "who-593-north-pole-research-base.png": { "name": "North Pole Research Base", "type": "plane", },
+    "who-594-ood-sphere.png": { "name": "Ood Sphere", "type": "plane", },
     "who-595-pompeii.png": { "name": "Pompeii", "type": "plane", "counter": 1 },
     "who-596-prime-minister-s-cabinet-room.png": { "name": "Prime Minister's Cabinet Room", "type": "plane", },
     "who-601-tardis-bay.png": { "name": "TARDIS Bay", "type": "plane", },
+    "who-603-two-streams-facility.png": { "name": "Two Streams Facility", "type": "plane", },
     "who-604-unit-headquarters.png": { "name": "UNIT Headquarters", "type": "plane", }
   },
   "custom_planes": {
