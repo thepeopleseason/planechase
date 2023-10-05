@@ -121,7 +121,7 @@ var eternity = {
     "who-568-aplan-mortarium.png": { "name": "Aplan Mortarium", "type": "plane", "counter": 0, },
     "who-569-bad-wolf-bay.png": { "name": "Bad Wolf Bay", "type": "plane", },
     "who-570-besieged-viking-village.png": { "name": "Besieged Viking Village", "type": "plane", },
-    "who-578-the-dining car.png": { "name": "The Dining Car", "type": "plane", },
+    "who-578-the-dining-car.png": { "name": "The Dining Car", "type": "plane", },
     "who-579-the-doctor-s-childhood-barn.png": { "name": "The Doctor's Childhood Barn", "type": "plane", },
     "who-580-the-doctor-s-tomb.png": { "name": "The Doctor's Tomb", "type": "plane", },
     "who-582-fixed-point-in-time.png": { "name": "Fixed Point in Time", "type": "phenomenon", },
