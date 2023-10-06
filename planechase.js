@@ -122,7 +122,7 @@ var eternity = {
     "who-568-aplan-mortarium.png": { "name": "Aplan Mortarium", "type": "plane", "counter": 0, },
     "who-569-bad-wolf-bay.png": { "name": "Bad Wolf Bay", "type": "plane", },
     "who-570-besieged-viking-village.png": { "name": "Besieged Viking Village", "type": "plane", },
-    "who-571-bowie-base-one.jpg.": { "name": "Bowie Base One", "type": "plane", },
+    "who-571-bowie-base-one.jpg": { "name": "Bowie Base One", "type": "plane", },
     //"who-572.png": { "name": "", "type": "plane", },
     //"who-573.png": { "name": "", "type": "plane", },
     //"who-574.png": { "name": "", "type": "plane", },
