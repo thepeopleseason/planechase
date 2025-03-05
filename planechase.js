@@ -156,7 +156,17 @@ var eternity = {
     "who-602-temple-of-atropos.jpg": { "name": "Temple of Atropos", "type": "plane", },
     "who-603-two-streams-facility.png": { "name": "Two Streams Facility", "type": "plane", },
     "who-604-unit-headquarters.png": { "name": "UNIT Headquarters", "type": "plane", },
-    "who-605-unleash-the-flux.png": { "name": "Unleash the Flux", "type": "phenomenon", }
+    "who-605-unleash-the-flux.png": { "name": "Unleash the Flux", "type": "phenomenon", },
+    "psldsc-1-deceptive-divination.png": { "name": "Deceptive Divination", "type": "plane", },
+    "psldsc-10-we-hope-you-like-squirrels.png": { "name": "We Hope You Like Squirrels", "type": "plane", },
+    "psldsc-2-fblthp-completely-utterly-totally-lost.png": { "name": "Fblthp: Completely, Utterly, Totally Lost", "type": "plane", },
+    "psldsc-3-finally-left-handed-magic-cards.png": { "name": "Finally! Left-Handed Magic Cards", "type": "plane", },
+    "psldsc-4-happy-yargle-day.png": { "name": "Happy Yargle Day!", "type": "plane", },
+    "psldsc-5-imaginary-friends-plane.png": { "name": "Imaginary Friends Plane", "type": "plane", },
+    "psldsc-6-li-l-giri-saves-the-day.png": { "name": "Li'l Girl Saves the Day", "type": "plane", },
+    "psldsc-7-math-is-for-blockers-plane.png": { "name": "Math is for Blockers", "type": "plane", },
+    "psldsc-8-mycosynthwave.png": { "name": "Mycosynthwave", "type": "plane", },
+    "psldsc-9-sans-mercy.png": { "name": "sAnS mERcY", "type": "plane", },
   },
   "custom_planes": {
     "multiverse-01-the-academy-of-paliano.jpeg": { "name": "The Academy of Paliano (Multiverse)", "type": "plane", },
