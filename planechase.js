@@ -216,6 +216,19 @@ var eternity = {
     "you-encounter-a-beholder.png": { "name": "You Encounter a Beholder", "type": "phenomenon", },
     "ureni-s-lair.png": { "name": "Ureni's Lair", "type": "plane", },
     "royal-booster.png": { "name": "Royal Booster", "type": "phenomenon", },
+    "da1-PATL004-cola-bottling-plant.png": { name: "Cola Bottling Plant", "type": "plane", },
+    "da1-PATL006-georgia-echnical-ins-i-u-e.png": {name: "Georgia echnical Ins i u e", "type": "plane", },
+    "da1-PATL007-goldengrave.png": {name: "Goldengrave", "type": "plane", },
+    "da1-PATL008-gravitational-capture.png": {name: "Gravitational Capture", "type": "phenomenon", },
+    "da1-PATL009-lorwyn-arena.png": {name: "Lorwyn Arena", "type": "plane", },
+    "da1-PATL010-mysterious-planet.png": {name: "Mysterious Planet", "type": "plane", },
+    "da1-PATL013-secret-lair.png": {name: "Secret Lair", "type": "plane", },
+    "da1-PATL014-terminus-end-of-the-line.png": {name: "Terminus, End of the Line", "type": "plane", },
+    "da1-PATL015-the-big-aquarium.png": {name: "The Big Aquarium", "type": "plane", },
+    "da1-PATL019-through-the-wormhole.png": {name: "Through the Wormhole", "type": "phenomenon", },
+    "da1-PATL020-waffle-hovel.png": {name: "Waffle Hovel", "type": "plane", },
+
+
   },
   "custom_planes": {
     "multiverse-01-the-academy-of-paliano.jpeg": { "name": "The Academy of Paliano (Multiverse)", "type": "plane", },
